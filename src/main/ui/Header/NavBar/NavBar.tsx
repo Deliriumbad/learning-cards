@@ -1,18 +1,19 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import {PATH} from "../../Routes/RoutesPath";
+import style from './NavBar.module.css'
 
 export const NavBar = () => {
     return (
-        <nav>
-            <ul>
-                <li><NavLink to={PATH.login}>Login</NavLink></li>
-                <li><NavLink to={PATH.newPassword}>New password</NavLink></li>
-                <li><NavLink to={PATH.passwordRecovery}>Password recovery</NavLink></li>
-                <li><NavLink to={PATH.profile}>Profile</NavLink></li>
-                <li><NavLink to={PATH.registration}>Registration</NavLink></li>
-                <li><NavLink to={PATH.test}>Test</NavLink></li>
-                <li><NavLink to={PATH.error404}>Error404</NavLink></li>
+        <nav className={style.nav}>
+            <ul className={style.list}>
+                <li className={style.listItem}><NavLink to={PATH.login} className={style.link}>Login</NavLink></li>
+                <li className={style.listItem}><NavLink to={PATH.newPassword} className={style.link}>New password</NavLink></li>
+                <li className={style.listItem}><NavLink to={PATH.passwordRecovery} className={style.link}>Password recovery</NavLink></li>
+                <li className={style.listItem}><NavLink to={PATH.profile} className={style.link}>Profile</NavLink></li>
+                <li className={style.listItem}><NavLink to={PATH.registration} className={style.link}>Registration</NavLink></li>
+                <li className={style.listItem}><NavLink to={PATH.test} className={style.link}>Test</NavLink></li>
+                <li className={style.listItem}><NavLink to={PATH.error404} className={style.link}>Error404</NavLink></li>
             </ul>
         </nav>
     );

@@ -11,7 +11,6 @@ const App = () => {
             <HashRouter>
                 <Provider store={store}>
                      <Main/>
-                    {/*Нужно сделать хеадер, прописать роуты, сделать пустые редьюсеры, компоненты для отрисовки*/}
                 </Provider>
             </HashRouter>
         </div>
