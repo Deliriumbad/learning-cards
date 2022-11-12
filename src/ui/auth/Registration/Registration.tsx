@@ -1,9 +1,7 @@
-import React from 'react';
+import React from "react";
 
-export const Registration = () => {
-    return (
-        <div>
-            Register
-        </div>
-    )
-}
+const Registration = () => {
+  return <div>Register</div>;
+};
+
+export default Registration;

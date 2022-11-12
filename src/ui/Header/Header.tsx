@@ -1,11 +1,14 @@
-import React from 'react';
-import {NavBar} from "./NavBar/NavBar";
-import style from './Header.module.css'
+import React from "react";
 
-export const Header = () => {
-    return (
-        <div className={style.header}>
-            <NavBar/>
-        </div>
-    );
+import style from "./Header.module.css";
+import NavBar from "./NavBar/NavBar";
+
+const Header = () => {
+  return (
+    <div className={style.header}>
+      <NavBar />
+    </div>
+  );
 };
+
+export default Header;
