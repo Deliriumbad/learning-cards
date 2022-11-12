@@ -1,7 +1,7 @@
 import React from 'react';
-import {InputText} from "../../../main/ui/common/components/InputText/InputText";
-import {Button} from "../../../main/ui/common/components/Button/Button";
-import {Checkbox} from "../../../main/ui/common/components/CheckBox/Checkbox";
+import {InputText} from "../../components/InputText/InputText";
+import {Button} from "../../components/Button/Button";
+import {Checkbox} from "../../components/CheckBox/Checkbox";
 import style from './Test.module.css'
 
 export const Test = () => {

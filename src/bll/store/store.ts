@@ -1,10 +1,10 @@
 import {applyMiddleware, combineReducers, legacy_createStore } from "redux";
-import {loginReducer} from "../../features/auth/Login/login-reducer";
+import {loginReducer} from "../reducers/login-reducer";
 import thunk from "redux-thunk";
-import {registerReducer} from "../../features/auth/Registration/register-reducer";
-import {newPassReducer} from "../../features/auth/NewPassword/newPassword-reducer";
-import {passRecoveryReducer} from "../../features/auth/PasswordRecovery/passwordRecovery-reducer";
-import {profileReducer} from "../../features/auth/Profile/profile-reducer";
+import {registerReducer} from "../reducers/register-reducer";
+import {newPassReducer} from "../reducers/new-password-reducer";
+import {passRecoveryReducer} from "../reducers/password-recovery-reducer";
+import {profileReducer} from "../reducers/profile-reducer";
 
 const reducers = combineReducers({
     login: loginReducer,

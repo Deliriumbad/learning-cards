@@ -2,8 +2,8 @@ import React from 'react';
 import './App.css';
 import {HashRouter} from "react-router-dom";
 import {Provider} from "react-redux";
-import {store} from "./main/bll/store";
-import {Main} from "./main/ui/Main";
+import {store} from "./bll/store/store";
+import {Main} from "./ui/Main/Main";
 
 const App = () => {
     return (
