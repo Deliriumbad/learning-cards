@@ -8,11 +8,11 @@ import { profileReducer } from '../reducers/profile-reducer';
 import { registerReducer } from '../reducers/register-reducer';
 
 const reducers = combineReducers({
-  login: loginReducer,
-  register: registerReducer,
-  newPass: newPassReducer,
-  passRecovery: passRecoveryReducer,
-  profile: profileReducer,
+    login: loginReducer,
+    register: registerReducer,
+    newPass: newPassReducer,
+    passRecovery: passRecoveryReducer,
+    profile: profileReducer,
 });
 
 export const store = legacy_createStore(reducers, applyMiddleware(thunk));

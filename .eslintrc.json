@@ -23,8 +23,8 @@
   },
   "plugins": ["react", "@typescript-eslint", "prettier"],
   "rules": {
-		"react/jsx-props-no-spreading": ["off"],
-		"no-unused-expressions": ["off"],
+    "react/jsx-props-no-spreading": ["off"],
+    "no-unused-expressions": ["off"],
     "@typescript-eslint/no-unused-expressions": ["off"],
     "react/require-default-props": ["off"],
     "default-param-last": ["off"],
