@@ -3,9 +3,9 @@ import React, {
   DetailedHTMLProps,
   InputHTMLAttributes,
   KeyboardEvent,
-} from "react";
+} from 'react';
 
-import s from "./InputText.module.css";
+import s from './InputText.module.css';
 
 type DefaultInputPropsType = DetailedHTMLProps<
   InputHTMLAttributes<HTMLInputElement>,
@@ -39,10 +39,10 @@ const InputText: React.FC<SuperInputTextPropsType> = ({
   const onKeyPressCallback = (e: KeyboardEvent<HTMLInputElement>) => {
     onKeyPress && onKeyPress(e);
 
-    onEnter && e.key === "Enter" && onEnter();
+    onEnter && e.key === 'Enter' && onEnter();
   };
 
-  const finalSpanClassName = `${s.error} ${spanClassName || ""}`;
+  const finalSpanClassName = `${s.error} ${spanClassName || ''}`;
   const finalInputClassName = `${s.errorInput} ${
     error ? s.errorInput : s.superInput
   } ${className}`;

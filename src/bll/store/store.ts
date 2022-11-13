@@ -1,11 +1,11 @@
-import { applyMiddleware, combineReducers, legacy_createStore } from "redux";
-import thunk from "redux-thunk";
+import { applyMiddleware, combineReducers, legacy_createStore } from 'redux';
+import thunk from 'redux-thunk';
 
-import { loginReducer } from "../reducers/login-reducer";
-import { newPassReducer } from "../reducers/new-password-reducer";
-import { passRecoveryReducer } from "../reducers/password-recovery-reducer";
-import { profileReducer } from "../reducers/profile-reducer";
-import { registerReducer } from "../reducers/register-reducer";
+import { loginReducer } from '../reducers/login-reducer';
+import { newPassReducer } from '../reducers/new-password-reducer';
+import { passRecoveryReducer } from '../reducers/password-recovery-reducer';
+import { profileReducer } from '../reducers/profile-reducer';
+import { registerReducer } from '../reducers/register-reducer';
 
 const reducers = combineReducers({
   login: loginReducer,

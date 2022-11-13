@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 
-import Button from "../../components/Button/Button";
-import Checkbox from "../../components/CheckBox/Checkbox";
-import InputText from "../../components/InputText/InputText";
+import Button from '../../components/Button/Button';
+import Checkbox from '../../components/CheckBox/Checkbox';
+import InputText from '../../components/InputText/InputText';
 
-import style from "./Test.module.css";
+import style from './Test.module.css';
 
 const Test = () => {
   return (

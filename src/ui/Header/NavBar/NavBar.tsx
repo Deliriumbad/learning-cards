@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 
-import { NavLink } from "react-router-dom";
+import { NavLink } from 'react-router-dom';
 
-import { PATH } from "../../../utils/Routes/RoutesPath";
+import { PATH } from '../../../utils/Routes/RoutesPath';
 
-import style from "./NavBar.module.css";
+import style from './NavBar.module.css';
 
 const NavBar = () => {
   return (

@@ -1,23 +1,23 @@
-import React from "react";
+import React from 'react';
 
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from 'react-router-dom';
 
-import Error404 from "../../ui/auth/Error404/Error404";
-import Login from "../../ui/auth/Login/Login";
-import NewPassword from "../../ui/auth/NewPassword/NewPassword";
-import PasswordRecovery from "../../ui/auth/PasswordRecovery/PasswordRecovery";
-import Profile from "../../ui/auth/Profile/Profile";
-import Registration from "../../ui/auth/Registration/Registration";
-import Test from "../../ui/auth/Test/Test";
+import Error404 from '../../ui/auth/Error404/Error404';
+import Login from '../../ui/auth/Login/Login';
+import NewPassword from '../../ui/auth/NewPassword/NewPassword';
+import PasswordRecovery from '../../ui/auth/PasswordRecovery/PasswordRecovery';
+import Profile from '../../ui/auth/Profile/Profile';
+import Registration from '../../ui/auth/Registration/Registration';
+import Test from '../../ui/auth/Test/Test';
 
 export const PATH = {
-  error404: "error-404",
-  login: "login",
-  newPassword: "new-password",
-  passwordRecovery: "password-recovery",
-  profile: "profile",
-  registration: "registration",
-  test: "test",
+  error404: 'error-404',
+  login: 'login',
+  newPassword: 'new-password',
+  passwordRecovery: 'password-recovery',
+  profile: 'profile',
+  registration: 'registration',
+  test: 'test',
 };
 
 export const dataPATH = [
@@ -55,10 +55,10 @@ const RoutesPath = () => {
   return (
     <Routes>
       <Route path="/" element={<Navigate to={PATH.login} />} />
-      {dataPATH.map((route) => (
+      {dataPATH.map(route => (
         <Route path={route.path} element={route.element} key={route.path} />
       ))}
-      <Route path={"/*"} element={<Navigate to={PATH.error404} />} />
+      <Route path={'/*'} element={<Navigate to={PATH.error404} />} />
     </Routes>
   );
 };
