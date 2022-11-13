@@ -6,10 +6,10 @@ type ActionType = any;
 
 export const passRecoveryReducer = (
   state: PassRecoveryStateType = passRecoveryInitState,
-  action: ActionType
+  action: ActionType,
 ): PassRecoveryStateType => {
   switch (action.type) {
-    case "1":
+    case '1':
       return { ...state };
     default:
       return state;

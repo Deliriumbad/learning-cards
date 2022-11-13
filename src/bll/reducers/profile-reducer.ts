@@ -6,10 +6,10 @@ type ActionType = any;
 
 export const profileReducer = (
   state: ProfileStateType = profileInitState,
-  action: ActionType
+  action: ActionType,
 ): ProfileStateType => {
   switch (action.type) {
-    case "1":
+    case '1':
       return { ...state };
     default:
       return state;

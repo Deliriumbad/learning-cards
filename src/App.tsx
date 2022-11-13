@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 
-import "./App.css";
-import { Provider } from "react-redux";
-import { HashRouter } from "react-router-dom";
+import './App.css';
+import { Provider } from 'react-redux';
+import { HashRouter } from 'react-router-dom';
 
-import { store } from "./bll/store/store";
-import Main from "./ui/Main/Main";
+import { store } from './bll/store/store';
+import Main from './ui/Main/Main';
 
 const App = () => {
   return (

@@ -6,10 +6,10 @@ type ActionType = any;
 
 export const registerReducer = (
   state: RegisterStateType = registerInitState,
-  action: ActionType
+  action: ActionType,
 ): RegisterStateType => {
   switch (action.type) {
-    case "1":
+    case '1':
       return { ...state };
     default:
       return state;

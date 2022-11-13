@@ -6,10 +6,10 @@ type ActionType = any;
 
 export const newPassReducer = (
   state: NewPassStateType = newPassInitState,
-  action: ActionType
+  action: ActionType,
 ): NewPassStateType => {
   switch (action.type) {
-    case "1":
+    case '1':
       return { ...state };
     default:
       return state;
