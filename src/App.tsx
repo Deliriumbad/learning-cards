@@ -1,20 +1,22 @@
-import React from 'react';
-import './App.css';
-import {HashRouter} from "react-router-dom";
-import {Provider} from "react-redux";
-import {store} from "./bll/store/store";
-import {Main} from "./ui/Main/Main";
+import React from "react";
+
+import "./App.css";
+import { Provider } from "react-redux";
+import { HashRouter } from "react-router-dom";
+
+import { store } from "./bll/store/store";
+import Main from "./ui/Main/Main";
 
 const App = () => {
-    return (
-        <div className="App">
-            <HashRouter>
-                <Provider store={store}>
-                     <Main/>
-                </Provider>
-            </HashRouter>
-        </div>
-    );
-}
+  return (
+    <div className="App">
+      <HashRouter>
+        <Provider store={store}>
+          <Main />
+        </Provider>
+      </HashRouter>
+    </div>
+  );
+};
 
 export default App;
