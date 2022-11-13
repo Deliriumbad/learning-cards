@@ -5,13 +5,13 @@ export type NewPassStateType = typeof newPassInitState;
 type ActionType = any;
 
 export const newPassReducer = (
-  state: NewPassStateType = newPassInitState,
-  action: ActionType,
+    state: NewPassStateType = newPassInitState,
+    action: ActionType,
 ): NewPassStateType => {
-  switch (action.type) {
-    case '1':
-      return { ...state };
-    default:
-      return state;
-  }
+    switch (action.type) {
+        case '1':
+            return { ...state };
+        default:
+            return state;
+    }
 };
