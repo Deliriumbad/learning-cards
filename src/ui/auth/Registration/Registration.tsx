@@ -2,7 +2,6 @@ import React from 'react';
 
 import { FormikValues, useFormik } from 'formik';
 
-import registerApi from '../../../dal/registration-api';
 import Button from '../../components/Button/Button';
 import InputText from '../../components/InputText/InputText';
 
@@ -46,7 +45,7 @@ const Registration = () => {
         },
         validate,
         onSubmit: values => {
-            registerApi.register({ email: values.email, password: values.password });
+            console.log(values);
         },
     });
     return (

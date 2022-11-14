@@ -1,5 +1,3 @@
-import { RegisterRequest } from '../../dal/registration-api';
-
 export const registerInitState = {};
 
 export type RegisterStateType = typeof registerInitState;
@@ -18,8 +16,23 @@ export const registerReducer = (
     }
 };
 
-export const setRegistration = (data: RegisterRequest) => {
-    return { type: 'REGISTRATION', data };
+export const setRegistration = (isRegistered: boolean) => {
+    return { type: 'REGISTRATION', isRegistered } as const;
+};
+
+export const setError = (message: string) => {
+    return { type: 'ERROR', message } as const;
 };
 
 type Register = ReturnType<typeof setRegistration>;
+
+// export const requestRegistration = (data: RegisterRequest) => {
+//     async (dispatch: Dispatch) => {
+//         try {
+//             await registerApi.register(data);
+//             dispatch(setRegistration(true));
+//         } catch (error: any) {
+//             dispatch(setRegistration(error.message));
+//         }
+//     };
+// };
