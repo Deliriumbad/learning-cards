@@ -1,3 +1,7 @@
+import { Dispatch } from 'redux';
+
+import registerApi, { RegisterRequest } from '../../dal/registration-api';
+
 export const registerInitState = {};
 
 export type RegisterStateType = typeof registerInitState;
@@ -26,13 +30,13 @@ export const setError = (message: string) => {
 
 type Register = ReturnType<typeof setRegistration>;
 
-// export const requestRegistration = (data: RegisterRequest) => {
-//     async (dispatch: Dispatch) => {
-//         try {
-//             await registerApi.register(data);
-//             dispatch(setRegistration(true));
-//         } catch (error: any) {
-//             dispatch(setRegistration(error.message));
-//         }
-//     };
-// };
+export const requestRegistration = (data: RegisterRequest) => {
+    async (dispatch: Dispatch) => {
+        try {
+            await registerApi.register(data);
+            dispatch(setRegistration(true));
+        } catch (error: any) {
+            dispatch(setRegistration(error.message));
+        }
+    };
+};
