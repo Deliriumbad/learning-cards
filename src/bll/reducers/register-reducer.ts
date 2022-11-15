@@ -1,17 +1,37 @@
+import registerApi from '../../dal/registration-api';
+import { AppDispatch } from '../store/store';
+
 export const registerInitState = {};
 
 export type RegisterStateType = typeof registerInitState;
 
-type ActionType = any;
+export type RegisterActionType = Register;
 
 export const registerReducer = (
     state: RegisterStateType = registerInitState,
-    action: ActionType,
+    action: RegisterActionType,
 ): RegisterStateType => {
     switch (action.type) {
-        case '1':
+        case 'REGISTRATION':
             return { ...state };
         default:
             return state;
     }
+};
+
+export const setRegistration = (isRegistered: boolean) => {
+    return { type: 'REGISTRATION', isRegistered } as const;
+};
+
+export const setError = (message: string) => {
+    return { type: 'ERROR', message } as const;
+};
+
+type Register = ReturnType<typeof setRegistration>;
+
+export const requestRegistration = (data: { email: string; password: string }): AppDispatch => {
+    return dispatch => {
+        registerApi.register(data);
+        dispatch(setRegistration(true));
+    };
 };
