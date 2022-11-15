@@ -1,11 +1,12 @@
 import React from 'react';
 
+import { requestRegistration } from 'bll/reducers/register-reducer';
+import { useAppDispatch } from 'bll/store/hooks';
 import { FormikValues, useFormik } from 'formik';
-
-import { requestRegistration } from '../../../bll/reducers/register-reducer';
-import { useAppDispatch } from '../../../bll/store/hooks';
-import Button from '../../components/Button/Button';
-import InputText from '../../components/InputText/InputText';
+import { useNavigate } from 'react-router-dom';
+import Button from 'ui/components/Button/Button';
+import InputText from 'ui/components/InputText/InputText';
+import { PATH } from 'utils/Routes/RoutesPath';
 
 type Error = {
     email?: string;
@@ -26,7 +27,7 @@ const validate = (values: FormikValues) => {
     if (!values.password) {
         errors.password = 'Required';
     } else if (values.password.length > 8) {
-        errors.password = 'Must be 20 characters or less';
+        errors.password = 'Must be 8 characters or less';
     }
 
     if (!values.confirmPassword) {
@@ -39,6 +40,7 @@ const validate = (values: FormikValues) => {
 };
 
 const Registration = () => {
+    const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const formik = useFormik({
         initialValues: {
@@ -49,6 +51,7 @@ const Registration = () => {
         validate,
         onSubmit: values => {
             dispatch(requestRegistration({ email: values.email, password: values.password }));
+            navigate(PATH.login);
         },
     });
     return (

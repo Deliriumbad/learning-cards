@@ -30,8 +30,12 @@ export const setError = (message: string) => {
 type Register = ReturnType<typeof setRegistration>;
 
 export const requestRegistration = (data: { email: string; password: string }): AppDispatch => {
-    return dispatch => {
-        registerApi.register(data);
-        dispatch(setRegistration(true));
+    return async dispatch => {
+        try {
+            await registerApi.register(data);
+            dispatch(setRegistration(true));
+        } catch (error: any) {
+            dispatch(setError);
+        }
     };
 };
