@@ -25,7 +25,7 @@ const validate = (values: FormikValues) => {
 
     if (!values.password) {
         errors.password = 'Required';
-    } else if (values.password.length > 8) {
+    } else if (values.password.length > 20) {
         errors.password = 'Must be 20 characters or less';
     }
 
