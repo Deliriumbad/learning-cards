@@ -1,11 +1,12 @@
 import React from 'react';
 
 import { Navigate, Route, Routes } from 'react-router-dom';
+import CheckEmail from 'ui/auth/forgot-password/CheckEmail';
+import ForgotPassword from 'ui/auth/forgot-password/ForgotPassword';
 
 import Error404 from '../../ui/auth/Error404/Error404';
 import Login from '../../ui/auth/Login/Login';
 import NewPassword from '../../ui/auth/NewPassword/NewPassword';
-import PasswordRecovery from '../../ui/auth/PasswordRecovery/PasswordRecovery';
 import Profile from '../../ui/auth/Profile/Profile';
 import Registration from '../../ui/auth/Registration/Registration';
 import Test from '../../ui/auth/Test/Test';
@@ -14,7 +15,8 @@ export const PATH = {
     error404: '/error-404',
     login: '/login',
     newPassword: '/new-password',
-    passwordRecovery: '/password-recovery',
+    forgotPassword: '/forgot-password',
+    checkEmail: 'check-email',
     profile: '/profile',
     registration: '/registration',
     test: '/test',
@@ -34,8 +36,12 @@ export const dataPATH = [
         element: <NewPassword />,
     },
     {
-        path: PATH.passwordRecovery,
-        element: <PasswordRecovery />,
+        path: PATH.forgotPassword,
+        element: <ForgotPassword />,
+    },
+    {
+        path: PATH.checkEmail,
+        element: <CheckEmail />,
     },
     {
         path: PATH.profile,
