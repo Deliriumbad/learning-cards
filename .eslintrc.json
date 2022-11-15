@@ -23,6 +23,8 @@
   },
   "plugins": ["react", "@typescript-eslint", "prettier"],
   "rules": {
+    "import/no-cycle": ["off"],
+    "no-debugger": ["warn"],
     "jsx-a11y/label-has-associated-control": ["off"],
     "react/jsx-props-no-spreading": ["off"],
     "no-unused-expressions": ["off"],
