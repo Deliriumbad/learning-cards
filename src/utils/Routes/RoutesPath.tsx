@@ -11,13 +11,13 @@ import Registration from '../../ui/auth/Registration/Registration';
 import Test from '../../ui/auth/Test/Test';
 
 export const PATH = {
-    error404: 'error-404',
-    login: 'login',
-    newPassword: 'new-password',
-    passwordRecovery: 'password-recovery',
-    profile: 'profile',
-    registration: 'registration',
-    test: 'test',
+    error404: '/error-404',
+    login: '/login',
+    newPassword: '/new-password',
+    passwordRecovery: '/password-recovery',
+    profile: '/profile',
+    registration: '/registration',
+    test: '/test',
 };
 
 export const dataPATH = [
