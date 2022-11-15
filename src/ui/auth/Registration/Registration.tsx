@@ -2,6 +2,8 @@ import React from 'react';
 
 import { FormikValues, useFormik } from 'formik';
 
+import { requestRegistration } from '../../../bll/reducers/register-reducer';
+import { useAppDispatch } from '../../../bll/store/hooks';
 import Button from '../../components/Button/Button';
 import InputText from '../../components/InputText/InputText';
 
@@ -37,6 +39,7 @@ const validate = (values: FormikValues) => {
 };
 
 const Registration = () => {
+    const dispatch = useAppDispatch();
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -45,7 +48,7 @@ const Registration = () => {
         },
         validate,
         onSubmit: values => {
-            console.log(values);
+            dispatch(requestRegistration({ email: values.email, password: values.password }));
         },
     });
     return (
