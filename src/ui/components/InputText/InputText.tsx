@@ -1,6 +1,6 @@
 import React, { ChangeEvent, DetailedHTMLProps, InputHTMLAttributes, KeyboardEvent } from 'react';
 
-import s from './InputText.module.css';
+import s from './InputText.module.scss';
 
 type DefaultInputPropsType = DetailedHTMLProps<
     InputHTMLAttributes<HTMLInputElement>,

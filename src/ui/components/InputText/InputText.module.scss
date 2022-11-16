@@ -1,0 +1,31 @@
+.superInput {
+  margin: 10px;
+  border: 2px solid #c0c0c0;
+  border-radius: 5px;
+  padding: 4px;
+  height: 20px;
+  width: 200px;
+
+  &:focus {
+    background-color: #bebcbd;
+    border: 2px solid #555;
+    outline: none;
+  }
+
+  &:hover {
+    background-color: #bebcbd;
+    transition: .5s;
+    border: 2px solid #555;
+  }
+}
+
+.error {
+  color: #990000;
+  font-weight: bold;
+}
+
+.finalSpanClassName {
+  height: 30px;
+}
+
+
