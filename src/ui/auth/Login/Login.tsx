@@ -1,16 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { useFormik } from 'formik';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 import { loginTC } from '../../../bll/reducers/login-reducer';
-import { useAppDispatch } from '../../../bll/store/hooks';
+import { useAppDispatch, useAppSelector } from '../../../bll/store/hooks';
 import { PATH } from '../../../utils/Routes/RoutesPath';
 import Button from '../../components/Button/Button';
 import Checkbox from '../../components/CheckBox/Checkbox';
 import InputText from '../../components/InputText/InputText';
 
-import s from './Login.module.css';
+import s from './Login.module.scss';
 
 type FormikErrorType = {
     email?: string;
@@ -20,7 +20,8 @@ type FormikErrorType = {
 
 const Login = () => {
     const dispatch = useAppDispatch();
-    //  const isAuth = useAppSelector<boolean>(state => state.login.isAuth);
+    const isAuth = useAppSelector<boolean>(state => state.login.isAuth);
+    const navigate = useNavigate();
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -48,9 +49,12 @@ const Login = () => {
         },
     });
 
-    /*  if (isAuth) {
-        return redirect(PATH.profile);
-    }   */
+    useEffect(() => {
+        if (isAuth) {
+            return navigate(PATH.profile);
+        }
+    }, [isAuth]);
+
     return (
         <form onSubmit={formik.handleSubmit} className={s.form}>
             <div className={s.title}>Sign in</div>

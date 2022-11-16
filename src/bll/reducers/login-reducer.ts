@@ -10,6 +10,7 @@ export const loginInitState = {
     id: '',
     emailError: null as null | string,
     isAuth: false,
+    isFetching: false,
 };
 
 export type LoginStateType = typeof loginInitState;
