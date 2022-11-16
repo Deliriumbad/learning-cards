@@ -62,10 +62,10 @@ const Login = () => {
                     className={s.mailInput}
                     {...formik.getFieldProps('email')}
                 />
+                {formik.errors.email && formik.touched.email && (
+                    <div className={s.error}>{formik.errors.email}</div>
+                )}
             </label>
-            {formik.errors.email && formik.touched.email && (
-                <span className={s.error}>{formik.errors.email}</span>
-            )}
             <label htmlFor="password" className={s.label}>
                 Password
                 <InputText
@@ -74,10 +74,10 @@ const Login = () => {
                     className={s.passInput}
                     {...formik.getFieldProps('password')}
                 />
+                {formik.errors.password && formik.touched.password && (
+                    <div className={s.error}>{formik.errors.password}</div>
+                )}
             </label>
-            {formik.errors.password && formik.touched.password && (
-                <span className={s.error}>{formik.errors.password}</span>
-            )}
             <label className={s.checkbox}>
                 <Checkbox
                     {...formik.getFieldProps('rememberMe')}
