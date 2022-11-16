@@ -3,14 +3,14 @@ import React from 'react';
 import { useFormik } from 'formik';
 import { NavLink } from 'react-router-dom';
 
+import { loginTC } from '../../../bll/reducers/login-reducer';
+import { useAppDispatch } from '../../../bll/store/hooks';
 import { PATH } from '../../../utils/Routes/RoutesPath';
 import Button from '../../components/Button/Button';
 import Checkbox from '../../components/CheckBox/Checkbox';
 import InputText from '../../components/InputText/InputText';
 
-//  import { FormikValues, useFormik } from 'formik';
-
-//  import { useAppDispatch } from '../../../bll/store/hooks';
+import s from './Login.module.css';
 
 type FormikErrorType = {
     email?: string;
@@ -19,7 +19,8 @@ type FormikErrorType = {
 };
 
 const Login = () => {
-    //  const dispatch = useAppDispatch();
+    const dispatch = useAppDispatch();
+    //  const isAuth = useAppSelector<boolean>(state => state.login.isAuth);
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -37,30 +38,42 @@ const Login = () => {
 
             if (!values.password) {
                 errors.password = 'Required';
-            } else if (values.password.trim().length < 3) {
-                errors.password = 'Min 3 symbols';
+            } else if (values.password.trim().length < 5) {
+                errors.password = 'Min 5 symbols';
             }
             return errors;
         },
         onSubmit: values => {
-            alert(JSON.stringify(values));
+            dispatch(loginTC(values));
         },
     });
 
+    /*  if (isAuth) {
+        return redirect(PATH.profile);
+    }   */
     return (
-        <form onSubmit={formik.handleSubmit}>
+        <form onSubmit={formik.handleSubmit} className={s.form}>
             <label htmlFor="email">
-                E-mail
-                <InputText type="email" id="email" />
+                Email
+                <InputText type="email" id="email" {...formik.getFieldProps('email')} />
             </label>
+            {formik.errors.email && formik.touched.email && (
+                <div style={{ color: 'red' }}>{formik.errors.email}</div>
+            )}
             <label htmlFor="password">
                 Password
-                <InputText type="password" id="password" />
+                <InputText type="password" id="password" {...formik.getFieldProps('password')} />
             </label>
+            {formik.errors.password && formik.touched.password && (
+                <div style={{ color: 'red' }}>{formik.errors.password}</div>
+            )}
             <label>
-                <Checkbox />
+                <Checkbox
+                    {...formik.getFieldProps('rememberMe')}
+                    checked={formik.values.rememberMe}
+                />{' '}
                 Remember me
-                <NavLink to={PATH.passwordRecovery}>Forget password?</NavLink>
+                <NavLink to={PATH.passwordRecovery}>Forgot password?</NavLink>
             </label>
             <Button type="submit">Login</Button>
             <NavLink to={PATH.registration}>Sign Up</NavLink>
