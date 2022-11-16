@@ -18,7 +18,7 @@ const Profile = () => {
         if (isLogOut) {
             isLogOut && navigate('/');
         }
-    }, [isLogOut]);
+    }, [isLogOut, navigate]);
 
     const dispatch = useDispatch();
 
