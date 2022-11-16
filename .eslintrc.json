@@ -23,6 +23,7 @@
   },
   "plugins": ["react", "@typescript-eslint", "prettier"],
   "rules": {
+    "no-underscore-dangle": ["off"],
     "import/no-cycle": ["off"],
     "no-debugger": ["warn"],
     "jsx-a11y/label-has-associated-control": ["off"],
