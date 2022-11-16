@@ -7,13 +7,11 @@
   width: 200px;
 
   &:focus {
-    background-color: #bebcbd;
     border: 2px solid #555;
     outline: none;
   }
 
   &:hover {
-    background-color: #bebcbd;
     transition: .5s;
     border: 2px solid #555;
   }

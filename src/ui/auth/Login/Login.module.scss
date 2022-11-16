@@ -1,13 +1,14 @@
 .form {
   display: flex;
   flex-direction: column;
-  width: 550px;
+  width: 500px;
   height: 500px;
   border: solid #9f9f9f 1px;
   align-items: flex-start;
   margin: 0 auto;
   box-shadow: inset 0 -3px 13px -1px black;
   border-radius: 3px;
+  position: relative;
 
   .title {
     align-self: center;
@@ -16,41 +17,55 @@
     font-weight: bold;
   }
 
-  .label {
-    margin-left: 60px;
-    margin-bottom: 30px;
+  .inputGroup {
     position: relative;
+    margin-bottom: 20px;
+    margin-left: 90px;
 
-    .mailInput {
-      margin-left: 37px;
-      width: 270px;
+    input {
+      width: 290px;
+      border: none;
+      border-bottom: 2px solid white;
+      border-radius: 0;
+      background-color: unset !important;
+      outline: none;
+      font-size: 16px;
+      box-shadow: inset 20px 20px 0px 20px lightgrey;
       margin-bottom: 0;
+
+      &:focus ~ label, &:not(:placeholder-shown) ~ label {
+        transform: translateY(-18px) scale(0.8);
+      }
     }
 
-    .passInput {
-      width: 270px;
-      margin-bottom: 0;
+    label {
+      position: absolute;
+      left: 13px;
+      top: 15px;
+      transition: 0.2s ease-in-out;
+      transform-origin: 0 0;
     }
 
     .error {
       color: #990000;
       align-self: center;
-      height: 22px;
+      height: 16px;
       position: absolute;
-      left: 77px;
+      left: 13px;
+      font-size: 14px;
     }
   }
 
   .checkbox {
-    margin-left: 135px;
-    margin-top: 15px;
+    margin-left: 105px;
+    margin-top: 20px;
   }
 
   .forgotPass {
     align-self: flex-end;
     text-decoration: none;
     color: black;
-    margin-right: 127px;
+    margin-right: 100px;
     margin-bottom: 30px;
   }
 
@@ -75,26 +90,9 @@
     margin-top: 10px;
     font-weight: bolder;
     letter-spacing: 1.2px;
+    color: #091349;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

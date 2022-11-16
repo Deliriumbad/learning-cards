@@ -58,30 +58,30 @@ const Login = () => {
     return (
         <form onSubmit={formik.handleSubmit} className={s.form}>
             <div className={s.title}>Sign in</div>
-            <label htmlFor="email" className={s.label}>
-                Email
+            <div className={s.inputGroup}>
                 <InputText
                     type="email"
                     id="email"
-                    className={s.mailInput}
                     {...formik.getFieldProps('email')}
+                    placeholder=" "
                 />
+                <label htmlFor="email">Email</label>
                 {formik.errors.email && formik.touched.email && (
                     <div className={s.error}>{formik.errors.email}</div>
                 )}
-            </label>
-            <label htmlFor="password" className={s.label}>
-                Password
+            </div>
+            <div className={s.inputGroup}>
                 <InputText
                     type="password"
                     id="password"
-                    className={s.passInput}
                     {...formik.getFieldProps('password')}
+                    placeholder=" "
                 />
+                <label htmlFor="password">Password</label>
                 {formik.errors.password && formik.touched.password && (
                     <div className={s.error}>{formik.errors.password}</div>
                 )}
-            </label>
+            </div>
             <label className={s.checkbox}>
                 <Checkbox
                     {...formik.getFieldProps('rememberMe')}
