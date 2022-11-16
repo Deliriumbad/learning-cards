@@ -11,7 +11,7 @@
     letter-spacing: 1px;
     color: white;
     transition: .15s ease-in-out;
-    max-width: 100px;
+    width: 100px;
     text-align: center;
 }
 .default:hover {

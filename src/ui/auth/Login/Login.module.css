@@ -1,9 +1,73 @@
 .form {
     display: flex;
     flex-direction: column;
-    width: 500px;
+    width: 550px;
+    height: 480px;
     border: solid black 1px;
     justify-content: flex-start;
     align-items: flex-start;
     margin: 0 auto;
+}
+
+.title {
+    align-self: center;
+    margin: 20px 0 40px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.mailInput {
+    margin-left: 37px;
+    width: 270px;
+}
+
+.passInput {
+    width: 270px;
+}
+
+.label {
+    margin-left: 60px;
+}
+
+.checkbox {
+    margin-left: 135px;
+    margin-top: 30px;
+}
+
+.forgotPass {
+    align-self: flex-end;
+    text-decoration: none;
+    color: black;
+    margin-right: 127px;
+    margin-bottom: 30px;
+}
+
+.button {
+    align-self: center;
+    width: 300px;
+    height: 35px;
+    border-radius: 10px;
+    font-weight: bolder;
+    letter-spacing: 1.2px;
+    font-size: 16px;
+}
+
+.message {
+    align-self: center;
+    color: grey;
+    margin-top: 15px;
+}
+
+.signUp {
+    align-self: center;
+    margin-top: 10px;
+    font-weight: bolder;
+    letter-spacing: 1.2px;
+}
+
+.error {
+    color: #990000;
+    align-self: center;
+    height: 22px;
+    border: solid 1px transparent;
 }
