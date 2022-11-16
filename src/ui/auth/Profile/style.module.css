@@ -39,3 +39,14 @@
     margin-top: 1.4rem;
     margin-bottom: 2.9rem;
 }
+.title_button{
+    margin-left: 1rem;
+    font-weight: 500;
+    font-size: 1.6rem;
+    line-height: 1.95rem;
+
+}
+.log_out_png{
+    max-width: 3rem;
+    height: 1.7rem;
+}
