@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { requestForgotPassword } from 'bll/reducers/forgot-password-reducer';
-import { useAppDispatch, useAppSelector } from 'bll/store/hooks';
+import { useAppDispatch } from 'bll/store/hooks';
 import { FormikValues, useFormik } from 'formik';
-import { useNavigate } from 'react-router-dom';
 import Button from 'ui/components/Button/Button';
 import InputText from 'ui/components/InputText/InputText';
-import { PATH } from 'utils/Routes/RoutesPath';
+
+import CheckEmail from './CheckEmail';
 
 type Error = {
     email?: string;
@@ -25,9 +25,9 @@ const validate = (values: FormikValues) => {
 };
 
 const ForgotPassword = () => {
-    const navigate = useNavigate();
+    const [successfulSend, setSuccessfulSend] = useState<boolean>(false);
+
     const dispatch = useAppDispatch();
-    const redirect = useAppSelector(state => state.forgotPassword.isRedirect);
 
     const formik = useFormik({
         initialValues: {
@@ -36,26 +36,34 @@ const ForgotPassword = () => {
         validate,
         onSubmit: values => {
             dispatch(requestForgotPassword(values.email));
-            if (redirect) {
-                navigate(PATH.checkEmail);
-            }
+            setSuccessfulSend(true);
         },
     });
 
     return (
-        <form onSubmit={formik.handleSubmit}>
-            <label htmlFor="email">
-                E-mail
-                <InputText
-                    type="text"
-                    id="email"
-                    error={formik.errors.email && formik.errors.email ? formik.errors.email : ''}
-                    {...formik.getFieldProps('email')}
-                />
-            </label>
+        <div>
+            {successfulSend ? (
+                <CheckEmail />
+            ) : (
+                <form onSubmit={formik.handleSubmit}>
+                    <label htmlFor="email">
+                        E-mail
+                        <InputText
+                            type="text"
+                            id="email"
+                            error={
+                                formik.errors.email && formik.errors.email
+                                    ? formik.errors.email
+                                    : ''
+                            }
+                            {...formik.getFieldProps('email')}
+                        />
+                    </label>
 
-            <Button type="submit">Submit</Button>
-        </form>
+                    <Button type="submit">Submit</Button>
+                </form>
+            )}
+        </div>
     );
 };
 

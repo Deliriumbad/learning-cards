@@ -25,11 +25,7 @@ const NavBar = () => {
                         Forgot Password
                     </NavLink>
                 </li>
-                <li className={style.listItem}>
-                    <NavLink to={PATH.checkEmail} className={style.link}>
-                        Check Email
-                    </NavLink>
-                </li>
+
                 <li className={style.listItem}>
                     <NavLink to={PATH.profile} className={style.link}>
                         Profile

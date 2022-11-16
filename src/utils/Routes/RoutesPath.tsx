@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { Navigate, Route, Routes } from 'react-router-dom';
-import CheckEmail from 'ui/auth/forgot-password/CheckEmail';
 import ForgotPassword from 'ui/auth/forgot-password/ForgotPassword';
 
 import Error404 from '../../ui/auth/Error404/Error404';
@@ -16,7 +15,6 @@ export const PATH = {
     login: '/login',
     newPassword: '/new-password',
     forgotPassword: '/forgot-password',
-    checkEmail: 'check-email',
     profile: '/profile',
     registration: '/registration',
     test: '/test',
@@ -38,10 +36,6 @@ export const dataPATH = [
     {
         path: PATH.forgotPassword,
         element: <ForgotPassword />,
-    },
-    {
-        path: PATH.checkEmail,
-        element: <CheckEmail />,
     },
     {
         path: PATH.profile,

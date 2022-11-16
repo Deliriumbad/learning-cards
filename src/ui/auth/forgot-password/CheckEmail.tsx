@@ -15,7 +15,7 @@ const CheckEmail = () => {
         <div>
             <h1>Check Email</h1>
             <p>
-                We’ve sent an Email with instructions to
+                <span>We’ve sent an Email with instructions to </span>
                 <span>{email || ' you@mail.com'}</span>
             </p>
             <Button onClick={redirectClickHandler}>Back to login</Button>
