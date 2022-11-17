@@ -2,11 +2,11 @@ export const registerInitState = {};
 
 export type RegisterStateType = typeof registerInitState;
 
-type ActionType = any;
+export type RegisterActionType = any;
 
 export const registerReducer = (
     state: RegisterStateType = registerInitState,
-    action: ActionType,
+    action: RegisterActionType,
 ): RegisterStateType => {
     switch (action.type) {
         case '1':

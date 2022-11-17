@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 import { PATH } from '../../../utils/Routes/RoutesPath';
 
-import style from './NavBar.module.css';
+import style from './NavBar.module.scss';
 
 const NavBar = () => {
     return (
