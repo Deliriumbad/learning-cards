@@ -21,10 +21,11 @@ const NavBar = () => {
                     </NavLink>
                 </li>
                 <li className={style.listItem}>
-                    <NavLink to={PATH.passwordRecovery} className={style.link}>
-                        Password recovery
+                    <NavLink to={PATH.forgotPassword} className={style.link}>
+                        Forgot Password
                     </NavLink>
                 </li>
+
                 <li className={style.listItem}>
                     <NavLink to={PATH.profile} className={style.link}>
                         Profile

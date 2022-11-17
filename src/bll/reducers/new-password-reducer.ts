@@ -1,13 +1,13 @@
-export const newPassInitState = {};
+export const passRecoveryInitState = {};
 
-export type NewPassStateType = typeof newPassInitState;
+export type PassRecoveryStateType = typeof passRecoveryInitState;
 
 type ActionType = any;
 
-export const newPassReducer = (
-    state: NewPassStateType = newPassInitState,
+export const newPasswordReducer = (
+    state: PassRecoveryStateType = passRecoveryInitState,
     action: ActionType,
-): NewPassStateType => {
+): PassRecoveryStateType => {
     switch (action.type) {
         case '1':
             return { ...state };
