@@ -13,7 +13,7 @@ import Test from '../../ui/auth/Test/Test';
 export const PATH = {
     error404: '/error-404',
     login: '/login',
-    newPassword: '/new-password',
+    newPassword: '/new-password/:token',
     forgotPassword: '/forgot-password',
     profile: '/profile',
     registration: '/registration',

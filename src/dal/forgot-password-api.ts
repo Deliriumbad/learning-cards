@@ -5,11 +5,11 @@ const instance = axios.create({
     withCredentials: true,
 });
 
-const message = `<div style="background-color: #fef2e4; color: #fd974f; padding: 15px">
-     Please click on the following link for the password recovery:
-      <a href='http://localhost:3000/new-password/$token$' 
-      style="color: black; text-decoration: none; font-weight: bold">RECOVERY PASSWORD</a>
-      </div>`;
+const message = `<div style="background-color: lime; padding: 15px">
+password recovery link: 
+<a href='http://localhost:3000/learning-cards#/new-password/$token$'>
+link</a>
+</div>`;
 
 const forgotPasswordApi = {
     newPassword: (email: string) => {
