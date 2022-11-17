@@ -3,10 +3,14 @@ import React, { useState } from 'react';
 import { requestForgotPassword } from 'bll/reducers/forgot-password-reducer';
 import { useAppDispatch } from 'bll/store/hooks';
 import { FormikValues, useFormik } from 'formik';
+import { NavLink } from 'react-router-dom';
 import Button from 'ui/components/Button/Button';
 import InputText from 'ui/components/InputText/InputText';
 
+import { PATH } from '../../../utils/Routes/RoutesPath';
+
 import CheckEmail from './CheckEmail';
+import s from './ForgotPassword.module.scss';
 
 type Error = {
     email?: string;
@@ -45,22 +49,30 @@ const ForgotPassword = () => {
             {successfulSend ? (
                 <CheckEmail />
             ) : (
-                <form onSubmit={formik.handleSubmit}>
-                    <label htmlFor="email">
-                        E-mail
+                <form onSubmit={formik.handleSubmit} className={s.form}>
+                    <div className={s.title}>Forgot your password?</div>
+                    <div className={s.inputGroup}>
                         <InputText
                             type="text"
                             id="email"
-                            error={
-                                formik.errors.email && formik.errors.email
-                                    ? formik.errors.email
-                                    : ''
-                            }
+                            placeholder=" "
                             {...formik.getFieldProps('email')}
                         />
-                    </label>
-
-                    <Button type="submit">Submit</Button>
+                        <label htmlFor="email">E-mail</label>
+                        {formik.errors.email && formik.touched.email && (
+                            <div className={s.error}>{formik.errors.email}</div>
+                        )}
+                    </div>
+                    <div className={s.fist_message}>
+                        Enter your email address and we will send you further instructions
+                    </div>
+                    <Button type="submit" className={s.button}>
+                        Send Instructions
+                    </Button>
+                    <div className={s.second_message}>Did you remember your password?</div>
+                    <NavLink to={PATH.login} className={s.signIn}>
+                        Try logging in
+                    </NavLink>
                 </form>
             )}
         </div>
