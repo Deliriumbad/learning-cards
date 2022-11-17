@@ -3,8 +3,13 @@ import React from 'react';
 import { requestRegistration } from 'bll/reducers/register-reducer';
 import { useAppDispatch } from 'bll/store/hooks';
 import { FormikValues, useFormik } from 'formik';
+import { NavLink } from 'react-router-dom';
 import Button from 'ui/components/Button/Button';
 import InputText from 'ui/components/InputText/InputText';
+
+import { PATH } from '../../../utils/Routes/RoutesPath';
+
+import s from './Registration.module.scss';
 
 type Error = {
     email?: string;
@@ -52,46 +57,51 @@ const Registration = () => {
         },
     });
     return (
-        <form onSubmit={formik.handleSubmit}>
-            <label htmlFor="email">
-                E-mail
+        <form onSubmit={formik.handleSubmit} className={s.form}>
+            <div className={s.title}>Sign Up</div>
+            <div className={s.inputGroup}>
                 <InputText
                     type="text"
                     id="email"
-                    error={formik.touched.email && formik.errors.email ? formik.errors.email : ''}
+                    placeholder=" "
                     {...formik.getFieldProps('email')}
                 />
-            </label>
-
-            <label htmlFor="password">
-                Password
+                <label htmlFor="email">E-mail</label>
+                {formik.errors.email && formik.touched.email && (
+                    <div className={s.error}>{formik.errors.email}</div>
+                )}
+            </div>
+            <div className={s.inputGroup}>
                 <InputText
                     type="text"
                     id="password"
-                    error={
-                        formik.touched.password && formik.errors.password
-                            ? formik.errors.password
-                            : ''
-                    }
+                    placeholder=" "
                     {...formik.getFieldProps('password')}
                 />
-            </label>
-
-            <label htmlFor="confirmPassword">
-                Confirm Password
+                <label htmlFor="password">Password</label>
+                {formik.errors.password && formik.touched.password && (
+                    <div className={s.error}>{formik.errors.password}</div>
+                )}
+            </div>
+            <div className={s.inputGroup}>
                 <InputText
                     type="text"
                     id="confirmPassword"
-                    error={
-                        formik.touched.confirmPassword && formik.errors.confirmPassword
-                            ? formik.errors.confirmPassword
-                            : ''
-                    }
+                    placeholder=" "
                     {...formik.getFieldProps('confirmPassword')}
                 />
-            </label>
-
-            <Button type="submit">Submit</Button>
+                <label htmlFor="confirmPassword">Confirm Password</label>
+                {formik.touched.confirmPassword && formik.errors.confirmPassword && (
+                    <div className={s.error}>{formik.errors.confirmPassword}</div>
+                )}
+            </div>
+            <Button type="submit" className={s.button}>
+                Sign Up
+            </Button>
+            <div className={s.message}>Already have an account?</div>
+            <NavLink to={PATH.login} className={s.signIn}>
+                Sign In
+            </NavLink>
         </form>
     );
 };
