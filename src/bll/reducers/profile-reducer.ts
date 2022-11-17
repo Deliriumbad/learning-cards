@@ -1,17 +1,24 @@
-export const profileInitState = {};
+export const IS_LOG_OUT = 'IS_LOG_OUT';
+export const profileInitState = {
+    isLogOut: false,
+};
 
 export type ProfileStateType = typeof profileInitState;
-
-type ActionType = any;
 
 export const profileReducer = (
     state: ProfileStateType = profileInitState,
     action: ActionType,
 ): ProfileStateType => {
     switch (action.type) {
-        case '1':
-            return { ...state };
+        case 'IS_LOG_OUT':
+            return {
+                ...state,
+                isLogOut: true,
+            };
         default:
             return state;
     }
 };
+export const logOutAC = () => ({ type: IS_LOG_OUT } as const);
+
+type ActionType = ReturnType<typeof logOutAC>;

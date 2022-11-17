@@ -89,7 +89,7 @@ const Login = () => {
                 />{' '}
                 Remember me
             </label>
-            <NavLink to={PATH.passwordRecovery} className={s.forgotPass}>
+            <NavLink to={PATH.forgotPassword} className={s.forgotPass}>
                 Forgot password?
             </NavLink>
             <Button type="submit" className={s.button}>
