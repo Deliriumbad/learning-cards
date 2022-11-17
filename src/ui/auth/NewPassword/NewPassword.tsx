@@ -8,6 +8,8 @@ import Button from 'ui/components/Button/Button';
 import InputText from 'ui/components/InputText/InputText';
 import { PATH } from 'utils/Routes/RoutesPath';
 
+import s from './NewPassword.module.scss';
+
 type Error = {
     password?: string;
     confirmPassword?: string;
@@ -50,36 +52,38 @@ const NewPassword = () => {
         },
     });
     return (
-        <form onSubmit={formik.handleSubmit}>
-            <label htmlFor="password">
-                New Password
+        <form onSubmit={formik.handleSubmit} className={s.form}>
+            <div className={s.title}>Create new password</div>
+            <div className={s.inputGroup}>
                 <InputText
                     type="text"
                     id="password"
-                    error={
-                        formik.touched.password && formik.errors.password
-                            ? formik.errors.password
-                            : ''
-                    }
+                    placeholder=" "
                     {...formik.getFieldProps('password')}
                 />
-            </label>
-
-            <label htmlFor="confirmPassword">
-                Confirm New Password
+                <label htmlFor="password">New Password</label>
+                {formik.errors.password && formik.touched.password && (
+                    <div className={s.error}>{formik.errors.password}</div>
+                )}
+            </div>
+            <div className={s.inputGroup}>
                 <InputText
                     type="text"
                     id="confirmPassword"
-                    error={
-                        formik.touched.confirmPassword && formik.errors.confirmPassword
-                            ? formik.errors.confirmPassword
-                            : ''
-                    }
+                    placeholder=" "
                     {...formik.getFieldProps('confirmPassword')}
                 />
-            </label>
-
-            <Button type="submit">Submit</Button>
+                <label htmlFor="confirmPassword">Confirm New Password</label>
+                {formik.touched.confirmPassword && formik.errors.confirmPassword && (
+                    <div className={s.error}>{formik.errors.confirmPassword}</div>
+                )}
+            </div>
+            <div className={s.message}>
+                Create new password and we will send you further instructions to email
+            </div>
+            <Button type="submit" className={s.button}>
+                Create new password
+            </Button>
         </form>
     );
 };
