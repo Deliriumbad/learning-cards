@@ -5,9 +5,12 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { useAppSelector } from '../../../bll/store/hooks';
+import img from '../../../common/img/edit-2.png';
+import photo from '../../../common/img/Group 61.png';
 import logout from '../../../common/img/logout.png';
 import style from '../../../style/style.module.css';
 
+import { EditName } from './EditName';
 import s from './style.module.css';
 
 const Profile = () => {
@@ -29,11 +32,16 @@ const Profile = () => {
         <div className={style.container}>
             <div className={s.card_style}>
                 <div className={s.title}>Personal Information</div>
-                <div className={s.photo}>Photo</div>
-                <div className={s.name}>Ivan</div>
+                <div className={s.edit_name}>
+                    <div className={s.photo}>Photo</div>
+                    <div className={s.div_imgPhoto}>
+                        <img src={photo} alt="" />
+                    </div>
+                </div>
+                <EditName />
                 <div className={s.email}>j&johnson@gmail.com</div>
                 <button type="button" className={style.button_style} onClick={onClickHandler}>
-                    <img src={logout} className={s.log_out_png} alt="img" />
+                    <img src={logout} className={s.log_out_png} alt="" />
                     <div className={s.title_button}>log out</div>
                 </button>
             </div>

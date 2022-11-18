@@ -7,7 +7,7 @@
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1), -1px -1px 2px rgba(0, 0, 0, 0.1);
     border-radius: 2px;
     background-color: #fff;
-    border-radius: 2px;
+
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -18,19 +18,56 @@
     font-weight: 600;
     font-size: 2.2rem;
 }
-.photo{
+
+.photo {
     width: 9.6rem;
     height: 9.6rem;
     border-radius: 50%;
     background-color: #b5b4b4;
+
 }
-.name{
+
+.name {
     margin-top: 1.7rem;
     font-weight: 500;
     font-size: 2rem;
     line-height: 2.4rem;
+    position: inherit;
+    left:-10px;
 }
-.email{
+
+.edit_name {
+    display: flex;
+    align-content: center;
+    position: relative;
+    justify-content: center;
+}
+
+.div_img {
+    position: inherit;
+    top: 22px;
+}
+.div_imgPhoto {
+    position: inherit;
+    top: 60px;
+    left: -30px;
+}
+
+.div_photo{
+    display: flex;
+    align-content: center;
+    position: relative;
+}
+
+/*.name::after {
+    content: '';
+    position: relative;
+    left: 1rem;
+    background-image: url('src/common/img/edit-2.png');
+    border: 1px solid
+}*/
+
+.email {
     font-weight: 400;
     font-size: 1.4rem;
     line-height: 2.4rem;
@@ -39,14 +76,20 @@
     margin-top: 1.4rem;
     margin-bottom: 2.9rem;
 }
-.title_button{
+
+.title_button {
     margin-left: 1rem;
     font-weight: 500;
     font-size: 1.6rem;
     line-height: 1.95rem;
 
 }
-.log_out_png{
+
+.log_out_png {
     max-width: 3rem;
     height: 1.7rem;
+}
+.inputStyle{
+    border-bottom: 1px solid !important;
+    background-color: white;
 }
