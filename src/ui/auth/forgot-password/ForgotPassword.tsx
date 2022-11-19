@@ -45,7 +45,7 @@ const ForgotPassword = () => {
     });
 
     return (
-        <div>
+        <div className={s.container}>
             {successfulSend ? (
                 <CheckEmail />
             ) : (
@@ -58,7 +58,7 @@ const ForgotPassword = () => {
                             placeholder=" "
                             {...formik.getFieldProps('email')}
                         />
-                        <label htmlFor="email">E-mail</label>
+                        <label htmlFor="email">Email</label>
                         {formik.errors.email && formik.touched.email && (
                             <div className={s.error}>{formik.errors.email}</div>
                         )}

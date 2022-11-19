@@ -52,39 +52,41 @@ const NewPassword = () => {
         },
     });
     return (
-        <form onSubmit={formik.handleSubmit} className={s.form}>
-            <div className={s.title}>Create new password</div>
-            <div className={s.inputGroup}>
-                <InputText
-                    type="text"
-                    id="password"
-                    placeholder=" "
-                    {...formik.getFieldProps('password')}
-                />
-                <label htmlFor="password">New Password</label>
-                {formik.errors.password && formik.touched.password && (
-                    <div className={s.error}>{formik.errors.password}</div>
-                )}
-            </div>
-            <div className={s.inputGroup}>
-                <InputText
-                    type="text"
-                    id="confirmPassword"
-                    placeholder=" "
-                    {...formik.getFieldProps('confirmPassword')}
-                />
-                <label htmlFor="confirmPassword">Confirm New Password</label>
-                {formik.touched.confirmPassword && formik.errors.confirmPassword && (
-                    <div className={s.error}>{formik.errors.confirmPassword}</div>
-                )}
-            </div>
-            <div className={s.message}>
-                Create new password and we will send you further instructions to email
-            </div>
-            <Button type="submit" className={s.button}>
-                Create new password
-            </Button>
-        </form>
+        <div className={s.container}>
+            <form onSubmit={formik.handleSubmit} className={s.form}>
+                <div className={s.title}>Create new password</div>
+                <div className={s.inputGroup}>
+                    <InputText
+                        type="text"
+                        id="password"
+                        placeholder=" "
+                        {...formik.getFieldProps('password')}
+                    />
+                    <label htmlFor="password">New Password</label>
+                    {formik.errors.password && formik.touched.password && (
+                        <div className={s.error}>{formik.errors.password}</div>
+                    )}
+                </div>
+                <div className={s.inputGroup}>
+                    <InputText
+                        type="text"
+                        id="confirmPassword"
+                        placeholder=" "
+                        {...formik.getFieldProps('confirmPassword')}
+                    />
+                    <label htmlFor="confirmPassword">Confirm New Password</label>
+                    {formik.touched.confirmPassword && formik.errors.confirmPassword && (
+                        <div className={s.error}>{formik.errors.confirmPassword}</div>
+                    )}
+                </div>
+                <div className={s.message}>
+                    Create new password and we will send you further instructions to email
+                </div>
+                <Button type="submit" className={s.button}>
+                    Create new password
+                </Button>
+            </form>
+        </div>
     );
 };
 

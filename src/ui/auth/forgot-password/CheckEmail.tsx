@@ -16,19 +16,21 @@ const CheckEmail = () => {
     };
 
     return (
-        <div className={s.wrapper}>
-            <h1 className={s.title}>Check Email</h1>
+        <div className={s.container}>
+            <div className={s.wrapper}>
+                <h1 className={s.title}>Check Email</h1>
 
-            <div className={s.image}>
-                <img src={mail} alt="img" />
+                <div className={s.image}>
+                    <img src={mail} alt="img" />
+                </div>
+
+                <div className={s.message}>We’ve sent an Email with instructions to </div>
+                <div className={s.message}>{email || ' you@mail.com'}</div>
+
+                <Button onClick={redirectClickHandler} className={s.button}>
+                    Back to login
+                </Button>
             </div>
-
-            <div className={s.message}>We’ve sent an Email with instructions to </div>
-            <div className={s.message}>{email || ' you@mail.com'}</div>
-
-            <Button onClick={redirectClickHandler} className={s.button}>
-                Back to login
-            </Button>
         </div>
     );
 };
