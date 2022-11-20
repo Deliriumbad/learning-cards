@@ -30,11 +30,7 @@ const Profile = () => {
         setStateName(e.currentTarget.value);
     };
 
-    const onBlurHandler = () => {
-        dispatch(updateUserProfileTC({ name, avatar: '' }));
-    };
-
-    const onEnterHandler = () => {
+    const onSpanHandler = () => {
         dispatch(updateUserProfileTC({ name, avatar: '' }));
     };
 
@@ -57,8 +53,8 @@ const Profile = () => {
                     <EditableSpan
                         className={s.span}
                         onChange={onChangeHandler}
-                        onBlur={onBlurHandler}
-                        onEnter={onEnterHandler}
+                        onBlur={onSpanHandler}
+                        onEnter={onSpanHandler}
                         value={name}
                     />
                 </div>
