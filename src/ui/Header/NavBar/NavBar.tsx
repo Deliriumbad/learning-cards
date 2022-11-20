@@ -46,6 +46,11 @@ const NavBar = () => {
                         Error404
                     </NavLink>
                 </li>
+                <li className={style.listItem}>
+                    <NavLink to={PATH.packs} className={style.link}>
+                        Packs
+                    </NavLink>
+                </li>
             </ul>
         </nav>
     );

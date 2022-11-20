@@ -1,5 +1,6 @@
 import forgotPassReducer from 'bll/reducers/forgot-password-reducer';
 import { newPasswordReducer } from 'bll/reducers/new-password-reducer';
+import { packsReducer } from 'bll/reducers/packs-reducer';
 import { applyMiddleware, combineReducers, legacy_createStore } from 'redux';
 import thunk, { ThunkAction, ThunkDispatch } from 'redux-thunk';
 
@@ -13,6 +14,7 @@ const reducers = combineReducers({
     forgotPassword: forgotPassReducer,
     newPassword: newPasswordReducer,
     profile: profileReducer,
+    packs: packsReducer,
 });
 
 export const store = legacy_createStore(reducers, applyMiddleware(thunk));
@@ -25,6 +27,7 @@ type AppActionsType = RegisterActionType;
 export type RootState = ReturnType<typeof store.getState>;
 
 export type AppDispatch = ThunkDispatch<RootState, unknown, AppActionsType>;
+
 export type AppThunk<ReturnType = void> = ThunkAction<
     ReturnType,
     RootState,

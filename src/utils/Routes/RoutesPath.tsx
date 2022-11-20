@@ -2,6 +2,7 @@ import React from 'react';
 
 import { Navigate, Route, Routes } from 'react-router-dom';
 import ForgotPassword from 'ui/auth/forgot-password/ForgotPassword';
+import Packs from 'ui/packs/Packs';
 
 import Error404 from '../../ui/auth/Error404/Error404';
 import Login from '../../ui/auth/Login/Login';
@@ -18,6 +19,7 @@ export const PATH = {
     profile: '/profile',
     registration: '/registration',
     test: '/test',
+    packs: '/packs',
 };
 
 export const dataPATH = [
@@ -48,6 +50,10 @@ export const dataPATH = [
     {
         path: PATH.test,
         element: <Test />,
+    },
+    {
+        path: PATH.packs,
+        element: <Packs />,
     },
 ];
 
