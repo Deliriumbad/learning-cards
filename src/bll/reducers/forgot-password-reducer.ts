@@ -20,9 +20,9 @@ export const forgotPassReducer = (
     action: PasswordRecoveryActionsType,
 ): NewPassStateType => {
     switch (action.type) {
-        case 'RECOVERY/SET-REDIRECT':
+        case 'RECOVERY/SET_REDIRECT':
             return { ...state, isRedirect: true };
-        case 'RECOVERY/SET-EMAIL':
+        case 'RECOVERY/SET_EMAIL':
             return { ...state, email: action.email };
         case 'RECOVERY/ERROR':
             return { ...state, error: action.error };
@@ -32,10 +32,10 @@ export const forgotPassReducer = (
 };
 
 export const redirectToCheckEmail = () => {
-    return { type: 'RECOVERY/SET-REDIRECT' } as const;
+    return { type: 'RECOVERY/SET_REDIRECT' } as const;
 };
 export const setEmail = (email: string) => {
-    return { type: 'RECOVERY/SET-EMAIL', email } as const;
+    return { type: 'RECOVERY/SET_EMAIL', email } as const;
 };
 export const setError = (error: string | null) => {
     return { type: 'RECOVERY/ERROR', error } as const;

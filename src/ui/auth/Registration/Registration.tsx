@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { requestRegistration } from 'bll/reducers/register-reducer';
-import { useAppDispatch, useAppSelector } from 'bll/store/hooks';
+import { useAppSelector, useAppDispatch } from 'bll/store/hooks';
 import { FormikValues, useFormik } from 'formik';
 import { useNavigate, NavLink } from 'react-router-dom';
 import Button from 'ui/components/Button/Button';

@@ -6,6 +6,12 @@
   justify-content: center;
   position: relative;
 
+  .loading {
+    position: absolute;
+    left: 10%;
+    top: 10%;
+  }
+
   .form {
     display: flex;
     flex-direction: column;

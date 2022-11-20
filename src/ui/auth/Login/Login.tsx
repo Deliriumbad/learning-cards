@@ -9,6 +9,7 @@ import { PATH } from '../../../utils/Routes/RoutesPath';
 import Button from '../../components/Button/Button';
 import Checkbox from '../../components/CheckBox/Checkbox';
 import InputText from '../../components/InputText/InputText';
+import Preloader from '../../components/Preloader/Preloader';
 
 import s from './Login.module.scss';
 
@@ -19,10 +20,11 @@ type FormikErrorType = {
 };
 
 const Login = () => {
-    const dispatch = useAppDispatch();
+    const isFetching = useAppSelector(state => state.login.isFetching);
     const isAuth = useAppSelector(state => state.login.isAuth);
     const error = useAppSelector(state => state.login.emailError);
     const navigate = useNavigate();
+    const dispatch = useAppDispatch();
 
     const formik = useFormik({
         initialValues: {
@@ -56,6 +58,10 @@ const Login = () => {
             return navigate(PATH.profile);
         }
     }, [isAuth]);
+
+    if (isFetching) {
+        return <Preloader />;
+    }
 
     return (
         <div className={s.container}>
