@@ -3,7 +3,7 @@ import React from 'react';
 import { requestRegistration } from 'bll/reducers/register-reducer';
 import { useAppDispatch } from 'bll/store/hooks';
 import { FormikValues, useFormik } from 'formik';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import Button from 'ui/components/Button/Button';
 import InputText from 'ui/components/InputText/InputText';
 
@@ -43,6 +43,7 @@ const validate = (values: FormikValues) => {
 };
 
 const Registration = () => {
+    const navigate = useNavigate();
     const dispatch = useAppDispatch();
 
     const formik = useFormik({
@@ -54,6 +55,7 @@ const Registration = () => {
         validate,
         onSubmit: values => {
             dispatch(requestRegistration({ email: values.email, password: values.password }));
+            navigate(PATH.login);
         },
     });
     return (
