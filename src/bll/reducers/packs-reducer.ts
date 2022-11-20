@@ -1,4 +1,4 @@
-import { AppDispatch } from 'bll/store/store';
+import { AppThunk } from 'bll/store/store';
 import { packApi, PackType } from 'dal/packs-api';
 
 export const packsInitState = {
@@ -25,7 +25,7 @@ export const setPacks = (data: PackType[]) => {
     return { type: 'GET-PACKS', data } as const;
 };
 
-export const requestPacks = (): AppDispatch => {
+export const requestPacks = (): AppThunk => {
     return dispatch => {
         packApi.packs().then(response => {
             dispatch(setPacks(response.data.cardPacks));
