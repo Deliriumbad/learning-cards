@@ -1,7 +1,9 @@
 import registerApi from '../../dal/registration-api';
 import { AppDispatch } from '../store/store';
 
-export const registerInitState = {};
+export const registerInitState = {
+    isRegister: false,
+};
 
 export type RegisterStateType = typeof registerInitState;
 
@@ -13,14 +15,14 @@ export const registerReducer = (
 ): RegisterStateType => {
     switch (action.type) {
         case 'REGISTRATION':
-            return { ...state };
+            return { ...state, isRegister: true };
         default:
             return state;
     }
 };
 
-export const setRegistration = (isRegistered: boolean) => {
-    return { type: 'REGISTRATION', isRegistered } as const;
+export const setRegistration = () => {
+    return { type: 'REGISTRATION' } as const;
 };
 
 export const setError = (message: string) => {
@@ -33,7 +35,7 @@ export const requestRegistration = (data: { email: string; password: string }): 
     return async dispatch => {
         try {
             await registerApi.register(data);
-            dispatch(setRegistration(true));
+            dispatch(setRegistration());
         } catch (error: any) {
             dispatch(setError);
         }

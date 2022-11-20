@@ -21,7 +21,9 @@ type FormikErrorType = {
 const Login = () => {
     const dispatch = useAppDispatch();
     const isAuth = useAppSelector(state => state.login.isAuth);
+    const error = useAppSelector(state => state.login.emailError);
     const navigate = useNavigate();
+
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -101,6 +103,7 @@ const Login = () => {
                     Sign Up
                 </NavLink>
             </form>
+            {error && <div className={s.errorResponse}>{error}</div>}
         </div>
     );
 };

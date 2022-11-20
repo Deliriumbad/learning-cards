@@ -4,24 +4,26 @@
   padding: 5px 15px;
   margin: 10px 20px;
   border-radius: 5px;
-  border: 1px solid black;
-  box-shadow: 0 0 40px 40px #091349 inset, 0 0 0 0 #091349;
+  color: white;
+  box-shadow: 3px 3px 7px 0px rgba(9, 19, 73, 0.5);
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
   letter-spacing: 1px;
-  color: white;
-  transition: .15s ease-in-out;
   width: 100px;
   text-align: center;
+  background-color: #091349;
+  border-color: #091349;;
 
   &:hover {
-    box-shadow: 0 0 10px 0 #091349 inset, 0 0 10px 4px #091349;
+    box-shadow: 3px 3px 7px 0px rgba(9, 19, 73, 0.6);
     color: black;
-    transition: .5s;
+    background-color: #d3d3d3;
+    border: solid #b2b2b2 1px;
     cursor: pointer;
-    border: 1px solid #070707;
     align-items: center;
     justify-content: center;
+    transition: .5s ease-in-out;
+    scale: 1.03;
   }
 
   &:disabled {
