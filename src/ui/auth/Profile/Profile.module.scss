@@ -1,0 +1,100 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 70px);
+  background-color: gainsboro;
+
+  .card_style {
+    margin-top: 60px;
+    width: 413px;
+    height: 360px;
+    background-color: #fff;
+    border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: solid #c6c6c6 1px;
+    box-shadow: 3px 3px 7px 0px rgba(0, 0, 0, 0.25);
+    position: relative;
+  }
+
+  .title {
+    margin: 2.7rem auto 3rem;
+    font-weight: 600;
+    font-size: 2.2rem;
+  }
+
+  .photo {
+    width: 10.6rem;
+    border-radius: 50%;
+
+      .image {
+       border-radius: 40%;
+      }
+  }
+  .name {
+    font-weight: 500;
+    font-size: 2rem;
+    line-height: 2.4rem;
+    margin-bottom: 20px;
+    height: 47px;
+
+    .span {
+      display: block;
+      border: none;
+      outline: none;
+      border-bottom: 1px solid #9f9f9f;
+      border-radius: 0;
+      position: absolute;
+      right: 95px;
+    }
+  }
+
+  .email {
+    font-weight: 400;
+    font-size: 1.4rem;
+    line-height: 2.4rem;
+    opacity: 0.5;
+    margin-top: 1.4rem;
+  }
+
+  .button_style {
+    width: 12.7rem;
+    height: 3.6rem;
+    background-color: #FCFCFC;
+    border: 1px solid #b5b5b5;
+    border-radius: 2rem;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+      cursor: pointer;
+      box-shadow: 3px 3px 7px 0px rgba(0, 0, 0, 0.25);
+      scale: 1.05;
+      transition: 0.2s ease-in;
+    }
+
+    .log_out_png {
+      max-width: 3rem;
+      height: 1.7rem;
+    }
+
+    .title_button {
+      margin-left: 1rem;
+      font-weight: 500;
+      font-size: 1.6rem;
+      line-height: 1.95rem;
+
+    }
+  }
+}
+
+
+
+
+
+
+

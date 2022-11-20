@@ -1,6 +1,11 @@
-export const IS_LOG_OUT = 'IS_LOG_OUT';
+import { authAPI, UserDataType } from '../../dal/auth-api';
+import { AppDispatch } from '../store/store';
+
+import { setEmailError } from './login-reducer';
+
 export const profileInitState = {
-    isLogOut: false,
+    name: '',
+    avatar: '',
 };
 
 export type ProfileStateType = typeof profileInitState;
@@ -10,15 +15,29 @@ export const profileReducer = (
     action: ActionType,
 ): ProfileStateType => {
     switch (action.type) {
-        case 'IS_LOG_OUT':
-            return {
-                ...state,
-                isLogOut: true,
-            };
+        case 'PROFILE/UPDATE_PROFILE':
+            return { ...state, name: action.name, avatar: action.avatar };
         default:
             return state;
     }
 };
-export const logOutAC = () => ({ type: IS_LOG_OUT } as const);
+export const updateUserProfile = ({ name, avatar }: UserDataType) =>
+    ({ type: 'PROFILE/UPDATE_PROFILE', name, avatar } as const);
 
-type ActionType = ReturnType<typeof logOutAC>;
+export const updateUserProfileTC = (data: UserDataType): AppDispatch => {
+    return dispatch => {
+        authAPI
+            .updateUserData(data)
+            .then(res => {
+                dispatch(updateUserProfile(res));
+            })
+            .catch(e => {
+                const error = e.response
+                    ? e.response.data.error
+                    : `${e.message}, more details in the console`;
+                dispatch(setEmailError(error));
+            });
+    };
+};
+
+type ActionType = ReturnType<typeof updateUserProfile>;

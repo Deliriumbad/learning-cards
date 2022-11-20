@@ -6,18 +6,29 @@ const instance = axios.create({
 });
 
 export const authAPI = {
-    login(data: LoginParamsType) {
+    login(data: LoginDataType) {
         return instance.post<AuthResponseType>('/auth/login', data).then(res => res.data);
     },
+    logout() {
+        return instance.delete('/auth/me').then(res => res.data);
+    },
     getAuth() {
-        return instance.post<AuthResponseType>('auth/me');
+        return instance.post<AuthResponseType>('auth/me').then(res => res.data);
+    },
+    updateUserData(data: UserDataType) {
+        return instance.put<AuthResponseType>('auth/me', data).then(res => res.data);
     },
 };
 
-export type LoginParamsType = {
+export type LoginDataType = {
     email: string;
     password: string;
     rememberMe: boolean;
+};
+
+export type UserDataType = {
+    name: string;
+    avatar: string;
 };
 
 export type AuthResponseType = {
