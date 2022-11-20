@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { requestForgotPassword } from 'bll/reducers/forgot-password-reducer';
-import { useAppDispatch } from 'bll/store/hooks';
+import { useAppDispatch, useAppSelector } from 'bll/store/hooks';
 import { FormikValues, useFormik } from 'formik';
 import { NavLink } from 'react-router-dom';
 import Button from 'ui/components/Button/Button';
@@ -29,6 +29,8 @@ const validate = (values: FormikValues) => {
 };
 
 const ForgotPassword = () => {
+    const error = useAppSelector(state => state.forgotPassword.error);
+
     const [successfulSend, setSuccessfulSend] = useState<boolean>(false);
 
     const dispatch = useAppDispatch();
@@ -75,6 +77,7 @@ const ForgotPassword = () => {
                     </NavLink>
                 </form>
             )}
+            {error && <div className={s.errorResponse}>{error}</div>}
         </div>
     );
 };

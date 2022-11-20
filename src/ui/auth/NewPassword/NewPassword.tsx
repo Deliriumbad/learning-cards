@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { requestNewPassword } from 'bll/reducers/new-password-reducer';
-import { useAppDispatch } from 'bll/store/hooks';
+import { useAppDispatch, useAppSelector } from 'bll/store/hooks';
 import { FormikValues, useFormik } from 'formik';
 import { useNavigate, useParams } from 'react-router-dom';
 import Button from 'ui/components/Button/Button';
@@ -34,10 +34,9 @@ const validate = (values: FormikValues) => {
 };
 
 const NewPassword = () => {
+    const error = useAppSelector(state => state.newPassword.error);
     const navigate = useNavigate();
-
     const { token } = useParams<{ token: string | undefined }>();
-
     const dispatch = useAppDispatch();
 
     const formik = useFormik({
@@ -51,6 +50,7 @@ const NewPassword = () => {
             navigate(PATH.login);
         },
     });
+
     return (
         <div className={s.container}>
             <form onSubmit={formik.handleSubmit} className={s.form}>
@@ -86,6 +86,7 @@ const NewPassword = () => {
                     Create new password
                 </Button>
             </form>
+            {error && <div className={s.errorResponse}>{error}</div>}
         </div>
     );
 };

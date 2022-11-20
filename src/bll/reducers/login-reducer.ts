@@ -1,5 +1,5 @@
 import { authAPI, AuthResponseType, LoginDataType } from '../../dal/auth-api';
-import { AppDispatch } from '../store/store';
+import { AppDispatch, AppThunk } from '../store/store';
 
 export const loginInitState = {
     user: {
@@ -15,7 +15,7 @@ export const loginInitState = {
 
 export type LoginStateType = typeof loginInitState;
 
-export type LoginActionType =
+export type LoginActionsType =
     | ReturnType<typeof setUserId>
     | ReturnType<typeof setAuthUserData>
     | ReturnType<typeof setEmailError>
@@ -23,7 +23,7 @@ export type LoginActionType =
 
 export const loginReducer = (
     state: LoginStateType = loginInitState,
-    action: LoginActionType,
+    action: LoginActionsType,
 ): LoginStateType => {
     switch (action.type) {
         case 'LOGIN/SET_USER_DATA':
@@ -49,13 +49,14 @@ export const setEmailError = (error: string | null) =>
 
 export const logout = () => ({ type: 'LOGIN/LOGOUT' } as const);
 
-export const loginTC = (data: LoginDataType): AppDispatch => {
+export const loginTC = (data: LoginDataType): AppThunk => {
     return dispatch => {
         authAPI
             .login(data)
             .then(res => {
                 dispatch(setAuthUserData(res));
                 dispatch(setUserId(res._id));
+                dispatch(setEmailError(null));
             })
             .catch(e => {
                 const error = e.response
@@ -95,6 +96,9 @@ export const isAuthUserData = (): AppDispatch => {
                     ? e.response.data.error
                     : `${e.message}, more details in the console`;
                 dispatch(setEmailError(error));
+            })
+            .finally(() => {
+                dispatch(setEmailError(null));
             });
     };
 };

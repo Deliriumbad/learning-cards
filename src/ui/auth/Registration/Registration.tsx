@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { requestRegistration } from 'bll/reducers/register-reducer';
-import { useAppDispatch } from 'bll/store/hooks';
+import { useAppDispatch, useAppSelector } from 'bll/store/hooks';
 import { FormikValues, useFormik } from 'formik';
 import { useNavigate, NavLink } from 'react-router-dom';
 import Button from 'ui/components/Button/Button';
@@ -43,6 +43,7 @@ const validate = (values: FormikValues) => {
 };
 
 const Registration = () => {
+    const error = useAppSelector(state => state.register.emailError);
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
@@ -107,6 +108,7 @@ const Registration = () => {
                     Sign In
                 </NavLink>
             </form>
+            {error && <div className={s.errorResponse}>{error}</div>}
         </div>
     );
 };

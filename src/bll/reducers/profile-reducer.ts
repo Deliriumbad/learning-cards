@@ -1,5 +1,5 @@
 import { authAPI, UserDataType } from '../../dal/auth-api';
-import { AppDispatch } from '../store/store';
+import { AppThunk } from '../store/store';
 
 import { setEmailError } from './login-reducer';
 
@@ -10,9 +10,11 @@ export const profileInitState = {
 
 export type ProfileStateType = typeof profileInitState;
 
+export type ProfileActionsType = ReturnType<typeof updateUserProfile>;
+
 export const profileReducer = (
     state: ProfileStateType = profileInitState,
-    action: ActionType,
+    action: ProfileActionsType,
 ): ProfileStateType => {
     switch (action.type) {
         case 'PROFILE/UPDATE_PROFILE':
@@ -24,7 +26,7 @@ export const profileReducer = (
 export const updateUserProfile = ({ name, avatar }: UserDataType) =>
     ({ type: 'PROFILE/UPDATE_PROFILE', name, avatar } as const);
 
-export const updateUserProfileTC = (data: UserDataType): AppDispatch => {
+export const updateUserProfileTC = (data: UserDataType): AppThunk => {
     return dispatch => {
         authAPI
             .updateUserData(data)
@@ -39,5 +41,3 @@ export const updateUserProfileTC = (data: UserDataType): AppDispatch => {
             });
     };
 };
-
-type ActionType = ReturnType<typeof updateUserProfile>;

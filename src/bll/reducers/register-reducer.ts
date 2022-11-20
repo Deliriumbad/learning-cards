@@ -1,43 +1,47 @@
 import registerApi from '../../dal/registration-api';
-import { AppDispatch } from '../store/store';
+import { AppThunk } from '../store/store';
 
 export const registerInitState = {
+    newUser: {},
     isRegister: false,
+    emailError: null as null | string,
+    passwordError: null as null | string,
 };
 
 export type RegisterStateType = typeof registerInitState;
 
-export type RegisterActionType = Register;
+export type RegisterActionsType = ReturnType<typeof setRegistration> | ReturnType<typeof setError>;
 
 export const registerReducer = (
     state: RegisterStateType = registerInitState,
-    action: RegisterActionType,
+    action: RegisterActionsType,
 ): RegisterStateType => {
     switch (action.type) {
-        case 'REGISTRATION':
+        case 'REG/REGISTRATION':
             return { ...state, isRegister: true };
+        case 'REG/SET-EMAIL-ERROR':
+            return { ...state, emailError: action.error };
         default:
             return state;
     }
 };
 
 export const setRegistration = () => {
-    return { type: 'REGISTRATION' } as const;
+    return { type: 'REG/REGISTRATION' } as const;
 };
 
-export const setError = (message: string) => {
-    return { type: 'ERROR', message } as const;
-};
+export const setError = (error: string | null) => ({ type: 'REG/SET-EMAIL-ERROR', error } as const);
 
-type Register = ReturnType<typeof setRegistration>;
-
-export const requestRegistration = (data: { email: string; password: string }): AppDispatch => {
+export const requestRegistration = (data: { email: string; password: string }): AppThunk => {
     return async dispatch => {
         try {
             await registerApi.register(data);
             dispatch(setRegistration());
-        } catch (error: any) {
-            dispatch(setError);
+        } catch (e: any) {
+            const error = e.response
+                ? e.response.data.error
+                : `${e.message}, more details in the console`;
+            dispatch(setError(error));
         }
     };
 };
