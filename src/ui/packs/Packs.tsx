@@ -2,8 +2,8 @@ import { ChangeEvent, useEffect, useState } from 'react';
 
 import { requestPacks, updatePacksParams } from 'bll/reducers/packs-reducer';
 import { useAppDispatch, useAppSelector } from 'bll/store/hooks';
-import Edit from 'common/icons/Edit';
-import Trash from 'common/icons/Trash';
+import { ReactComponent as Delete } from 'common/icons/delete.svg';
+import { ReactComponent as Edit } from 'common/icons/edit.svg';
 import InputText from 'ui/components/InputText/InputText';
 
 import styles from './Packs.module.scss';
@@ -51,10 +51,10 @@ const Packs = () => {
                                 <td>{pack.user_name}</td>
                                 <td>
                                     <button type="button">
-                                        <Trash fill="#514B74" />
+                                        <Delete className={styles.icon} />
                                     </button>
                                     <button type="button">
-                                        <Edit fill="#514B74" />
+                                        <Edit className={styles.icon} />
                                     </button>
                                 </td>
                             </tr>
