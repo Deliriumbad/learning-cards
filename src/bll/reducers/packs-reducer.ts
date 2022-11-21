@@ -25,7 +25,7 @@ export const packsReducer = (
     switch (action.type) {
         case 'GET-PACKS':
             return { ...state, packs: [...action.data] };
-        case 'UPDATE-PACK-PARAMS':
+        case 'UPDATE-PACKS-PARAMS':
             return { ...state, packParams: { ...state.packParams, ...action.params } };
         default:
             return state;
@@ -36,8 +36,8 @@ export const setPacks = (data: PackType[]) => {
     return { type: 'GET-PACKS', data } as const;
 };
 
-export const updatePackParams = (params: UpdateParamsT) => {
-    return { type: 'UPDATE-PACK-PARAMS', params } as const;
+export const updatePacksParams = (params: UpdateParamsT) => {
+    return { type: 'UPDATE-PACKS-PARAMS', params } as const;
 };
 
 export const requestPacks = (): AppThunk => {
@@ -49,7 +49,7 @@ export const requestPacks = (): AppThunk => {
     };
 };
 
-type PacksActions = ReturnType<typeof setPacks> | ReturnType<typeof updatePackParams>;
+type PacksActions = ReturnType<typeof setPacks> | ReturnType<typeof updatePacksParams>;
 
 export type UpdateParamsT = {
     packName?: string;

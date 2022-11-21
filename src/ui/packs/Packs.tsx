@@ -1,29 +1,29 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 
-import { requestPacks } from 'bll/reducers/packs-reducer';
+import { requestPacks, updatePacksParams } from 'bll/reducers/packs-reducer';
 import { useAppDispatch, useAppSelector } from 'bll/store/hooks';
 import InputText from 'ui/components/InputText/InputText';
 
 import styles from './Packs.module.scss';
-import useDebounce from './UseDebounced';
 
 const Packs = () => {
     const packs = useAppSelector(state => state.packs.packs);
-    // const packName = useAppSelector(state => state.packs.packParams.packName);
-    // const page = useAppSelector(state => state.packs.packParams.page);
+    const dispatch = useAppDispatch();
 
     const [value, setValue] = useState<string>('');
-    const debouncedValue = useDebounce<string>(value, 500);
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         setValue(event.target.value);
+        dispatch(updatePacksParams({ packName: event.target.value }));
     };
 
-    const dispatch = useAppDispatch();
-
     useEffect(() => {
-        dispatch(requestPacks());
-    }, [debouncedValue, dispatch]);
+        const timer = setTimeout(() => dispatch(requestPacks()), 1500);
+
+        return () => {
+            clearTimeout(timer);
+        };
+    }, [value, dispatch]);
 
     return (
         <>
