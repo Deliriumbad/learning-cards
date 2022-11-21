@@ -1,13 +1,15 @@
 import axios from 'axios';
 
 const instance = axios.create({
-    baseURL: 'http://localhost:7542/2.0/',
+    baseURL: process.env.REACT_APP_BACK_URL || 'https://neko-back.herokuapp.com/2.0',
     withCredentials: true,
 });
 
 export const packApi = {
-    packs() {
-        return instance.get<ResponsePacksType>('cards/pack');
+    packs(data: GetPacksParams) {
+        return instance.get<ResponsePacksType>('cards/pack', {
+            params: data,
+        });
     },
 };
 
