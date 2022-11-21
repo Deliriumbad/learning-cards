@@ -3,12 +3,11 @@ import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import ForgotPassword from 'ui/auth/ForgotPassword/ForgotPassword';
 
-import Error404 from '../../ui/auth/Error404/Error404';
-import Login from '../../ui/auth/Login/Login';
-import NewPassword from '../../ui/auth/NewPassword/NewPassword';
-import Profile from '../../ui/auth/Profile/Profile';
-import Registration from '../../ui/auth/Registration/Registration';
-import Test from '../../ui/auth/Test/Test';
+import Error404 from '../auth/Error404/Error404';
+import Login from '../auth/Login/Login';
+import NewPassword from '../auth/NewPassword/NewPassword';
+import Profile from '../auth/Profile/Profile';
+import Registration from '../auth/Registration/Registration';
 
 export const PATH = {
     error404: '/error-404',
@@ -17,7 +16,6 @@ export const PATH = {
     forgotPassword: '/ForgotPassword',
     profile: '/profile',
     registration: '/registration',
-    test: '/test',
 };
 
 export const dataPATH = [
@@ -44,10 +42,6 @@ export const dataPATH = [
     {
         path: PATH.registration,
         element: <Registration />,
-    },
-    {
-        path: PATH.test,
-        element: <Test />,
     },
 ];
 

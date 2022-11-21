@@ -7,8 +7,8 @@ import { NavLink } from 'react-router-dom';
 import Button from 'ui/components/Button/Button';
 import InputText from 'ui/components/InputText/InputText';
 
-import { PATH } from '../../../utils/Routes/RoutesPath';
 import Preloader from '../../components/Preloader/Preloader';
+import { PATH } from '../../Routes/RoutesPath';
 
 import CheckEmail from './CheckEmail';
 import s from './ForgotPassword.module.scss';
