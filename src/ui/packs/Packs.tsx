@@ -62,8 +62,8 @@ const Packs = () => {
                         ))}
                     </tbody>
                 </table>
+                <Pagination />
             </div>
-            <Pagination />
         </>
     );
 };
