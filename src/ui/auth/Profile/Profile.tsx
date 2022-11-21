@@ -16,7 +16,6 @@ const Profile = () => {
     const isAuth = useAppSelector(state => state.login.isAuth);
     const userEmail = useAppSelector(state => state.login.user.email);
     const userName = useAppSelector(state => state.login.user.name);
-
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
@@ -31,7 +30,12 @@ const Profile = () => {
     };
 
     const onSpanHandler = () => {
-        dispatch(updateUserProfileTC({ name, avatar: '' }));
+        if (name.trim() === '') {
+            setStateName(userEmail);
+            dispatch(updateUserProfileTC({ name: userEmail, avatar: '' }));
+        } else {
+            dispatch(updateUserProfileTC({ name, avatar: '' }));
+        }
     };
 
     useEffect(() => {

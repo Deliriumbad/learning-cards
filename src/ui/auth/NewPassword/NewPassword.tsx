@@ -39,8 +39,8 @@ const NewPassword = () => {
     const error = useAppSelector(state => state.newPassword.error);
     const isFetching = useAppSelector(state => state.login.isFetching);
     const navigate = useNavigate();
-    const { token } = useParams<{ token: string | undefined }>();
     const dispatch = useAppDispatch();
+    const { token } = useParams<{ token: string | undefined }>();
 
     const formik = useFormik({
         initialValues: {

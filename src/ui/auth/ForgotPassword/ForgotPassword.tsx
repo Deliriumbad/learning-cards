@@ -33,7 +33,6 @@ const ForgotPassword = () => {
     const error = useAppSelector(state => state.forgotPassword.error);
     const isFetching = useAppSelector(state => state.forgotPassword.isFetching);
     const [successfulSend, setSuccessfulSend] = useState<boolean>(false);
-
     const dispatch = useAppDispatch();
 
     const formik = useFormik({

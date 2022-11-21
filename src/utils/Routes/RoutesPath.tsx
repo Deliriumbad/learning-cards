@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Navigate, Route, Routes } from 'react-router-dom';
-import ForgotPassword from 'ui/auth/forgot-password/ForgotPassword';
+import ForgotPassword from 'ui/auth/ForgotPassword/ForgotPassword';
 
 import Error404 from '../../ui/auth/Error404/Error404';
 import Login from '../../ui/auth/Login/Login';
@@ -14,7 +14,7 @@ export const PATH = {
     error404: '/error-404',
     login: '/login',
     newPassword: '/new-password/:token',
-    forgotPassword: '/forgot-password',
+    forgotPassword: '/ForgotPassword',
     profile: '/profile',
     registration: '/registration',
     test: '/test',
