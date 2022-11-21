@@ -2,6 +2,8 @@ import { ChangeEvent, useEffect, useState } from 'react';
 
 import { requestPacks, updatePacksParams } from 'bll/reducers/packs-reducer';
 import { useAppDispatch, useAppSelector } from 'bll/store/hooks';
+import Edit from 'common/icons/Edit';
+import Trash from 'common/icons/Trash';
 import InputText from 'ui/components/InputText/InputText';
 
 import styles from './Packs.module.scss';
@@ -47,6 +49,14 @@ const Packs = () => {
                                 <td>{pack.cardsCount}</td>
                                 <td>{pack.updated}</td>
                                 <td>{pack.user_name}</td>
+                                <td>
+                                    <button type="button">
+                                        <Trash />
+                                    </button>
+                                    <button type="button">
+                                        <Edit />
+                                    </button>
+                                </td>
                             </tr>
                         ))}
                     </tbody>

@@ -49,13 +49,7 @@ ul {
     list-style: none;
 }
 
-img, svg, video {
-    display: inline-block;
-    vertical-align: top;
-    max-width: 100%;
-    height: auto;
-    object-fit: cover;
-}
+
 
 input, textarea, button, select {
     font-family: inherit;
