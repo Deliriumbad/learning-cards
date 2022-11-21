@@ -1,8 +1,12 @@
-const Edit = () => {
+type EditT = {
+    fill: string;
+};
+
+const Edit = ({ fill }: EditT) => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
-            fill="#514B73"
+            fill={fill}
             viewBox="0 0 24 24"
             strokeWidth={1}
             stroke="currentColor"

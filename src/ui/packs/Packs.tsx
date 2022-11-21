@@ -20,7 +20,7 @@ const Packs = () => {
     };
 
     useEffect(() => {
-        const timer = setTimeout(() => dispatch(requestPacks()), 1500);
+        const timer = setTimeout(() => dispatch(requestPacks()), 1000);
 
         return () => {
             clearTimeout(timer);
@@ -51,10 +51,10 @@ const Packs = () => {
                                 <td>{pack.user_name}</td>
                                 <td>
                                     <button type="button">
-                                        <Trash />
+                                        <Trash fill="#514B74" />
                                     </button>
                                     <button type="button">
-                                        <Edit />
+                                        <Edit fill="#514B74" />
                                     </button>
                                 </td>
                             </tr>
