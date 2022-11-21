@@ -10,7 +10,7 @@ import styles from './Packs.module.scss';
 import Pagination from './pagination/Pagination';
 
 const Packs = () => {
-    const packs = useAppSelector(state => state.packs.packs);
+    const packs = useAppSelector(state => state.packs.cardPacks);
     const dispatch = useAppDispatch();
 
     const [value, setValue] = useState<string>('');

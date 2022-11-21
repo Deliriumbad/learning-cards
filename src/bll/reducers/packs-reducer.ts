@@ -1,8 +1,25 @@
 import { AppThunk } from 'bll/store/store';
-import { packApi, PackType } from 'dal/packs-api';
+import { packApi, ResponsePacksType } from 'dal/packs-api';
 
 export const packsInitState = {
-    packs: [] as PackType[],
+    cardPacks: [
+        {
+            _id: '',
+            user_id: '',
+            user_name: '',
+            name: '',
+            cardsCount: 0,
+            created: '',
+            updated: '',
+        },
+    ],
+
+    cardPacksTotalCount: 0,
+    maxCardsCount: 0,
+    minCardsCount: 0,
+    page: 1,
+    pageCount: 1,
+
     packParams: {
         packName: '',
         min: 0,
@@ -24,7 +41,7 @@ export const packsReducer = (
 ): PacksStateType => {
     switch (action.type) {
         case 'GET-PACKS':
-            return { ...state, packs: [...action.data] };
+            return { ...state, ...action.data };
         case 'UPDATE-PACKS-PARAMS':
             return { ...state, packParams: { ...state.packParams, ...action.params } };
         default:
@@ -32,7 +49,7 @@ export const packsReducer = (
     }
 };
 
-export const setPacks = (data: PackType[]) => {
+export const setPacks = (data: ResponsePacksType) => {
     return { type: 'GET-PACKS', data } as const;
 };
 
@@ -44,7 +61,7 @@ export const requestPacks = (): AppThunk => {
     return (dispatch, getState) => {
         const { packParams } = getState().packs;
         packApi.packs(packParams).then(response => {
-            dispatch(setPacks(response.data.cardPacks));
+            dispatch(setPacks(response.data));
         });
     };
 };
