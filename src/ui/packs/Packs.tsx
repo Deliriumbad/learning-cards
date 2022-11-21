@@ -7,6 +7,7 @@ import { ReactComponent as Edit } from 'common/icons/edit.svg';
 import InputText from 'ui/components/InputText/InputText';
 
 import styles from './Packs.module.scss';
+import Pagination from './pagination/Pagination';
 
 const Packs = () => {
     const packs = useAppSelector(state => state.packs.packs);
@@ -62,6 +63,7 @@ const Packs = () => {
                     </tbody>
                 </table>
             </div>
+            <Pagination />
         </>
     );
 };
