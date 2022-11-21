@@ -5,10 +5,10 @@ import { useNavigate } from 'react-router-dom';
 import { isAuthUserData, logoutTC } from '../../../bll/reducers/login-reducer';
 import { updateUserProfileTC } from '../../../bll/reducers/profile-reducer';
 import { useAppDispatch, useAppSelector } from '../../../bll/store/hooks';
-import dog from '../../components/common/img/dog.png';
-import logout from '../../components/common/img/logout.png';
+import dog from '../../assets/images/dog.png';
+import logout from '../../assets/images/logout.png';
 import EditableSpan from '../../components/EditableSpan/EditableSpan';
-import { PATH } from '../../Routes/RoutesPath';
+import { PATH } from '../../Main/Routes/RoutesPath';
 
 import s from './Profile.module.scss';
 

@@ -3,11 +3,11 @@ import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import ForgotPassword from 'ui/auth/ForgotPassword/ForgotPassword';
 
-import Error404 from '../auth/Error404/Error404';
-import Login from '../auth/Login/Login';
-import NewPassword from '../auth/NewPassword/NewPassword';
-import Profile from '../auth/Profile/Profile';
-import Registration from '../auth/Registration/Registration';
+import Error404 from '../../auth/Error404/Error404';
+import Login from '../../auth/Login/Login';
+import NewPassword from '../../auth/NewPassword/NewPassword';
+import Profile from '../../auth/Profile/Profile';
+import Registration from '../../auth/Registration/Registration';
 
 export const PATH = {
     error404: '/error-404',

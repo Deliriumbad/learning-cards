@@ -9,7 +9,7 @@ import Button from '../../components/Button/Button';
 import Checkbox from '../../components/CheckBox/Checkbox';
 import InputText from '../../components/InputText/InputText';
 import Preloader from '../../components/Preloader/Preloader';
-import { PATH } from '../../Routes/RoutesPath';
+import { PATH } from '../../Main/Routes/RoutesPath';
 
 import s from './Login.module.scss';
 

@@ -6,7 +6,7 @@ import { FormikValues, useFormik } from 'formik';
 import { useNavigate, useParams } from 'react-router-dom';
 import Button from 'ui/components/Button/Button';
 import InputText from 'ui/components/InputText/InputText';
-import { PATH } from 'ui/Routes/RoutesPath';
+import { PATH } from 'ui/Main/Routes/RoutesPath';
 
 import Preloader from '../../components/Preloader/Preloader';
 

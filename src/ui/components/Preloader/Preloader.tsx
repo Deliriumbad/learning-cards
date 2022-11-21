@@ -1,6 +1,6 @@
 import React from 'react';
 
-import preloader_spinner from '../common/img/preloader_spinner.svg';
+import preloader_spinner from '../../assets/images/preloader_spinner.svg';
 
 const Preloader = () => {
     return (

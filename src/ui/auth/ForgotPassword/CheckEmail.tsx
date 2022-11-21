@@ -1,9 +1,9 @@
 import { useAppSelector } from 'bll/store/hooks';
 import { useNavigate } from 'react-router-dom';
 import Button from 'ui/components/Button/Button';
-import { PATH } from 'ui/Routes/RoutesPath';
+import { PATH } from 'ui/Main/Routes/RoutesPath';
 
-import mail from '../../components/common/img/mail.png';
+import mail from '../../assets/images/mail.png';
 
 import s from './CheckEmail.module.scss';
 

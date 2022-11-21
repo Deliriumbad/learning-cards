@@ -8,7 +8,7 @@ import Button from 'ui/components/Button/Button';
 import InputText from 'ui/components/InputText/InputText';
 
 import Preloader from '../../components/Preloader/Preloader';
-import { PATH } from '../../Routes/RoutesPath';
+import { PATH } from '../../Main/Routes/RoutesPath';
 
 import CheckEmail from './CheckEmail';
 import s from './ForgotPassword.module.scss';
