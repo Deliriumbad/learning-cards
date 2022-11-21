@@ -18,7 +18,7 @@ export const packsInitState = {
     maxCardsCount: 0,
     minCardsCount: 0,
     page: 1,
-    pageCount: 1,
+    pageCount: 0,
 
     packParams: {
         packName: '',

@@ -8,9 +8,11 @@ import InputText from 'ui/components/InputText/InputText';
 
 import styles from './Packs.module.scss';
 import Pagination from './pagination/Pagination';
+import usePagination from './pagination/UsePagination';
 
 const Packs = () => {
     const packs = useAppSelector(state => state.packs.cardPacks);
+    const pageCount = useAppSelector(state => state.packs.packParams.pageCount);
     const dispatch = useAppDispatch();
 
     const [value, setValue] = useState<string>('');
@@ -19,6 +21,12 @@ const Packs = () => {
         setValue(event.target.value);
         dispatch(updatePacksParams({ packName: event.target.value }));
     };
+
+    const { firstContentIndex, lastContentIndex, nextPage, prevPage, page, setPage, totalPages } =
+        usePagination({
+            contentPerPage: pageCount,
+            count: packs.length,
+        });
 
     useEffect(() => {
         const timer = setTimeout(() => dispatch(requestPacks()), 1000);
@@ -44,7 +52,7 @@ const Packs = () => {
                     </thead>
 
                     <tbody>
-                        {packs.map(pack => (
+                        {packs.slice(firstContentIndex, lastContentIndex).map(pack => (
                             <tr>
                                 <td>{pack.name}</td>
                                 <td>{pack.cardsCount}</td>
@@ -62,7 +70,13 @@ const Packs = () => {
                         ))}
                     </tbody>
                 </table>
-                <Pagination />
+                <Pagination
+                    onClickNextPage={nextPage}
+                    onClickPrevPage={prevPage}
+                    onSetPage={setPage}
+                    pageNumber={page}
+                    totalPagesCount={totalPages}
+                />
             </div>
         </>
     );
