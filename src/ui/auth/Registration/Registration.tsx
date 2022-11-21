@@ -99,6 +99,7 @@ const Registration = () => {
                     {formik.touched.confirmPassword && formik.errors.confirmPassword && (
                         <div className={s.error}>{formik.errors.confirmPassword}</div>
                     )}
+                    {error && <div className={s.errorResponse}>{error}</div>}
                 </div>
                 <Button type="submit" className={s.button}>
                     Sign Up
@@ -108,7 +109,6 @@ const Registration = () => {
                     Sign In
                 </NavLink>
             </form>
-            {error && <div className={s.errorResponse}>{error}</div>}
         </div>
     );
 };

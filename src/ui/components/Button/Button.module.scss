@@ -15,49 +15,12 @@
   border-color: #091349;;
 
   &:hover {
-    box-shadow: 3px 3px 7px 0px rgba(9, 19, 73, 0.6);
-    color: black;
-    background-color: #d3d3d3;
-    border: solid #b2b2b2 1px;
+    box-shadow: 5px 5px 8px 0px rgba(9, 19, 73, 0.6);
     cursor: pointer;
     align-items: center;
     justify-content: center;
     transition: .5s ease-in-out;
     scale: 1.03;
-  }
-
-  &:disabled {
-    color: #999;
-    background: #eee;
-    cursor: auto;
-    box-shadow: none;
-    border: 1px solid #ddd;
-  }
-
-  &:disabled:hover {
-    cursor: progress;
-  }
-}
-
-.red {
-  background: #8a2be2;
-  padding: 5px 20px;
-  margin: 10px 20px;
-  border-radius: 5px;
-  box-shadow: 0 0 40px 40px white inset, 0 0 0 0 #8a2be2;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: bold;
-  letter-spacing: 1px;
-  color: black;
-  transition: .15s ease-in-out;
-  border: 1px solid black;
-
-  &:hover {
-    box-shadow: 0 0 10px 0 #8a2be2 inset, 0 0 10px 4px white;
-    color: white;
-    border: 1px solid white;
-    transition: .5s;
-    cursor: pointer;
   }
 }
 

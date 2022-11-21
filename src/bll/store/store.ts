@@ -23,6 +23,7 @@ export const store = legacy_createStore(reducers, applyMiddleware(thunk));
 export type RootSate = ReturnType<typeof store.getState>;
 
 export type AppStoreType = ReturnType<typeof reducers>;
+
 type AppActionsType =
     | RegisterActionsType
     | LoginActionsType
@@ -33,6 +34,7 @@ type AppActionsType =
 export type RootState = ReturnType<typeof store.getState>;
 
 export type AppDispatch = ThunkDispatch<RootState, unknown, AppActionsType>;
+
 export type AppThunk<ReturnType = void> = ThunkAction<
     ReturnType,
     RootState,

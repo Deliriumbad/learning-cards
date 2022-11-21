@@ -90,6 +90,7 @@ const Login = () => {
                     {formik.errors.password && formik.touched.password && (
                         <div className={s.error}>{formik.errors.password}</div>
                     )}
+                    {error && <div className={s.errorResponse}>{error}</div>}
                 </div>
                 <label className={s.checkbox}>
                     <Checkbox
@@ -109,7 +110,6 @@ const Login = () => {
                     Sign Up
                 </NavLink>
             </form>
-            {error && <div className={s.errorResponse}>{error}</div>}
         </div>
     );
 };

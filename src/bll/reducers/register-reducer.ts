@@ -19,7 +19,7 @@ export const registerReducer = (
     switch (action.type) {
         case 'REG/REGISTRATION':
             return { ...state, isRegister: true };
-        case 'REG/SET-EMAIL-ERROR':
+        case 'REG/SET_EMAIL_ERROR':
             return { ...state, emailError: action.error };
         default:
             return state;
@@ -30,7 +30,7 @@ export const setRegistration = () => {
     return { type: 'REG/REGISTRATION' } as const;
 };
 
-export const setError = (error: string | null) => ({ type: 'REG/SET-EMAIL-ERROR', error } as const);
+export const setError = (error: string | null) => ({ type: 'REG/SET_EMAIL_ERROR', error } as const);
 
 export const requestRegistration = (data: { email: string; password: string }): AppThunk => {
     return async dispatch => {

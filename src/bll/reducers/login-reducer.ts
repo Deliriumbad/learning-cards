@@ -79,6 +79,7 @@ export const loginTC = (data: LoginDataType): AppThunk => {
 
 export const logoutTC = (): AppDispatch => {
     return dispatch => {
+        dispatch(isFetchingAC(true));
         authAPI
             .logout()
             .then(() => {
@@ -89,12 +90,16 @@ export const logoutTC = (): AppDispatch => {
                     ? e.response.data.error
                     : `${e.message}, more details in the console`;
                 dispatch(setEmailError(error));
+            })
+            .finally(() => {
+                dispatch(isFetchingAC(false));
             });
     };
 };
 
 export const isAuthUserData = (): AppDispatch => {
     return dispatch => {
+        dispatch(isFetchingAC(true));
         authAPI
             .getAuth()
             .then(res => {
@@ -109,6 +114,7 @@ export const isAuthUserData = (): AppDispatch => {
             })
             .finally(() => {
                 dispatch(setEmailError(null));
+                dispatch(isFetchingAC(false));
             });
     };
 };
