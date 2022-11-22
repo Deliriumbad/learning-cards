@@ -2,6 +2,7 @@ import React from 'react';
 
 import { Navigate, Route, Routes } from 'react-router-dom';
 import ForgotPassword from 'ui/auth/ForgotPassword/ForgotPassword';
+import Packs from 'ui/packs/Packs';
 
 import Error404 from '../../auth/Error404/Error404';
 import Login from '../../auth/Login/Login';
@@ -13,9 +14,10 @@ export const PATH = {
     error404: '/error-404',
     login: '/login',
     newPassword: '/new-password/:token',
-    forgotPassword: '/ForgotPassword',
+    forgotPassword: '/forgot-password',
     profile: '/profile',
     registration: '/registration',
+    packs: '/packs',
 };
 
 export const dataPATH = [
@@ -42,6 +44,10 @@ export const dataPATH = [
     {
         path: PATH.registration,
         element: <Registration />,
+    },
+    {
+        path: PATH.packs,
+        element: <Packs />,
     },
 ];
 

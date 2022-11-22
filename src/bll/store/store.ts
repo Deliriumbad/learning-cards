@@ -7,6 +7,7 @@ import { applyMiddleware, combineReducers, legacy_createStore } from 'redux';
 import thunk, { ThunkAction, ThunkDispatch } from 'redux-thunk';
 
 import { LoginActionsType, loginReducer } from '../reducers/login-reducer';
+import { PacksActions, packsReducer } from '../reducers/packs-reducer';
 import { ProfileActionsType, profileReducer } from '../reducers/profile-reducer';
 import { RegisterActionsType, registerReducer } from '../reducers/register-reducer';
 
@@ -16,6 +17,7 @@ const reducers = combineReducers({
     forgotPassword: forgotPassReducer,
     newPassword: newPasswordReducer,
     profile: profileReducer,
+    packs: packsReducer,
 });
 
 export const store = legacy_createStore(reducers, applyMiddleware(thunk));
@@ -29,7 +31,8 @@ type AppActionsType =
     | LoginActionsType
     | ProfileActionsType
     | NewPasswordActionsType
-    | PasswordRecoveryActionsType;
+    | PasswordRecoveryActionsType
+    | PacksActions;
 
 export type RootState = ReturnType<typeof store.getState>;
 
