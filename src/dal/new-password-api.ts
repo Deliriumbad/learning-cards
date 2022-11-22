@@ -7,7 +7,7 @@ const instance = axios.create({
 
 const newPasswordApi = {
     newPassword: (data: NewPasswordRequest) => {
-        return instance.post<NewPasswordResponse>('/auth/set-new-password', data);
+        return instance.post<NewPasswordResponse>('auth/set-new-password', data);
     },
 };
 

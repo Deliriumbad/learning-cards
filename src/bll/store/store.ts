@@ -6,6 +6,7 @@ import { NewPasswordActionsType, newPasswordReducer } from 'bll/reducers/new-pas
 import { applyMiddleware, combineReducers, legacy_createStore } from 'redux';
 import thunk, { ThunkAction, ThunkDispatch } from 'redux-thunk';
 
+import { CardsActionsType, cardsReducer } from '../reducers/cards-reducer';
 import { LoginActionsType, loginReducer } from '../reducers/login-reducer';
 import { PacksActions, packsReducer } from '../reducers/packs-reducer';
 import { ProfileActionsType, profileReducer } from '../reducers/profile-reducer';
@@ -18,6 +19,7 @@ const reducers = combineReducers({
     newPassword: newPasswordReducer,
     profile: profileReducer,
     packs: packsReducer,
+    cards: cardsReducer,
 });
 
 export const store = legacy_createStore(reducers, applyMiddleware(thunk));
@@ -32,7 +34,8 @@ type AppActionsType =
     | ProfileActionsType
     | NewPasswordActionsType
     | PasswordRecoveryActionsType
-    | PacksActions;
+    | PacksActions
+    | CardsActionsType;
 
 export type RootState = ReturnType<typeof store.getState>;
 
