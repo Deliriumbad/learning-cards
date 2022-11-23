@@ -13,7 +13,7 @@ const Pagination = () => {
     const dispatch = useAppDispatch();
 
     const {
-        page,
+        currentPage,
         totalPages,
         renderPageNumbers,
         pageDecrementBtn,
@@ -27,13 +27,13 @@ const Pagination = () => {
     });
 
     useEffect(() => {
-        dispatch(updatePacksParams({ page }));
-    }, [page]);
+        dispatch(updatePacksParams({ page: currentPage }));
+    }, [currentPage]);
 
     return (
         <div className={styles.pagination}>
             <p>
-                {page}/{totalPages}
+                {currentPage}/{totalPages}
             </p>
             {leftIArrow}
             {pageDecrementBtn}
