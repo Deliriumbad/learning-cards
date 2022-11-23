@@ -1,72 +1,129 @@
-/* eslint-disable no-else-return */
+/* eslint-disable no-unneeded-ternary */
+/* eslint-disable no-plusplus */
 import { useState } from 'react';
+
+import { ReactComponent as Left } from 'common/icons/left-indicator.svg';
+import { ReactComponent as Right } from 'common/icons/right-indicator.svg';
+
+import styles from './Pagination.module.scss';
 
 type UsePaginationProps = {
     contentPerPage: number;
     count: number;
+    pageNumberLimit: number;
 };
 
 interface UsePaginationReturn {
     page: number;
     totalPages: number;
-    firstContentIndex: number;
-    lastContentIndex: number;
-    nextPage: () => void;
-    prevPage: () => void;
-    setPage: (page: number) => void;
+    renderPageNumbers: (JSX.Element | null)[];
+    pageDecrementBtn: null | JSX.Element;
+    pageIncrementBtn: null | JSX.Element;
+    leftIArrow: JSX.Element;
+    rightArrow: JSX.Element;
 }
 
-const usePagination = ({ contentPerPage, count }: UsePaginationProps): UsePaginationReturn => {
+const usePagination = ({
+    contentPerPage,
+    count,
+    pageNumberLimit,
+}: UsePaginationProps): UsePaginationReturn => {
     const [page, setPage] = useState(1);
-    // number of pages in total (total items / content on each page)
     const pageCount = Math.ceil(count / contentPerPage);
-    // index of last item of current page
-    const lastContentIndex = page * contentPerPage;
-    // index of first item of current page
-    const firstContentIndex = lastContentIndex - contentPerPage;
 
-    // change page based on direction either front or back
-    const changePage = (direction: boolean) => {
-        setPage(state => {
-            // move forward
-            if (direction) {
-                // if page is the last page, do nothing
-                if (state === pageCount) {
-                    return state;
-                }
-                return state + 1;
-                // go back
-            } else {
-                // if page is the first page, do nothing
-                if (state === 1) {
-                    return state;
-                }
-                return state - 1;
-            }
-        });
-    };
+    const [maxPageNumberLimit, setMaxPageNumberLimit] = useState<number>(pageNumberLimit);
+    const [minPageNumberLimit, setMinPageNumberLimit] = useState<number>(1);
 
-    const setPageSAFE = (num: number) => {
-        // if number is greater than number of pages, set to last page
-        if (num > pageCount) {
-            setPage(pageCount);
-            // if number is less than 1, set page to first page
-        } else if (num < 1) {
-            setPage(1);
-        } else {
-            setPage(num);
+    const nextPage = () => {
+        // кнопки вперед - назад
+        setPage(page + 1);
+        if (page + 1 > maxPageNumberLimit) {
+            setMaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit);
+            setMinPageNumberLimit(minPageNumberLimit + pageNumberLimit);
         }
     };
 
+    const prevPage = () => {
+        setPage(page - 1);
+        // кнопки вперед - назад
+        if ((page - 1) % pageNumberLimit === 0) {
+            setMaxPageNumberLimit(maxPageNumberLimit - pageNumberLimit);
+            setMinPageNumberLimit(minPageNumberLimit - pageNumberLimit);
+        }
+    };
+
+    const arrayFromPage: Array<number> = [];
+
+    for (let index = 1; index <= pageCount; index++) {
+        arrayFromPage.push(index);
+    }
+
+    const renderPageNumbers = arrayFromPage.map(p => {
+        if (p < maxPageNumberLimit + 1 && p >= minPageNumberLimit) {
+            return (
+                <button
+                    className={styles.btn}
+                    type="button"
+                    onClick={() => {
+                        setPage(p);
+                    }}
+                    key={p}
+                >
+                    {p}
+                </button>
+            );
+        }
+        return null;
+    });
+
+    const leftIArrow = (
+        <button
+            disabled={page === arrayFromPage[0] ? true : false}
+            onClick={prevPage}
+            type="button"
+            className={styles.btn}
+        >
+            <Left className={styles.btnIcon} />
+        </button>
+    );
+
+    const rightArrow = (
+        <button
+            disabled={page === arrayFromPage[arrayFromPage.length - 1] ? true : false}
+            onClick={nextPage}
+            type="button"
+            className={styles.btn}
+        >
+            <Right className={styles.btnIcon} />
+        </button>
+    );
+
+    let pageIncrementBtn: null | JSX.Element = null;
+    if (arrayFromPage.length > maxPageNumberLimit) {
+        pageIncrementBtn = (
+            <button type="button" onClick={nextPage}>
+                &hellip;
+            </button>
+        );
+    }
+
+    let pageDecrementBtn: null | JSX.Element = null;
+    if (minPageNumberLimit > 1) {
+        pageDecrementBtn = (
+            <button type="button" onClick={prevPage}>
+                &hellip;
+            </button>
+        );
+    }
+
     return {
         totalPages: pageCount,
-        nextPage: () => changePage(true),
-        prevPage: () => changePage(false),
-        setPage: setPageSAFE,
-        firstContentIndex,
-        lastContentIndex,
         page,
+        renderPageNumbers,
+        pageIncrementBtn,
+        pageDecrementBtn,
+        leftIArrow,
+        rightArrow,
     };
 };
-
 export default usePagination;
