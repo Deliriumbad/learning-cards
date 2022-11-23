@@ -1,9 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-import { getCardsTC } from '../../bll/reducers/cards-reducer';
-import { useAppDispatch, useAppSelector } from '../../bll/store/hooks';
+import { useAppSelector } from '../../bll/store/hooks';
 import Button from '../components/Button/Button';
 import InputText from '../components/InputText/InputText';
 import { PATH } from '../Main/Routes/RoutesPath';
@@ -12,21 +11,15 @@ import s from './Cards.module.scss';
 import CardList from './CardsList/CardList';
 
 const Cards = () => {
-    const cards = useAppSelector(state => state.cards.cardsList);
-
     const navigate = useNavigate();
-    const dispatch = useAppDispatch();
 
-    const urlParams = useParams<'cardPackID'>();
-    const cardsPackID = urlParams.cardPackID;
+    const cards = useAppSelector(state => state.cards.cardsList);
 
     const onButtonHandler = () => {
         navigate(PATH.packs);
     };
 
-    useEffect(() => {
-        if (cardsPackID) dispatch(getCardsTC({ cardsPack_id: cardsPackID }));
-    }, [dispatch, cardsPackID]);
+    // нужно задиспатчить санку
 
     return (
         <div className={s.cardsPage}>

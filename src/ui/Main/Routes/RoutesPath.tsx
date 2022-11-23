@@ -52,7 +52,7 @@ export const dataPATH = [
         element: <Packs />,
     },
     {
-        path: `${PATH.cards}:cardPackID`,
+        path: PATH.cards,
         element: <Cards />,
     },
 ];
