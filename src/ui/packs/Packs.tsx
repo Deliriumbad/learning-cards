@@ -11,6 +11,7 @@ import Pagination from './pagination/Pagination';
 
 const Packs = () => {
     const packs = useAppSelector(state => state.packs.cardPacks);
+    const packPage = useAppSelector(state => state.packs.packParams.page);
     const dispatch = useAppDispatch();
 
     const [value, setValue] = useState<string>('');
@@ -19,6 +20,10 @@ const Packs = () => {
         setValue(event.target.value);
         dispatch(updatePacksParams({ packName: event.target.value }));
     };
+
+    useEffect(() => {
+        dispatch(requestPacks());
+    }, [packPage, dispatch]);
 
     useEffect(() => {
         const timer = setTimeout(() => dispatch(requestPacks()), 1000);

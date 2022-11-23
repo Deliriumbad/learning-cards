@@ -9,7 +9,7 @@ import styles from './Pagination.module.scss';
 
 type UsePaginationProps = {
     contentPerPage: number;
-    count: number;
+    totalElements: number;
     pageNumberLimit: number;
 };
 
@@ -25,17 +25,16 @@ interface UsePaginationReturn {
 
 const usePagination = ({
     contentPerPage,
-    count,
+    totalElements,
     pageNumberLimit,
 }: UsePaginationProps): UsePaginationReturn => {
     const [page, setPage] = useState(1);
-    const pageCount = Math.ceil(count / contentPerPage);
+    const pageCount = Math.ceil(totalElements / contentPerPage);
 
     const [maxPageNumberLimit, setMaxPageNumberLimit] = useState<number>(pageNumberLimit);
     const [minPageNumberLimit, setMinPageNumberLimit] = useState<number>(1);
 
     const nextPage = () => {
-        // кнопки вперед - назад
         setPage(page + 1);
         if (page + 1 > maxPageNumberLimit) {
             setMaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit);
@@ -45,11 +44,14 @@ const usePagination = ({
 
     const prevPage = () => {
         setPage(page - 1);
-        // кнопки вперед - назад
         if ((page - 1) % pageNumberLimit === 0) {
             setMaxPageNumberLimit(maxPageNumberLimit - pageNumberLimit);
             setMinPageNumberLimit(minPageNumberLimit - pageNumberLimit);
         }
+    };
+
+    const onSetPageHandler = (pageNumber: number) => {
+        setPage(pageNumber);
     };
 
     const arrayFromPage: Array<number> = [];
@@ -64,9 +66,7 @@ const usePagination = ({
                 <button
                     className={styles.btn}
                     type="button"
-                    onClick={() => {
-                        setPage(p);
-                    }}
+                    onClick={() => onSetPageHandler(p)}
                     key={p}
                 >
                     {p}
