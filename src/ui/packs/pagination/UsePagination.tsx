@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { ReactComponent as Left } from 'common/icons/left-indicator.svg';
 import { ReactComponent as Right } from 'common/icons/right-indicator.svg';
 
-import styles from './Pagination.module.scss';
+import styles from './UsePagination.module.scss';
 
 type UsePaginationProps = {
     contentPerPage: number;
