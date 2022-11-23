@@ -2,9 +2,12 @@ import { ChangeEvent, useEffect, useState } from 'react';
 
 import { requestPacks, updatePacksParams } from 'bll/reducers/packs-reducer';
 import { useAppDispatch, useAppSelector } from 'bll/store/hooks';
+import { NavLink } from 'react-router-dom';
 import { ReactComponent as Delete } from 'ui/assets/icons/delete.svg';
 import { ReactComponent as Edit } from 'ui/assets/icons/edit.svg';
 import InputText from 'ui/components/InputText/InputText';
+
+import { PATH } from '../Main/Routes/RoutesPath';
 
 import styles from './Packs.module.scss';
 import Pagination from './pagination/Pagination';
@@ -53,8 +56,10 @@ const Packs = () => {
 
                     <tbody>
                         {packs.slice(firstContentIndex, lastContentIndex).map(pack => (
-                            <tr>
-                                <td>{pack.name}</td>
+                            <tr key={pack._id}>
+                                <NavLink to={PATH.cards}>
+                                    <td>{pack.name}</td>
+                                </NavLink>
                                 <td>{pack.cardsCount}</td>
                                 <td>{pack.updated}</td>
                                 <td>{pack.user_name}</td>

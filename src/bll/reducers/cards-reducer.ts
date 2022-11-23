@@ -2,18 +2,16 @@ import { cardsAPI, CardType, GetCardsParamsType, GetCardsResponseType } from '..
 import { AppThunk } from '../store/store';
 
 export const cardsInitState = {
-    cardsData: {
-        cardPacks: [] as Array<CardType>,
-        cardsTotalCount: 0,
-        maxGrade: 0,
-        minGrade: 0,
-        page: 0,
-        pageCount: 0,
-        token: '',
-        packUserId: '',
-    },
-    cardsPackId: '',
-    packName: '',
+    cardsList: [] as Array<CardType>,
+    packUserId: '',
+    cardsTotalCount: 0,
+    maxGrade: undefined as undefined | number,
+    minGrade: undefined as undefined | number,
+    page: 1,
+    pageCount: 5,
+    cardAnswer: '',
+    cardQuestion: '',
+    sortCards: '0updated',
     isFetchingCards: false,
 };
 
@@ -25,7 +23,7 @@ export const cardsReducer = (
 ): CardsStateType => {
     switch (action.type) {
         case 'CARDS/SET_CARDS_DATA':
-            return { ...state, cardsData: action.cardsData };
+            return { ...state, ...action.cardsData };
         default:
             return state;
     }
@@ -35,11 +33,21 @@ export const setCardsData = (cardsData: GetCardsResponseType) =>
     ({ type: 'CARDS/SET_CARDS_DATA', cardsData } as const);
 
 export const getCardsTC = (data: GetCardsParamsType): AppThunk => {
-    return dispatch => {
+    return (dispatch, getState) => {
+        const { cardAnswer, cardQuestion, sortCards, page, pageCount } = getState().cards;
+        const cardsData: GetCardsParamsType = {
+            cardAnswer,
+            cardQuestion,
+            sortCards,
+            page,
+            pageCount,
+            ...data,
+        };
+
         cardsAPI
-            .getCards(data)
+            .getCards(cardsData)
             .then(res => {
-                console.log(res);
+                console.log(data);
                 dispatch(setCardsData(res));
             })
             .catch(e => {

@@ -12,9 +12,9 @@ export const cardsAPI = {
 };
 
 export type GetCardsParamsType = {
+    cardsPack_id: string;
     cardAnswer?: string;
     cardQuestion?: string;
-    cardsPack_id: string;
     min?: number;
     max?: number;
     sortCards?: string;
@@ -40,12 +40,11 @@ export type CardType = {
 };
 
 export type GetCardsResponseType = {
-    cardPacks: CardType[];
+    cardsData: CardType[];
+    packUserId: string;
     cardsTotalCount: number;
     maxGrade: number;
     minGrade: number;
     page: number;
     pageCount: number;
-    token: string;
-    packUserId: string;
 };
