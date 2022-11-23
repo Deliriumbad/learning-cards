@@ -1,21 +1,28 @@
-import { cardsAPI, CardType, GetCardsParamsType, GetCardsResponseType } from '../../dal/cards-api';
+import { cardsAPI, CardType, GetCardsResponseType } from '../../dal/cards-api';
 import { AppThunk } from '../store/store';
 
 export const cardsInitState = {
-    cardsList: [] as Array<CardType>,
-    packUserId: '',
-    cardsTotalCount: 0,
-    maxGrade: undefined as undefined | number,
-    minGrade: undefined as undefined | number,
+    cards: [] as CardType[],
+    cardsTotalCount: 3,
+    maxGrade: 0,
+    minGrade: 0,
     page: 1,
-    pageCount: 5,
-    cardAnswer: '',
-    cardQuestion: '',
-    sortCards: '0updated',
-    isFetchingCards: false,
-};
+    pageCount: 4,
+    packUserId: '',
 
+    cardsParams: {
+        cardAnswer: '',
+        cardQuestion: '',
+        cardsPack_id: '637e57685b737b0004433950',
+        min: 1,
+        max: 4,
+        sortCards: '0grade',
+        pageCount: 0,
+        page: 0,
+    },
+};
 export type CardsStateType = typeof cardsInitState;
+export type CardsParamsType = typeof cardsInitState.cardsParams;
 
 export const cardsReducer = (
     state: CardsStateType = cardsInitState,
@@ -23,37 +30,29 @@ export const cardsReducer = (
 ): CardsStateType => {
     switch (action.type) {
         case 'CARDS/SET_CARDS_DATA':
-            return { ...state, ...action.cardsData };
+            return { ...state, ...action.data };
+        case 'CARDS/UPDATE_PARAMS_CARDS': {
+            return { ...state, cardsParams: { ...action.params } };
+        }
         default:
             return state;
     }
 };
 
-export const setCardsData = (cardsData: GetCardsResponseType) =>
-    ({ type: 'CARDS/SET_CARDS_DATA', cardsData } as const);
+export const setCardsData = (data: GetCardsResponseType) =>
+    ({ type: 'CARDS/SET_CARDS_DATA', data } as const);
 
-export const getCardsTC = (data: GetCardsParamsType): AppThunk => {
+export const updateParamsCards = (params: CardsParamsType) =>
+    ({ type: 'CARDS/UPDATE_PARAMS_CARDS', params } as const);
+
+export const getCardsTC = (): AppThunk => {
     return (dispatch, getState) => {
-        const { cardAnswer, cardQuestion, sortCards, page, pageCount } = getState().cards;
-        const cardsData: GetCardsParamsType = {
-            cardAnswer,
-            cardQuestion,
-            sortCards,
-            page,
-            pageCount,
-            ...data,
-        };
+        const { cardsParams } = getState().cards;
 
-        cardsAPI
-            .getCards(cardsData)
-            .then(res => {
-                console.log(data);
-                dispatch(setCardsData(res));
-            })
-            .catch(e => {
-                console.log(e);
-            });
+        cardsAPI.getCards(cardsParams).then(response => setCardsData(response.data));
     };
 };
 
-export type CardsActionsType = ReturnType<typeof setCardsData>;
+export type CardsActionsType =
+    | ReturnType<typeof setCardsData>
+    | ReturnType<typeof updateParamsCards>;

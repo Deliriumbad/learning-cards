@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import { useAppSelector } from '../../bll/store/hooks';
+import { getCardsTC } from '../../bll/reducers/cards-reducer';
+import { useAppDispatch, useAppSelector } from '../../bll/store/hooks';
 import Button from '../components/Button/Button';
 import InputText from '../components/InputText/InputText';
 import { PATH } from '../Main/Routes/RoutesPath';
@@ -11,15 +12,18 @@ import s from './Cards.module.scss';
 import CardList from './CardsList/CardList';
 
 const Cards = () => {
+    const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
-    const cards = useAppSelector(state => state.cards.cardsList);
+    const cards = useAppSelector(state => state.cards.cards);
 
     const onButtonHandler = () => {
         navigate(PATH.packs);
     };
-
-    // нужно задиспатчить санку
+    useEffect(() => {
+        const response = dispatch(getCardsTC());
+        console.log(response);
+    }, []);
 
     return (
         <div className={s.cardsPage}>
@@ -51,7 +55,7 @@ const Cards = () => {
                     </thead>
                     <tbody className={s.tbody}>
                         {cards.map(c => {
-                            return <CardList key={c._id} card={c} />;
+                            return <CardList card={c} />;
                         })}
                     </tbody>
                 </table>

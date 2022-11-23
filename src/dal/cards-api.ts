@@ -7,14 +7,14 @@ const instance = axios.create({
 
 export const cardsAPI = {
     getCards(data: GetCardsParamsType) {
-        return instance.get<GetCardsResponseType>('cards/card', { data }).then(res => res.data);
+        return instance.get<GetCardsResponseType>('cards/card', { params: data });
     },
 };
 
 export type GetCardsParamsType = {
-    cardsPack_id: string;
     cardAnswer?: string;
     cardQuestion?: string;
+    cardsPack_id?: string;
     min?: number;
     max?: number;
     sortCards?: string;
@@ -23,28 +23,32 @@ export type GetCardsParamsType = {
 };
 
 export type CardType = {
+    _id: string;
+    cardsPack_id: string;
+    user_id: string;
     answer: string;
     question: string;
-    cardsPack_id: string;
     grade: number;
     shots: number;
-    user_id: string;
+    comments: string;
+    type: string;
+    rating: number;
+    more_id: string;
     created: string;
     updated: string;
-    _id: string;
-    comments?: string;
-    type?: string;
-    rating?: number;
-    more_id?: string;
-    __v?: number;
+    __v: 0;
+    answerImg: string;
+    answerVideo: string;
+    questionImg: string;
+    questionVideo: string;
 };
 
 export type GetCardsResponseType = {
-    cardsData: CardType[];
-    packUserId: string;
+    cards: Array<CardType>;
     cardsTotalCount: number;
     maxGrade: number;
     minGrade: number;
     page: number;
     pageCount: number;
+    packUserId: string;
 };
