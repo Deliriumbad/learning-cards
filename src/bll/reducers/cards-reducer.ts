@@ -1,14 +1,15 @@
-import { cardsAPI, CardType, GetCardsResponseType } from '../../dal/cards-api';
+import { cardsAPI, CardType, GetCardsResponseType, UpdateParamsType } from '../../dal/cards-api';
 import { AppThunk } from '../store/store';
 
 export const cardsInitState = {
     cards: [] as CardType[],
     cardsTotalCount: 3,
-    maxGrade: 0,
+    maxGrade: 10,
     minGrade: 0,
     page: 1,
     pageCount: 4,
     packUserId: '',
+    error: null as null | string,
 
     cardsParams: {
         cardAnswer: '',
@@ -32,6 +33,12 @@ export const cardsReducer = (
         case 'CARDS/UPDATE_PARAMS_CARDS': {
             return { ...state, cardsParams: { ...state.cardsParams, ...action.params } };
         }
+        case 'CARDS/SET_ERROR':
+            return { ...state, error: action.error };
+        case 'CARDS/SET_SEARCH_BY_QUESTION':
+            return { ...state, cardsParams: { ...state.cardsParams, cardQuestion: action.value } };
+        case 'CARDS/SET_SORT_CARDS':
+            return { ...state, cardsParams: { ...state.cardsParams, sortCards: action.value } };
         default:
             return state;
     }
@@ -40,14 +47,30 @@ export const cardsReducer = (
 export const setCardsData = (data: GetCardsResponseType) =>
     ({ type: 'CARDS/SET_CARDS_DATA', data } as const);
 
-export const updateParamsCards = (params: UpdateParamsT) =>
+export const updateParamsCards = (params: UpdateParamsType) =>
     ({ type: 'CARDS/UPDATE_PARAMS_CARDS', params } as const);
+
+export const setSearchCardsByQuestion = (value: string) =>
+    ({ type: 'CARDS/SET_SEARCH_BY_QUESTION', value } as const);
+
+export const setSortCards = (value: string) => ({ type: 'CARDS/SET_SORT_CARDS', value } as const);
+
+export const setError = (error: string | null) => ({ type: 'CARDS/SET_ERROR', error } as const);
 
 export const getCardsTC = (): AppThunk => {
     return (dispatch, getState) => {
         const { cardsParams } = getState().cards;
-
-        cardsAPI.getCards(cardsParams).then(response => dispatch(setCardsData(response.data)));
+        cardsAPI
+            .getCards(cardsParams)
+            .then(res => {
+                dispatch(setCardsData(res.data));
+            })
+            .catch(e => {
+                const error = e.response
+                    ? e.response.data.error
+                    : `${e.message}, more details in the console`;
+                dispatch(setError(error));
+            });
     };
 };
 
@@ -55,15 +78,7 @@ export type CardsStateType = typeof cardsInitState;
 
 export type CardsActionsType =
     | ReturnType<typeof setCardsData>
-    | ReturnType<typeof updateParamsCards>;
-
-type UpdateParamsT = {
-    cardAnswer?: string;
-    cardQuestion?: string;
-    cardsPack_id: string;
-    min?: number;
-    max?: number;
-    sortCards?: string;
-    page?: number;
-    pageCount?: number;
-};
+    | ReturnType<typeof updateParamsCards>
+    | ReturnType<typeof setError>
+    | ReturnType<typeof setSearchCardsByQuestion>
+    | ReturnType<typeof setSortCards>;
