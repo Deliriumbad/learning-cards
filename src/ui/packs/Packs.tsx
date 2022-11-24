@@ -19,6 +19,7 @@ const Packs = () => {
     const packs = useAppSelector(state => state.packs.cardPacks);
     const packPage = useAppSelector(state => state.packs.packParams.page);
     const sortPacks = useAppSelector(state => state.packs.packParams.sortPacks);
+    const isAuth = useAppSelector(state => state.login.isAuth);
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
@@ -46,16 +47,12 @@ const Packs = () => {
     };
 
     useEffect(() => {
-        dispatch(requestPacks());
-    }, [packPage, dispatch, sortPacks]);
-
-    useEffect(() => {
         const timer = setTimeout(() => dispatch(requestPacks()), 1000);
 
         return () => {
             clearTimeout(timer);
         };
-    }, [value, dispatch]);
+    }, [value, dispatch, packPage, sortPacks, isAuth]);
 
     return (
         <div className={styles.wrapper}>
@@ -92,7 +89,7 @@ const Packs = () => {
 
                     <tbody>
                         {packs.map(pack => (
-                            <tr>
+                            <tr key={pack._id}>
                                 <NavLink to={PATH.cards}>
                                     <td>
                                         <button
@@ -121,7 +118,9 @@ const Packs = () => {
                         ))}
                     </tbody>
                 </table>
-                <Pagination />
+                <div className={styles.pagination}>
+                    <Pagination />
+                </div>
             </div>
         </div>
     );

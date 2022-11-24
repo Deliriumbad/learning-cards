@@ -22,6 +22,7 @@ const Cards = () => {
     const packId = useAppSelector(state => state.cards.cardsParams.cardsPack_id);
     const cards = useAppSelector(state => state.cards.cards);
     const sortCards = useAppSelector(state => state.cards.cardsParams.sortCards);
+    const isAuth = useAppSelector(state => state.login.isAuth);
 
     const [value, setValue] = useState<string>('');
 
@@ -44,7 +45,7 @@ const Cards = () => {
 
     useEffect(() => {
         dispatch(getCardsTC());
-    }, [packId, value, sortCards]);
+    }, [packId, value, sortCards, isAuth]);
 
     return (
         <div className={s.cardsPage}>

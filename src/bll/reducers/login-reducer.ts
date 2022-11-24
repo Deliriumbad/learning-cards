@@ -113,7 +113,6 @@ export const isAuthUserData = (): AppDispatch => {
                 dispatch(setEmailError(error));
             })
             .finally(() => {
-                dispatch(setEmailError(null));
                 dispatch(isFetchingAC(false));
             });
     };

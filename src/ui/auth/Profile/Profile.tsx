@@ -42,7 +42,7 @@ const Profile = () => {
         if (!isAuth) {
             return navigate(PATH.login);
         }
-    }, [isAuth]);
+    }, [isAuth, userEmail, userName]);
 
     return (
         <div className={s.container}>
