@@ -1,8 +1,8 @@
 /* eslint-disable no-unneeded-ternary */
 import { useState } from 'react';
 
-import { ReactComponent as Left } from 'common/icons/left-indicator.svg';
-import { ReactComponent as Right } from 'common/icons/right-indicator.svg';
+import { ReactComponent as Left } from 'ui/assets/icons/left-indicator.svg';
+import { ReactComponent as Right } from 'ui/assets/icons/right-indicator.svg';
 
 import styles from './UsePagination.module.scss';
 

@@ -7,7 +7,7 @@ const instance = axios.create({
 
 const registerApi = {
     register: (data: RegisterRequest) => {
-        return instance.post<RegisterResponse>('/auth/register', data);
+        return instance.post<RegisterResponse>('auth/register', data);
     },
 };
 

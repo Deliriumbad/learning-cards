@@ -9,6 +9,7 @@ import Login from '../../auth/Login/Login';
 import NewPassword from '../../auth/NewPassword/NewPassword';
 import Profile from '../../auth/Profile/Profile';
 import Registration from '../../auth/Registration/Registration';
+import Cards from '../../cards/Cards';
 
 export const PATH = {
     error404: '/error-404',
@@ -18,6 +19,7 @@ export const PATH = {
     profile: '/profile',
     registration: '/registration',
     packs: '/packs',
+    cards: '/cards',
 };
 
 export const dataPATH = [
@@ -48,6 +50,10 @@ export const dataPATH = [
     {
         path: PATH.packs,
         element: <Packs />,
+    },
+    {
+        path: PATH.cards,
+        element: <Cards />,
     },
 ];
 

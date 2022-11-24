@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-    baseURL: 'https://neko-back.herokuapp.com/2.0',
+    baseURL: 'https://neko-back.herokuapp.com/2.0/',
     withCredentials: true,
 });
 
@@ -13,7 +13,7 @@ link</a>
 
 const forgotPasswordApi = {
     newPassword: (email: string) => {
-        return instance.post<NewPasswordResponse>('/auth/forgot', { email, message });
+        return instance.post<NewPasswordResponse>('auth/forgot', { email, message });
     },
 };
 
