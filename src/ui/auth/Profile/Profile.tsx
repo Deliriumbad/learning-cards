@@ -2,7 +2,7 @@ import React, { ChangeEvent, useEffect, useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import { isAuthUserData, logoutTC } from '../../../bll/reducers/login-reducer';
+import { logoutTC } from '../../../bll/reducers/login-reducer';
 import { updateUserProfileTC } from '../../../bll/reducers/profile-reducer';
 import { useAppDispatch, useAppSelector } from '../../../bll/store/hooks';
 import dog from '../../assets/images/dog.png';
@@ -40,7 +40,6 @@ const Profile = () => {
 
     useEffect(() => {
         if (!isAuth) {
-            dispatch(isAuthUserData());
             return navigate(PATH.login);
         }
     }, [isAuth]);
