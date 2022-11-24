@@ -6,7 +6,7 @@ type CardListPropsType = {
     card: CardType;
 };
 
-const CardList: FC<CardListPropsType> = ({ card }) => {
+const Card: FC<CardListPropsType> = ({ card }) => {
     return (
         <tr>
             <td>{card.question}</td>
@@ -17,4 +17,4 @@ const CardList: FC<CardListPropsType> = ({ card }) => {
     );
 };
 
-export default CardList;
+export default Card;

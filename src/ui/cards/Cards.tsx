@@ -8,8 +8,8 @@ import Button from '../components/Button/Button';
 import InputText from '../components/InputText/InputText';
 import { PATH } from '../Main/Routes/RoutesPath';
 
+import Card from './Card/Card';
 import s from './Cards.module.scss';
-import CardList from './CardsList/CardList';
 
 const Cards = () => {
     const dispatch = useAppDispatch();
@@ -56,7 +56,7 @@ const Cards = () => {
                     </thead>
                     <tbody className={s.tbody}>
                         {cards.map(c => {
-                            return <CardList card={c} />;
+                            return <Card card={c} />;
                         })}
                     </tbody>
                 </table>
