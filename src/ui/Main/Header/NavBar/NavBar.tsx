@@ -2,7 +2,7 @@ import React from 'react';
 
 import { NavLink } from 'react-router-dom';
 
-import { PATH } from '../../../utils/Routes/RoutesPath';
+import { PATH } from '../../Routes/RoutesPath';
 
 import style from './NavBar.module.scss';
 
@@ -34,11 +34,6 @@ const NavBar = () => {
                 <li className={style.listItem}>
                     <NavLink to={PATH.registration} className={style.link}>
                         Registration
-                    </NavLink>
-                </li>
-                <li className={style.listItem}>
-                    <NavLink to={PATH.test} className={style.link}>
-                        Test
                     </NavLink>
                 </li>
                 <li className={style.listItem}>

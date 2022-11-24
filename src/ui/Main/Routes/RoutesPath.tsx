@@ -1,15 +1,15 @@
 import React from 'react';
 
 import { Navigate, Route, Routes } from 'react-router-dom';
-import ForgotPassword from 'ui/auth/forgot-password/ForgotPassword';
+import ForgotPassword from 'ui/auth/ForgotPassword/ForgotPassword';
 import Packs from 'ui/packs/Packs';
 
-import Error404 from '../../ui/auth/Error404/Error404';
-import Login from '../../ui/auth/Login/Login';
-import NewPassword from '../../ui/auth/NewPassword/NewPassword';
-import Profile from '../../ui/auth/Profile/Profile';
-import Registration from '../../ui/auth/Registration/Registration';
-import Test from '../../ui/auth/Test/Test';
+import Error404 from '../../auth/Error404/Error404';
+import Login from '../../auth/Login/Login';
+import NewPassword from '../../auth/NewPassword/NewPassword';
+import Profile from '../../auth/Profile/Profile';
+import Registration from '../../auth/Registration/Registration';
+import Cards from '../../cards/Cards';
 
 export const PATH = {
     error404: '/error-404',
@@ -18,8 +18,8 @@ export const PATH = {
     forgotPassword: '/forgot-password',
     profile: '/profile',
     registration: '/registration',
-    test: '/test',
     packs: '/packs',
+    cards: '/cards',
 };
 
 export const dataPATH = [
@@ -48,12 +48,12 @@ export const dataPATH = [
         element: <Registration />,
     },
     {
-        path: PATH.test,
-        element: <Test />,
-    },
-    {
         path: PATH.packs,
         element: <Packs />,
+    },
+    {
+        path: PATH.cards,
+        element: <Cards />,
     },
 ];
 

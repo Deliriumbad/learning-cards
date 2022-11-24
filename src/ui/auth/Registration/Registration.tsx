@@ -1,13 +1,13 @@
 import React from 'react';
 
 import { requestRegistration } from 'bll/reducers/register-reducer';
-import { useAppDispatch } from 'bll/store/hooks';
+import { useAppSelector, useAppDispatch } from 'bll/store/hooks';
 import { FormikValues, useFormik } from 'formik';
 import { useNavigate, NavLink } from 'react-router-dom';
 import Button from 'ui/components/Button/Button';
 import InputText from 'ui/components/InputText/InputText';
 
-import { PATH } from '../../../utils/Routes/RoutesPath';
+import { PATH } from '../../Main/Routes/RoutesPath';
 
 import s from './Registration.module.scss';
 
@@ -43,6 +43,7 @@ const validate = (values: FormikValues) => {
 };
 
 const Registration = () => {
+    const error = useAppSelector(state => state.register.emailError);
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
@@ -98,6 +99,7 @@ const Registration = () => {
                     {formik.touched.confirmPassword && formik.errors.confirmPassword && (
                         <div className={s.error}>{formik.errors.confirmPassword}</div>
                     )}
+                    {error && <div className={s.errorResponse}>{error}</div>}
                 </div>
                 <Button type="submit" className={s.button}>
                     Sign Up

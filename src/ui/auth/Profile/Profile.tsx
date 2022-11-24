@@ -5,10 +5,10 @@ import { useNavigate } from 'react-router-dom';
 import { isAuthUserData, logoutTC } from '../../../bll/reducers/login-reducer';
 import { updateUserProfileTC } from '../../../bll/reducers/profile-reducer';
 import { useAppDispatch, useAppSelector } from '../../../bll/store/hooks';
-import dog from '../../../common/img/dog.png';
-import logout from '../../../common/img/logout.png';
-import { PATH } from '../../../utils/Routes/RoutesPath';
+import dog from '../../assets/images/dog.png';
+import logout from '../../assets/images/logout.png';
 import EditableSpan from '../../components/EditableSpan/EditableSpan';
+import { PATH } from '../../Main/Routes/RoutesPath';
 
 import s from './Profile.module.scss';
 
@@ -16,7 +16,6 @@ const Profile = () => {
     const isAuth = useAppSelector(state => state.login.isAuth);
     const userEmail = useAppSelector(state => state.login.user.email);
     const userName = useAppSelector(state => state.login.user.name);
-
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
@@ -31,7 +30,12 @@ const Profile = () => {
     };
 
     const onSpanHandler = () => {
-        dispatch(updateUserProfileTC({ name, avatar: '' }));
+        if (name.trim() === '') {
+            setStateName(userEmail);
+            dispatch(updateUserProfileTC({ name: userEmail, avatar: '' }));
+        } else {
+            dispatch(updateUserProfileTC({ name, avatar: '' }));
+        }
     };
 
     useEffect(() => {

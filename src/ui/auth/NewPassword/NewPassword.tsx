@@ -1,12 +1,14 @@
 import React from 'react';
 
 import { requestNewPassword } from 'bll/reducers/new-password-reducer';
-import { useAppDispatch } from 'bll/store/hooks';
+import { useAppDispatch, useAppSelector } from 'bll/store/hooks';
 import { FormikValues, useFormik } from 'formik';
 import { useNavigate, useParams } from 'react-router-dom';
 import Button from 'ui/components/Button/Button';
 import InputText from 'ui/components/InputText/InputText';
-import { PATH } from 'utils/Routes/RoutesPath';
+import { PATH } from 'ui/Main/Routes/RoutesPath';
+
+import Preloader from '../../components/Preloader/Preloader';
 
 import s from './NewPassword.module.scss';
 
@@ -34,11 +36,11 @@ const validate = (values: FormikValues) => {
 };
 
 const NewPassword = () => {
+    const error = useAppSelector(state => state.newPassword.error);
+    const isFetching = useAppSelector(state => state.login.isFetching);
     const navigate = useNavigate();
-
-    const { token } = useParams<{ token: string | undefined }>();
-
     const dispatch = useAppDispatch();
+    const { token } = useParams<{ token: string | undefined }>();
 
     const formik = useFormik({
         initialValues: {
@@ -51,6 +53,11 @@ const NewPassword = () => {
             navigate(PATH.login);
         },
     });
+
+    if (isFetching) {
+        return <Preloader />;
+    }
+
     return (
         <div className={s.container}>
             <form onSubmit={formik.handleSubmit} className={s.form}>
@@ -78,6 +85,7 @@ const NewPassword = () => {
                     {formik.touched.confirmPassword && formik.errors.confirmPassword && (
                         <div className={s.error}>{formik.errors.confirmPassword}</div>
                     )}
+                    {error && <div className={s.errorResponse}>{error}</div>}
                 </div>
                 <div className={s.message}>
                     Create new password and we will send you further instructions to email

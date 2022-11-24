@@ -33,11 +33,9 @@ export const packsInitState = {
 
 export type PacksStateType = typeof packsInitState;
 
-type Actions = PacksActions;
-
 export const packsReducer = (
     state: PacksStateType = packsInitState,
-    action: Actions,
+    action: PacksActions,
 ): PacksStateType => {
     switch (action.type) {
         case 'GET-PACKS':
@@ -66,7 +64,7 @@ export const requestPacks = (): AppThunk => {
     };
 };
 
-type PacksActions = ReturnType<typeof setPacks> | ReturnType<typeof updatePacksParams>;
+export type PacksActions = ReturnType<typeof setPacks> | ReturnType<typeof updatePacksParams>;
 
 export type UpdateParamsT = {
     packName?: string;

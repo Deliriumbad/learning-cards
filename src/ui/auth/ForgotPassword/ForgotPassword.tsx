@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 
 import { requestForgotPassword } from 'bll/reducers/forgot-password-reducer';
-import { useAppDispatch } from 'bll/store/hooks';
+import { useAppDispatch, useAppSelector } from 'bll/store/hooks';
 import { FormikValues, useFormik } from 'formik';
 import { NavLink } from 'react-router-dom';
 import Button from 'ui/components/Button/Button';
 import InputText from 'ui/components/InputText/InputText';
 
-import { PATH } from '../../../utils/Routes/RoutesPath';
+import Preloader from '../../components/Preloader/Preloader';
+import { PATH } from '../../Main/Routes/RoutesPath';
 
 import CheckEmail from './CheckEmail';
 import s from './ForgotPassword.module.scss';
@@ -29,8 +30,9 @@ const validate = (values: FormikValues) => {
 };
 
 const ForgotPassword = () => {
+    const error = useAppSelector(state => state.forgotPassword.error);
+    const isFetching = useAppSelector(state => state.forgotPassword.isFetching);
     const [successfulSend, setSuccessfulSend] = useState<boolean>(false);
-
     const dispatch = useAppDispatch();
 
     const formik = useFormik({
@@ -43,6 +45,10 @@ const ForgotPassword = () => {
             setSuccessfulSend(true);
         },
     });
+
+    if (isFetching) {
+        return <Preloader />;
+    }
 
     return (
         <div className={s.container}>
@@ -62,6 +68,7 @@ const ForgotPassword = () => {
                         {formik.errors.email && formik.touched.email && (
                             <div className={s.error}>{formik.errors.email}</div>
                         )}
+                        {error && <div className={s.errorResponse}>{error}</div>}
                     </div>
                     <div className={s.fist_message}>
                         Enter your email address and we will send you further instructions

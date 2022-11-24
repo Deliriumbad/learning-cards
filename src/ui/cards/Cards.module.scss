@@ -1,0 +1,53 @@
+.cardsPage {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 25px 50px;
+  background: #fff;
+  border-radius: 8px;
+  border: black 1px solid;
+
+  .button {
+    width: 250px;
+    height: 35px;
+  }
+
+  .input {
+    width: 250px;
+    height: 35px;
+  }
+
+  .tableBlock {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    word-wrap: break-word;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 16px;
+    padding: 5px;
+
+    .table {
+      border-collapse: separate;
+      width: 100%;
+
+      .thead {
+        cursor: pointer;
+
+        .tr {
+          border-radius: 10px;
+
+          th {
+            text-align: center;
+          }
+        }
+      }
+    }
+
+    .tbody {
+      max-width: 190px;
+    }
+  }
+}
+
+

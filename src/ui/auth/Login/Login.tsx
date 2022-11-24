@@ -5,10 +5,11 @@ import { NavLink, useNavigate } from 'react-router-dom';
 
 import { loginTC } from '../../../bll/reducers/login-reducer';
 import { useAppDispatch, useAppSelector } from '../../../bll/store/hooks';
-import { PATH } from '../../../utils/Routes/RoutesPath';
 import Button from '../../components/Button/Button';
 import Checkbox from '../../components/CheckBox/Checkbox';
 import InputText from '../../components/InputText/InputText';
+import Preloader from '../../components/Preloader/Preloader';
+import { PATH } from '../../Main/Routes/RoutesPath';
 
 import s from './Login.module.scss';
 
@@ -19,10 +20,11 @@ type FormikErrorType = {
 };
 
 const Login = () => {
-    const dispatch = useAppDispatch();
+    const isFetching = useAppSelector(state => state.login.isFetching);
     const isAuth = useAppSelector(state => state.login.isAuth);
     const error = useAppSelector(state => state.login.emailError);
     const navigate = useNavigate();
+    const dispatch = useAppDispatch();
 
     const formik = useFormik({
         initialValues: {
@@ -57,6 +59,10 @@ const Login = () => {
         }
     }, [isAuth]);
 
+    if (isFetching) {
+        return <Preloader />;
+    }
+
     return (
         <div className={s.container}>
             <form onSubmit={formik.handleSubmit} className={s.form}>
@@ -84,6 +90,7 @@ const Login = () => {
                     {formik.errors.password && formik.touched.password && (
                         <div className={s.error}>{formik.errors.password}</div>
                     )}
+                    {error && <div className={s.errorResponse}>{error}</div>}
                 </div>
                 <label className={s.checkbox}>
                     <Checkbox
@@ -103,7 +110,6 @@ const Login = () => {
                     Sign Up
                 </NavLink>
             </form>
-            {error && <div className={s.errorResponse}>{error}</div>}
         </div>
     );
 };

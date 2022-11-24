@@ -1,10 +1,14 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 
+import { updateParamsCards } from 'bll/reducers/cards-reducer';
 import { requestPacks, updatePacksParams } from 'bll/reducers/packs-reducer';
 import { useAppDispatch, useAppSelector } from 'bll/store/hooks';
-import { ReactComponent as Delete } from 'common/icons/delete.svg';
-import { ReactComponent as Edit } from 'common/icons/edit.svg';
+import { NavLink } from 'react-router-dom';
+import { ReactComponent as Delete } from 'ui/assets/icons/delete.svg';
+import { ReactComponent as Edit } from 'ui/assets/icons/edit.svg';
 import InputText from 'ui/components/InputText/InputText';
+
+import { PATH } from '../Main/Routes/RoutesPath';
 
 import styles from './Packs.module.scss';
 import Pagination from './pagination/Pagination';
@@ -16,9 +20,13 @@ const Packs = () => {
 
     const [value, setValue] = useState<string>('');
 
-    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const onChangePackNameHandler = (event: ChangeEvent<HTMLInputElement>) => {
         setValue(event.target.value);
         dispatch(updatePacksParams({ packName: event.target.value }));
+    };
+
+    const onChangePackIdHandler = (packId: string) => {
+        dispatch(updateParamsCards({ cardsPack_id: packId }));
     };
 
     useEffect(() => {
@@ -35,7 +43,7 @@ const Packs = () => {
 
     return (
         <>
-            <InputText value={value} onChange={handleChange} />
+            <InputText value={value} onChange={onChangePackNameHandler} />
             <div className={styles.container}>
                 <table>
                     <thead>
@@ -51,7 +59,18 @@ const Packs = () => {
                     <tbody>
                         {packs.map(pack => (
                             <tr>
-                                <td>{pack.name}</td>
+                                <NavLink to={PATH.cards}>
+                                    <td>
+                                        <button
+                                            onClick={() => {
+                                                onChangePackIdHandler(pack._id);
+                                            }}
+                                            type="button"
+                                        >
+                                            {pack.name}
+                                        </button>
+                                    </td>
+                                </NavLink>
                                 <td>{pack.cardsCount}</td>
                                 <td>{pack.updated}</td>
                                 <td>{pack.user_name}</td>
