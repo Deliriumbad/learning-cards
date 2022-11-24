@@ -8,7 +8,7 @@ export const packsInitState = {
             user_id: '',
             user_name: '',
             name: '',
-            cardsCount: 0,
+            cardsCount: 20,
             created: '',
             updated: '',
         },
@@ -18,7 +18,7 @@ export const packsInitState = {
     maxCardsCount: 0,
     minCardsCount: 0,
     page: 1,
-    pageCount: 0,
+    pageCount: 5,
 
     packParams: {
         packName: '',
