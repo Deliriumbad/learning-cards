@@ -38,22 +38,26 @@ export const packsReducer = (
     action: PacksActions,
 ): PacksStateType => {
     switch (action.type) {
-        case 'GET-PACKS':
+        case 'PACKS/GET_PACKS':
             return { ...state, ...action.data };
-        case 'UPDATE-PACKS-PARAMS':
+        case 'PACKS/UPDATE_PACKS_PARAMS':
             return { ...state, packParams: { ...state.packParams, ...action.params } };
+        case 'PACKS/SET_SORT_PACKS':
+            return { ...state, packParams: { ...state.packParams, sortPacks: action.params } };
         default:
             return state;
     }
 };
 
 export const setPacks = (data: ResponsePacksType) => {
-    return { type: 'GET-PACKS', data } as const;
+    return { type: 'PACKS/GET_PACKS', data } as const;
 };
 
 export const updatePacksParams = (params: UpdateParamsT) => {
-    return { type: 'UPDATE-PACKS-PARAMS', params } as const;
+    return { type: 'PACKS/UPDATE_PACKS_PARAMS', params } as const;
 };
+
+export const setSortPacks = (params: string) => ({ type: 'PACKS/SET_SORT_PACKS', params } as const);
 
 export const requestPacks = (): AppThunk => {
     return (dispatch, getState) => {
@@ -64,7 +68,10 @@ export const requestPacks = (): AppThunk => {
     };
 };
 
-export type PacksActions = ReturnType<typeof setPacks> | ReturnType<typeof updatePacksParams>;
+export type PacksActions =
+    | ReturnType<typeof setPacks>
+    | ReturnType<typeof updatePacksParams>
+    | ReturnType<typeof setSortPacks>;
 
 export type UpdateParamsT = {
     packName?: string;
