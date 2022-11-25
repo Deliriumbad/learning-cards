@@ -10,8 +10,6 @@ export const registerInitState = {
 
 export type RegisterStateType = typeof registerInitState;
 
-export type RegisterActionsType = ReturnType<typeof setRegistration> | ReturnType<typeof setError>;
-
 export const registerReducer = (
     state: RegisterStateType = registerInitState,
     action: RegisterActionsType,
@@ -45,3 +43,5 @@ export const requestRegistration = (data: { email: string; password: string }): 
         }
     };
 };
+
+export type RegisterActionsType = ReturnType<typeof setRegistration> | ReturnType<typeof setError>;
