@@ -92,8 +92,8 @@ const Packs = () => {
                         <tbody>
                             {packs.map(pack => (
                                 <tr key={pack._id}>
-                                    <NavLink to={PATH.cards}>
-                                        <td>
+                                    <td>
+                                        <NavLink to={PATH.cards}>
                                             <button
                                                 className={styles.button}
                                                 onClick={() => {
@@ -103,8 +103,8 @@ const Packs = () => {
                                             >
                                                 {pack.name}
                                             </button>
-                                        </td>
-                                    </NavLink>
+                                        </NavLink>
+                                    </td>
                                     <td>{pack.cardsCount}</td>
                                     <td>{formatDate(pack.updated)}</td>
                                     <td>{pack.user_name}</td>
