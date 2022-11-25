@@ -100,7 +100,14 @@ const usePagination = ({
     let pageIncrementBtn: null | JSX.Element = null;
     if (arrayFromPage.length > maxPageNumberLimit) {
         pageIncrementBtn = (
-            <button className={styles.btn} type="button" onClick={nextPage}>
+            <button
+                className={styles.btn}
+                type="button"
+                onClick={() => {
+                    setMaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit);
+                    setMinPageNumberLimit(minPageNumberLimit + pageNumberLimit);
+                }}
+            >
                 &hellip;
             </button>
         );
@@ -109,7 +116,14 @@ const usePagination = ({
     let pageDecrementBtn: null | JSX.Element = null;
     if (minPageNumberLimit > 1) {
         pageDecrementBtn = (
-            <button className={styles.btn} type="button" onClick={prevPage}>
+            <button
+                className={styles.btn}
+                type="button"
+                onClick={() => {
+                    setMaxPageNumberLimit(maxPageNumberLimit - pageNumberLimit);
+                    setMinPageNumberLimit(minPageNumberLimit - pageNumberLimit);
+                }}
+            >
                 &hellip;
             </button>
         );
