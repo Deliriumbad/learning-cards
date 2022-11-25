@@ -9,6 +9,7 @@ import { ReactComponent as Edit } from 'ui/assets/icons/edit.svg';
 import InputText from 'ui/components/InputText/InputText';
 
 import Button from '../components/Button/Button';
+import MiniSpinner from '../components/MiniSpinner/MiniSpinner';
 import { PATH } from '../Main/Routes/RoutesPath';
 import { formatDate } from '../utils/formatDate';
 
@@ -20,6 +21,7 @@ const Packs = () => {
     const packPage = useAppSelector(state => state.packs.packParams.page);
     const sortPacks = useAppSelector(state => state.packs.packParams.sortPacks);
     const isAuth = useAppSelector(state => state.login.isAuth);
+    const isLoading = useAppSelector(state => state.packs.packParams.isLoading);
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
@@ -47,27 +49,25 @@ const Packs = () => {
     };
 
     useEffect(() => {
-        const timer = setTimeout(() => dispatch(requestPacks()), 1000);
-
-        return () => {
-            clearTimeout(timer);
-        };
+        dispatch(requestPacks());
     }, [value, dispatch, packPage, sortPacks, isAuth]);
 
     return (
         <div className={styles.wrapper}>
-            <div>
-                <Button onClick={onButtonHandler} className={styles.button}>
-                    &#10094; Back to Profile
-                </Button>
-            </div>
-            <div>
-                <InputText
-                    value={value}
-                    onChange={onChangePackNameHandler}
-                    className={styles.input}
-                    placeholder="Search by name..."
-                />
+            <div className={styles.nav}>
+                <div>
+                    <Button onClick={onButtonHandler} className={styles.button}>
+                        &#10094; Back to Profile
+                    </Button>
+                </div>
+                <div>
+                    <InputText
+                        value={value}
+                        onChange={onChangePackNameHandler}
+                        className={styles.input}
+                        placeholder="Search by name..."
+                    />
+                </div>
             </div>
             <div className={styles.container}>
                 <table>
@@ -86,37 +86,40 @@ const Packs = () => {
                             <th>Actions</th>
                         </tr>
                     </thead>
-
-                    <tbody>
-                        {packs.map(pack => (
-                            <tr key={pack._id}>
-                                <NavLink to={PATH.cards}>
+                    {isLoading ? (
+                        <MiniSpinner />
+                    ) : (
+                        <tbody>
+                            {packs.map(pack => (
+                                <tr key={pack._id}>
+                                    <NavLink to={PATH.cards}>
+                                        <td>
+                                            <button
+                                                className={styles.button}
+                                                onClick={() => {
+                                                    onChangePackIdHandler(pack._id);
+                                                }}
+                                                type="button"
+                                            >
+                                                {pack.name}
+                                            </button>
+                                        </td>
+                                    </NavLink>
+                                    <td>{pack.cardsCount}</td>
+                                    <td>{formatDate(pack.updated)}</td>
+                                    <td>{pack.user_name}</td>
                                     <td>
-                                        <button
-                                            className={styles.button}
-                                            onClick={() => {
-                                                onChangePackIdHandler(pack._id);
-                                            }}
-                                            type="button"
-                                        >
-                                            {pack.name}
+                                        <button type="button">
+                                            <Delete className={styles.icon} />
+                                        </button>
+                                        <button type="button">
+                                            <Edit className={styles.icon} />
                                         </button>
                                     </td>
-                                </NavLink>
-                                <td>{pack.cardsCount}</td>
-                                <td>{formatDate(pack.updated)}</td>
-                                <td>{pack.user_name}</td>
-                                <td>
-                                    <button type="button">
-                                        <Delete className={styles.icon} />
-                                    </button>
-                                    <button type="button">
-                                        <Edit className={styles.icon} />
-                                    </button>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
+                                </tr>
+                            ))}
+                        </tbody>
+                    )}
                 </table>
                 <div className={styles.pagination}>
                     <Pagination />

@@ -20,6 +20,7 @@ export const cardsInitState = {
         sortCards: '0grade',
         page: 1,
         pageCount: 8,
+        isLoading: false,
     },
 };
 
@@ -39,6 +40,8 @@ export const cardsReducer = (
             return { ...state, cardsParams: { ...state.cardsParams, cardQuestion: action.value } };
         case 'CARDS/SET_SORT_CARDS':
             return { ...state, cardsParams: { ...state.cardsParams, sortCards: action.value } };
+        case 'CARDS/IS_LOADING':
+            return { ...state, cardsParams: { ...state.cardsParams, isLoading: action.isLoading } };
         default:
             return state;
     }
@@ -53,6 +56,9 @@ export const updateParamsCards = (params: UpdateParamsType) =>
 export const setSearchCardsByQuestion = (value: string) =>
     ({ type: 'CARDS/SET_SEARCH_BY_QUESTION', value } as const);
 
+export const loadingCards = (isLoading: boolean) =>
+    ({ type: 'CARDS/IS_LOADING', isLoading } as const);
+
 export const setSortCards = (value: string) => ({ type: 'CARDS/SET_SORT_CARDS', value } as const);
 
 export const setError = (error: string | null) => ({ type: 'CARDS/SET_ERROR', error } as const);
@@ -60,6 +66,7 @@ export const setError = (error: string | null) => ({ type: 'CARDS/SET_ERROR', er
 export const getCardsTC = (): AppThunk => {
     return (dispatch, getState) => {
         const { cardsParams } = getState().cards;
+        dispatch(loadingCards(true));
         cardsAPI
             .getCards(cardsParams)
             .then(res => {
@@ -70,6 +77,9 @@ export const getCardsTC = (): AppThunk => {
                     ? e.response.data.error
                     : `${e.message}, more details in the console`;
                 dispatch(setError(error));
+            })
+            .finally(() => {
+                dispatch(loadingCards(false));
             });
     };
 };
@@ -81,4 +91,5 @@ export type CardsActionsType =
     | ReturnType<typeof updateParamsCards>
     | ReturnType<typeof setError>
     | ReturnType<typeof setSearchCardsByQuestion>
-    | ReturnType<typeof setSortCards>;
+    | ReturnType<typeof setSortCards>
+    | ReturnType<typeof loadingCards>;

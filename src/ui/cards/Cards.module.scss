@@ -1,19 +1,26 @@
 .cardsPage {
   max-width: 1300px;
-  margin: 0 auto;
+  margin: 35px auto;
   padding: 25px 50px;
-  background: #fff;
   border-radius: 8px;
-  border: black 1px solid;
+  border: solid #c6c6c6 1px;
+  box-shadow: 3px 3px 7px 0px rgba(0, 0, 0, 0.25);
+  background-color: gainsboro;
 
-  .button {
-    width: 250px;
-    height: 35px;
-  }
+  .nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 
-  .input {
-    width: 250px;
-    height: 35px;
+    .button {
+      width: 250px;
+      height: 35px;
+    }
+
+    .input {
+      width: 250px;
+      height: 35px;
+    }
   }
 
   .tableBlock {
@@ -36,7 +43,7 @@
 
         .tr {
           border-radius: 10px;
-        
+
 
           .sortCell {
             text-align: center;
@@ -48,6 +55,7 @@
 
     .tbody {
       max-width: 190px;
+      overflow: hidden;
     }
   }
 }

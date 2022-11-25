@@ -10,6 +10,7 @@ import {
 import { useAppDispatch, useAppSelector } from '../../bll/store/hooks';
 import Button from '../components/Button/Button';
 import InputText from '../components/InputText/InputText';
+import MiniSpinner from '../components/MiniSpinner/MiniSpinner';
 import { PATH } from '../Main/Routes/RoutesPath';
 
 import Card from './Card/Card';
@@ -23,6 +24,7 @@ const Cards = () => {
     const cards = useAppSelector(state => state.cards.cards);
     const sortCards = useAppSelector(state => state.cards.cardsParams.sortCards);
     const isAuth = useAppSelector(state => state.login.isAuth);
+    const isLoading = useAppSelector(state => state.cards.cardsParams.isLoading);
 
     const [value, setValue] = useState<string>('');
 
@@ -49,18 +51,20 @@ const Cards = () => {
 
     return (
         <div className={s.cardsPage}>
-            <div>
-                <Button onClick={onButtonHandler} className={s.button}>
-                    &#10094; Back to Packs List
-                </Button>
-            </div>
-            <div>
-                <InputText
-                    placeholder="Search by question..."
-                    className={s.input}
-                    onChange={onChangeSearchCardsHandler}
-                    value={value}
-                />
+            <div className={s.nav}>
+                <div>
+                    <Button onClick={onButtonHandler} className={s.button}>
+                        &#10094; Back to Packs List
+                    </Button>
+                </div>
+                <div>
+                    <InputText
+                        placeholder="Search by question..."
+                        className={s.input}
+                        onChange={onChangeSearchCardsHandler}
+                        value={value}
+                    />
+                </div>
             </div>
             <div className={s.tableBlock}>
                 <table className={s.table}>
@@ -92,11 +96,15 @@ const Cards = () => {
                             </th>
                         </tr>
                     </thead>
-                    <tbody className={s.tbody}>
-                        {cards.map(c => {
-                            return <Card card={c} key={c._id} />;
-                        })}
-                    </tbody>
+                    {isLoading ? (
+                        <MiniSpinner />
+                    ) : (
+                        <tbody className={s.tbody}>
+                            {cards.map(c => {
+                                return <Card card={c} key={c._id} />;
+                            })}
+                        </tbody>
+                    )}
                 </table>
             </div>
         </div>

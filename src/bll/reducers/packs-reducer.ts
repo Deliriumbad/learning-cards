@@ -19,6 +19,7 @@ export const packsInitState = {
     minCardsCount: 0,
     page: 1,
     pageCount: 5,
+    error: null as null | string,
 
     packParams: {
         packName: '',
@@ -28,6 +29,7 @@ export const packsInitState = {
         page: 1,
         pageCount: 8,
         user_id: '',
+        isLoading: false,
     },
 };
 
@@ -44,6 +46,8 @@ export const packsReducer = (
             return { ...state, packParams: { ...state.packParams, ...action.params } };
         case 'PACKS/SET_SORT_PACKS':
             return { ...state, packParams: { ...state.packParams, sortPacks: action.params } };
+        case 'PACKS/IS_LOADING':
+            return { ...state, packParams: { ...state.packParams, isLoading: action.isLoading } };
         default:
             return state;
     }
@@ -59,19 +63,38 @@ export const updatePacksParams = (params: UpdateParamsT) => {
 
 export const setSortPacks = (params: string) => ({ type: 'PACKS/SET_SORT_PACKS', params } as const);
 
+export const setError = (error: string | null) => ({ type: 'CARDS/SET_ERROR', error } as const);
+
+export const loadingCardsPack = (isLoading: boolean) =>
+    ({ type: 'PACKS/IS_LOADING', isLoading } as const);
+
 export const requestPacks = (): AppThunk => {
     return (dispatch, getState) => {
         const { packParams } = getState().packs;
-        packApi.packs(packParams).then(response => {
-            dispatch(setPacks(response.data));
-        });
+        dispatch(loadingCardsPack(true));
+        packApi
+            .packs(packParams)
+            .then(response => {
+                dispatch(setPacks(response.data));
+            })
+            .catch(e => {
+                const error = e.response
+                    ? e.response.data.error
+                    : `${e.message}, more details in the console`;
+                dispatch(setError(error));
+            })
+            .finally(() => {
+                dispatch(loadingCardsPack(false));
+            });
     };
 };
 
 export type PacksActions =
     | ReturnType<typeof setPacks>
     | ReturnType<typeof updatePacksParams>
-    | ReturnType<typeof setSortPacks>;
+    | ReturnType<typeof setSortPacks>
+    | ReturnType<typeof loadingCardsPack>
+    | ReturnType<typeof setError>;
 
 export type UpdateParamsT = {
     packName?: string;
