@@ -3,13 +3,13 @@ import React, { useEffect } from 'react';
 import { useFormik } from 'formik';
 import { NavLink, useNavigate } from 'react-router-dom';
 
-import { loginTC } from '../../../bll/reducers/login-reducer';
-import { useAppDispatch, useAppSelector } from '../../../bll/store/hooks';
-import Button from '../../components/Button/Button';
-import Checkbox from '../../components/CheckBox/Checkbox';
-import InputText from '../../components/InputText/InputText';
-import Preloader from '../../components/Preloader/Preloader';
-import { PATH } from '../../Main/Routes/RoutesPath';
+import { loginTC } from '../../../../../bll/reducers/login-reducer';
+import { useAppDispatch, useAppSelector } from '../../../../../bll/store/hooks';
+import { PATH } from '../../../../../routes/RoutesPath';
+import Button from '../../../../common/Button/Button';
+import Checkbox from '../../../../common/CheckBox/Checkbox';
+import InputText from '../../../../common/InputText/InputText';
+import Preloader from '../../../../common/Preloader/Preloader';
 
 import s from './Login.module.scss';
 

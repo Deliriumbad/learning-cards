@@ -4,7 +4,7 @@ import { updatePacksParams } from 'bll/reducers/packs-reducer';
 import { useAppDispatch, useAppSelector } from 'bll/store/hooks';
 
 import styles from './Pagination.module.scss';
-import usePagination from './usePagination';
+import usePagination from './UsePagination/UsePagination';
 
 const Pagination = () => {
     const pageCount = useAppSelector(state => state.packs.packParams.pageCount);

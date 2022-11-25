@@ -2,13 +2,13 @@ import React, { ChangeEvent, useEffect, useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import { logoutTC } from '../../../bll/reducers/login-reducer';
-import { updateUserProfileTC } from '../../../bll/reducers/profile-reducer';
-import { useAppDispatch, useAppSelector } from '../../../bll/store/hooks';
-import dog from '../../assets/images/dog.png';
-import logout from '../../assets/images/logout.png';
-import EditableSpan from '../../components/EditableSpan/EditableSpan';
-import { PATH } from '../../Main/Routes/RoutesPath';
+import { logoutTC } from '../../../../../bll/reducers/login-reducer';
+import { updateUserProfileTC } from '../../../../../bll/reducers/profile-reducer';
+import { useAppDispatch, useAppSelector } from '../../../../../bll/store/hooks';
+import { PATH } from '../../../../../routes/RoutesPath';
+import dog from '../../../../assets/images/dog.png';
+import logout from '../../../../assets/images/logout.png';
+import EditableSpan from '../../../../common/EditableSpan/EditableSpan';
 
 import s from './Profile.module.scss';
 

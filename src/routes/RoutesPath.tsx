@@ -1,15 +1,15 @@
 import React from 'react';
 
 import { Navigate, Route, Routes } from 'react-router-dom';
-import ForgotPassword from 'ui/auth/ForgotPassword/ForgotPassword';
-import Packs from 'ui/packs/Packs';
+import ForgotPassword from 'ui/components/project/auth/ForgotPassword/ForgotPassword';
+import Packs from 'ui/components/project/packs/Packs';
 
-import Error404 from '../../auth/Error404/Error404';
-import Login from '../../auth/Login/Login';
-import NewPassword from '../../auth/NewPassword/NewPassword';
-import Profile from '../../auth/Profile/Profile';
-import Registration from '../../auth/Registration/Registration';
-import Cards from '../../cards/Cards';
+import Error404 from '../ui/components/project/auth/Error404/Error404';
+import Login from '../ui/components/project/auth/Login/Login';
+import NewPassword from '../ui/components/project/auth/NewPassword/NewPassword';
+import Profile from '../ui/components/project/auth/Profile/Profile';
+import Registration from '../ui/components/project/auth/Registration/Registration';
+import Cards from '../ui/components/project/cards/Cards';
 
 export const PATH = {
     error404: '/error-404',

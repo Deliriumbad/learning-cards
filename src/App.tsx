@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { HashRouter } from 'react-router-dom';
 
 import { store } from './bll/store/store';
-import Main from './ui/Main/Main';
+import Main from './ui/components/project/main/Main';
 
 const App = () => {
     return (

@@ -6,12 +6,12 @@ import {
     getCardsTC,
     setSearchCardsByQuestion,
     setSortCards,
-} from '../../bll/reducers/cards-reducer';
-import { useAppDispatch, useAppSelector } from '../../bll/store/hooks';
-import Button from '../components/Button/Button';
-import InputText from '../components/InputText/InputText';
-import MiniSpinner from '../components/MiniSpinner/MiniSpinner';
-import { PATH } from '../Main/Routes/RoutesPath';
+} from '../../../../bll/reducers/cards-reducer';
+import { useAppDispatch, useAppSelector } from '../../../../bll/store/hooks';
+import { PATH } from '../../../../routes/RoutesPath';
+import Button from '../../../common/Button/Button';
+import InputText from '../../../common/InputText/InputText';
+import MiniSpinner from '../../../common/MiniSpinner/MiniSpinner';
 
 import Card from './Card/Card';
 import s from './Cards.module.scss';

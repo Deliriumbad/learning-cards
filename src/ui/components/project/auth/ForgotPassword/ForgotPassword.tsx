@@ -4,11 +4,11 @@ import { requestForgotPassword } from 'bll/reducers/forgot-password-reducer';
 import { useAppDispatch, useAppSelector } from 'bll/store/hooks';
 import { FormikValues, useFormik } from 'formik';
 import { NavLink } from 'react-router-dom';
-import Button from 'ui/components/Button/Button';
-import InputText from 'ui/components/InputText/InputText';
+import Button from 'ui/common/Button/Button';
+import InputText from 'ui/common/InputText/InputText';
 
-import Preloader from '../../components/Preloader/Preloader';
-import { PATH } from '../../Main/Routes/RoutesPath';
+import { PATH } from '../../../../../routes/RoutesPath';
+import Preloader from '../../../../common/Preloader/Preloader';
 
 import CheckEmail from './CheckEmail';
 import s from './ForgotPassword.module.scss';
