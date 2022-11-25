@@ -57,7 +57,7 @@ export type CardsActionsType =
     | ReturnType<typeof setCardsData>
     | ReturnType<typeof updateParamsCards>;
 
-type UpdateParamsT = {
+export type UpdateParamsT = {
     cardAnswer?: string;
     cardQuestion?: string;
     cardsPack_id: string;

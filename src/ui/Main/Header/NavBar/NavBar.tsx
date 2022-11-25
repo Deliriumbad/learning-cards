@@ -6,7 +6,15 @@ import { PATH } from '../../Routes/RoutesPath';
 
 import style from './NavBar.module.scss';
 
+
 const NavBar = () => {
+
+
+
+
+
+
+
     return (
         <nav className={style.nav}>
             <ul className={style.list}>

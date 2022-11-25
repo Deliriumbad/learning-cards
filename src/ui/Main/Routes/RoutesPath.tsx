@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Navigate, Route, Routes } from 'react-router-dom';
 import ForgotPassword from 'ui/auth/ForgotPassword/ForgotPassword';
-import Packs from 'ui/packs/Packs';
+import {PacksPreLoading} from 'ui/packs/Packs';
 
 import Error404 from '../../auth/Error404/Error404';
 import Login from '../../auth/Login/Login';
@@ -49,7 +49,7 @@ export const dataPATH = [
     },
     {
         path: PATH.packs,
-        element: <Packs />,
+        element: <PacksPreLoading />,
     },
     {
         path: PATH.cards,
