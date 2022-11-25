@@ -16,15 +16,20 @@ import SliderRange from './range-slider/SliderRange';
 
 
 export const PacksPreLoading = () => {
-
+    const dispatch = useAppDispatch();
     const packs = useAppSelector(state => state.packs.cardPacks);
 
-    const [maxNumberCards, setMaxNumberCards] = useState(2)
+    useEffect(() => {
+        dispatch(requestPacks());
+    }, []);
+
+
+    const [maxNumberCards, setMaxNumberCards] = useState(0)
     if (packs && packs.length > 0) {
         let step2 = packs.sort((a: any, b: any) => a.cardsCount > b.cardsCount ? 1 : -1).slice(-1)[0].cardsCount
         setTimeout(() => {
             setMaxNumberCards(step2)
-        }, 2000)
+        }, 100)
     }
 
     return (
@@ -91,7 +96,7 @@ export const Packs2 = ({maxNumberCards}) => {
                     <tbody>
 
                     {cards.map(pack => (
-                        <tr>
+                        <tr key={pack._id}>
                             <NavLink to={PATH.cards}>
                                 <td>
                                     <button
