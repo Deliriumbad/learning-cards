@@ -19,7 +19,7 @@ export const PATH = {
     profile: '/profile',
     registration: '/registration',
     packs: '/packs',
-    cards: '/cards',
+    cards: '/cards/',
 };
 
 export const dataPATH = [

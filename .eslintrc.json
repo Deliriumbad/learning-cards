@@ -23,6 +23,7 @@
     },
     "plugins": ["react", "@typescript-eslint", "prettier"],
     "rules": {
+        "prefer-template": "off",
         "import/prefer-default-export": ["off"],
         "no-underscore-dangle": ["off"],
         "import/no-cycle": ["off"],

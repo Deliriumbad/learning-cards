@@ -10,11 +10,6 @@ export const newPassInitState = {
 
 export type PassRecoveryStateType = typeof newPassInitState;
 
-export type NewPasswordActionsType =
-    | ReturnType<typeof setNewPassword>
-    | ReturnType<typeof setError>
-    | ReturnType<typeof isFetchingAC>;
-
 export const newPasswordReducer = (
     state: PassRecoveryStateType = newPassInitState,
     action: NewPasswordActionsType,
@@ -61,3 +56,8 @@ export const requestNewPassword = (data: {
         }
     };
 };
+
+export type NewPasswordActionsType =
+    | ReturnType<typeof setNewPassword>
+    | ReturnType<typeof setError>
+    | ReturnType<typeof isFetchingAC>;

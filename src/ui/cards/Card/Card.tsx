@@ -1,6 +1,9 @@
 import React, { FC } from 'react';
 
 import { CardType } from '../../../dal/cards-api';
+import { formatDate } from '../../utils/formatDate';
+
+import s from './Card.module.scss';
 
 type CardListPropsType = {
     card: CardType;
@@ -9,10 +12,10 @@ type CardListPropsType = {
 const Card: FC<CardListPropsType> = ({ card }) => {
     return (
         <tr>
-            <td>{card.question}</td>
-            <td>{card.answer}</td>
-            <td>{card.updated}</td>
-            <td>{card.grade}</td>
+            <td className={s.card}>{card.question}</td>
+            <td className={s.card}>{card.answer}</td>
+            <td className={s.card}>{formatDate(card.updated)}</td>
+            <td className={s.card}>{card.grade}</td>
         </tr>
     );
 };

@@ -15,13 +15,6 @@ export const loginInitState = {
 
 export type LoginStateType = typeof loginInitState;
 
-export type LoginActionsType =
-    | ReturnType<typeof setUserId>
-    | ReturnType<typeof setAuthUserData>
-    | ReturnType<typeof setEmailError>
-    | ReturnType<typeof logout>
-    | ReturnType<typeof isFetchingAC>;
-
 export const loginReducer = (
     state: LoginStateType = loginInitState,
     action: LoginActionsType,
@@ -113,8 +106,14 @@ export const isAuthUserData = (): AppDispatch => {
                 dispatch(setEmailError(error));
             })
             .finally(() => {
-                dispatch(setEmailError(null));
                 dispatch(isFetchingAC(false));
             });
     };
 };
+
+export type LoginActionsType =
+    | ReturnType<typeof setUserId>
+    | ReturnType<typeof setAuthUserData>
+    | ReturnType<typeof setEmailError>
+    | ReturnType<typeof logout>
+    | ReturnType<typeof isFetchingAC>;

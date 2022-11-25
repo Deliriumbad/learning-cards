@@ -10,12 +10,6 @@ export const newPassInitState = {
 
 export type NewPassStateType = typeof newPassInitState;
 
-export type PasswordRecoveryActionsType =
-    | ReturnType<typeof redirectToCheckEmail>
-    | ReturnType<typeof setError>
-    | ReturnType<typeof setEmail>
-    | ReturnType<typeof isFetchingAC>;
-
 export const forgotPassReducer = (
     state: NewPassStateType = newPassInitState,
     action: PasswordRecoveryActionsType,
@@ -66,3 +60,9 @@ export const requestForgotPassword = (email: string): AppThunk => {
         }
     };
 };
+
+export type PasswordRecoveryActionsType =
+    | ReturnType<typeof redirectToCheckEmail>
+    | ReturnType<typeof setError>
+    | ReturnType<typeof setEmail>
+    | ReturnType<typeof isFetchingAC>;

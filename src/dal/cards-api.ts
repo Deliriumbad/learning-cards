@@ -14,7 +14,7 @@ export const cardsAPI = {
 export type GetCardsParamsType = {
     cardAnswer?: string;
     cardQuestion?: string;
-    cardsPack_id?: string;
+    cardsPack_id: string;
     min?: number;
     max?: number;
     sortCards?: string;
@@ -46,4 +46,15 @@ export type GetCardsResponseType = {
     page: number;
     pageCount: number;
     packUserId: string;
+};
+
+export type UpdateParamsType = {
+    cardAnswer?: string;
+    cardQuestion?: string;
+    cardsPack_id: string;
+    min?: number;
+    max?: number;
+    sortCards?: string;
+    page?: number;
+    pageCount?: number;
 };
