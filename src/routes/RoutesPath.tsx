@@ -1,15 +1,15 @@
 import React from 'react';
 
 import { Navigate, Route, Routes } from 'react-router-dom';
-import ForgotPassword from 'ui/components/project/auth/ForgotPassword/ForgotPassword';
-import Packs from 'ui/components/project/packs/Packs';
+import ForgotPassword from 'ui/components/auth/ForgotPassword/ForgotPassword';
+import Packs from 'ui/components/Packs/Packs';
 
-import Error404 from '../ui/components/project/auth/Error404/Error404';
-import Login from '../ui/components/project/auth/Login/Login';
-import NewPassword from '../ui/components/project/auth/NewPassword/NewPassword';
-import Profile from '../ui/components/project/auth/Profile/Profile';
-import Registration from '../ui/components/project/auth/Registration/Registration';
-import Cards from '../ui/components/project/cards/Cards';
+import Error404 from '../ui/components/auth/Error404/Error404';
+import Login from '../ui/components/auth/Login/Login';
+import NewPassword from '../ui/components/auth/NewPassword/NewPassword';
+import Profile from '../ui/components/auth/Profile/Profile';
+import Registration from '../ui/components/auth/Registration/Registration';
+import Cards from '../ui/components/Cards/Cards';
 
 export const PATH = {
     error404: '/error-404',
@@ -18,8 +18,8 @@ export const PATH = {
     forgotPassword: '/forgot-password',
     profile: '/profile',
     registration: '/registration',
-    packs: '/packs',
-    cards: '/cards/',
+    packs: '/Packs',
+    cards: '/Cards/',
 };
 
 export const dataPATH = [

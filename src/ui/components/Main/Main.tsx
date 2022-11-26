@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 
-import { initialTC } from '../../../../bll/reducers/app-reducer';
-import { useAppDispatch, useAppSelector } from '../../../../bll/store/hooks';
-import RoutesPath from '../../../../routes/RoutesPath';
-import Preloader from '../../../common/Preloader/Preloader';
+import { initialTC } from '../../../bll/reducers/app-reducer';
+import { useAppDispatch, useAppSelector } from '../../../bll/store/hooks';
+import RoutesPath from '../../../routes/RoutesPath';
+import Preloader from '../../common/Preloader/Preloader';
 
 import Header from './Header/Header';
 

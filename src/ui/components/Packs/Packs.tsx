@@ -8,13 +8,13 @@ import { ReactComponent as Delete } from 'ui/assets/icons/delete.svg';
 import { ReactComponent as Edit } from 'ui/assets/icons/edit.svg';
 import InputText from 'ui/common/InputText/InputText';
 
-import { PATH } from '../../../../routes/RoutesPath';
-import { formatDate } from '../../../../utils/formatDate';
-import Pagination from '../../../../utils/Pagination/Pagination';
-import Button from '../../../common/Button/Button';
-import MiniSpinner from '../../../common/MiniSpinner/MiniSpinner';
+import { PATH } from '../../../routes/RoutesPath';
+import { formatDate } from '../../../utils/formatDate';
+import Button from '../../common/Button/Button';
+import MiniSpinner from '../../common/MiniSpinner/MiniSpinner';
 
 import styles from './Packs.module.scss';
+import Pagination from './Pagination/Pagination';
 
 const Packs = () => {
     const packs = useAppSelector(state => state.packs.cardPacks);

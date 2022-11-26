@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
-import { CardType } from '../../../../../dal/cards-api';
-import { formatDate } from '../../../../../utils/formatDate';
+import { CardType } from '../../../../dal/cards-api';
+import { formatDate } from '../../../../utils/formatDate';
 
 import s from './Card.module.scss';
 

@@ -8,7 +8,7 @@ import { PATH } from 'routes/RoutesPath';
 import Button from 'ui/common/Button/Button';
 import InputText from 'ui/common/InputText/InputText';
 
-import Preloader from '../../../../common/Preloader/Preloader';
+import Preloader from '../../../common/Preloader/Preloader';
 
 import s from './NewPassword.module.scss';
 

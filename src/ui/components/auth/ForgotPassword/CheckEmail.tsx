@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { PATH } from 'routes/RoutesPath';
 import Button from 'ui/common/Button/Button';
 
-import mail from '../../../../assets/images/mail.png';
+import mail from '../../../assets/images/mail.png';
 
 import s from './CheckEmail.module.scss';
 

@@ -7,7 +7,7 @@ import { useNavigate, NavLink } from 'react-router-dom';
 import Button from 'ui/common/Button/Button';
 import InputText from 'ui/common/InputText/InputText';
 
-import { PATH } from '../../../../../routes/RoutesPath';
+import { PATH } from '../../../../routes/RoutesPath';
 
 import s from './Registration.module.scss';
 
