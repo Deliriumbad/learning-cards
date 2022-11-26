@@ -1,7 +1,12 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 
 import { updateParamsCards } from 'bll/reducers/cards-reducer';
-import { requestPacks, setSortPacks, updatePacksParams } from 'bll/reducers/packs-reducer';
+import {
+    deleteRequestPack,
+    getRequestPacks,
+    setSortPacks,
+    updatePacksParams,
+} from 'bll/reducers/packs-reducer';
 import { useAppDispatch, useAppSelector } from 'bll/store/hooks';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { ReactComponent as Delete } from 'ui/assets/icons/delete.svg';
@@ -20,8 +25,9 @@ const Packs = () => {
     const packs = useAppSelector(state => state.packs.cardPacks);
     const packPage = useAppSelector(state => state.packs.packParams.page);
     const sortPacks = useAppSelector(state => state.packs.packParams.sortPacks);
-    const isAuth = useAppSelector(state => state.login.isAuth);
     const isLoading = useAppSelector(state => state.packs.packParams.isLoading);
+    const paramsPackId = useAppSelector(state => state.packs.packParams.user_id);
+    const userId = useAppSelector(state => state.login.id);
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
@@ -32,8 +38,12 @@ const Packs = () => {
         dispatch(updatePacksParams({ packName: event.target.value }));
     };
 
-    const onChangePackIdHandler = (packId: string) => {
+    const onOpenPackHandler = (packId: string) => {
         dispatch(updateParamsCards({ cardsPack_id: packId }));
+    };
+
+    const onSetMyPackHandler = () => {
+        dispatch(updatePacksParams({ user_id: userId }));
     };
 
     const onButtonHandler = () => {
@@ -49,8 +59,8 @@ const Packs = () => {
     };
 
     useEffect(() => {
-        dispatch(requestPacks());
-    }, [value, dispatch, packPage, sortPacks, isAuth]);
+        dispatch(getRequestPacks());
+    }, [value, dispatch, packPage, sortPacks, paramsPackId]);
 
     return (
         <div className={styles.wrapper}>
@@ -58,6 +68,15 @@ const Packs = () => {
                 <div>
                     <Button onClick={onButtonHandler} className={styles.button}>
                         &#10094; Back to Profile
+                    </Button>
+                </div>
+                <div>
+                    <Button
+                        onClick={() => {
+                            onSetMyPackHandler();
+                        }}
+                    >
+                        My pack
                     </Button>
                 </div>
                 <div>
@@ -97,7 +116,7 @@ const Packs = () => {
                                             <button
                                                 className={styles.button}
                                                 onClick={() => {
-                                                    onChangePackIdHandler(pack._id);
+                                                    onOpenPackHandler(pack._id);
                                                 }}
                                                 type="button"
                                             >
@@ -109,7 +128,12 @@ const Packs = () => {
                                     <td>{formatDate(pack.updated)}</td>
                                     <td>{pack.user_name}</td>
                                     <td>
-                                        <button type="button">
+                                        <button
+                                            onClick={() => {
+                                                dispatch(deleteRequestPack(pack._id));
+                                            }}
+                                            type="button"
+                                        >
                                             <Delete className={styles.icon} />
                                         </button>
                                         <button type="button">

@@ -6,10 +6,13 @@ const instance = axios.create({
 });
 
 export const packApi = {
-    packs(data: GetPacksParams) {
+    getPacks(data: GetPacksParams) {
         return instance.get<ResponsePacksType>('cards/pack', {
             params: data,
         });
+    },
+    deletePack(id: string) {
+        return instance.delete('cards/pack', { params: { id } });
     },
 };
 

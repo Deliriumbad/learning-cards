@@ -68,12 +68,12 @@ export const setError = (error: string | null) => ({ type: 'CARDS/SET_ERROR', er
 export const loadingCardsPack = (isLoading: boolean) =>
     ({ type: 'PACKS/IS_LOADING', isLoading } as const);
 
-export const requestPacks = (): AppThunk => {
+export const getRequestPacks = (): AppThunk => {
     return (dispatch, getState) => {
         const { packParams } = getState().packs;
         dispatch(loadingCardsPack(true));
         packApi
-            .packs(packParams)
+            .getPacks(packParams)
             .then(response => {
                 dispatch(setPacks(response.data));
             })
@@ -86,6 +86,14 @@ export const requestPacks = (): AppThunk => {
             .finally(() => {
                 dispatch(loadingCardsPack(false));
             });
+    };
+};
+
+export const deleteRequestPack = (packId: string): AppThunk => {
+    return dispatch => {
+        packApi.deletePack(packId).then(() => {
+            dispatch(getRequestPacks());
+        });
     };
 };
 
