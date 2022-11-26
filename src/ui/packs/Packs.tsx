@@ -1,17 +1,13 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 
 import { updateParamsCards } from 'bll/reducers/cards-reducer';
-import {
-    deleteRequestPack,
-    getRequestPacks,
-    setSortPacks,
-    updatePacksParams,
-} from 'bll/reducers/packs-reducer';
+import { getRequestPacks, setSortPacks, updatePacksParams } from 'bll/reducers/packs-reducer';
 import { useAppDispatch, useAppSelector } from 'bll/store/hooks';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { ReactComponent as Delete } from 'ui/assets/icons/delete.svg';
+// import { ReactComponent as Delete } from 'ui/assets/icons/delete.svg';
 import { ReactComponent as Edit } from 'ui/assets/icons/edit.svg';
 import InputText from 'ui/components/InputText/InputText';
+import DeleteModal from 'ui/components/Modals/Delete/DeleteModal';
 
 import Button from '../components/Button/Button';
 import MiniSpinner from '../components/MiniSpinner/MiniSpinner';
@@ -128,14 +124,7 @@ const Packs = () => {
                                     <td>{formatDate(pack.updated)}</td>
                                     <td>{pack.user_name}</td>
                                     <td>
-                                        <button
-                                            onClick={() => {
-                                                dispatch(deleteRequestPack(pack._id));
-                                            }}
-                                            type="button"
-                                        >
-                                            <Delete className={styles.icon} />
-                                        </button>
+                                        <DeleteModal id={pack._id} />
                                         <button type="button">
                                             <Edit className={styles.icon} />
                                         </button>
