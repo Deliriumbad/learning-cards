@@ -1,0 +1,40 @@
+table {
+  width: 100%;
+  border-collapse: separate;
+  font-size: 1.8rem;
+
+  .thead {
+    cursor: pointer;
+  }
+
+  thead tr {
+    background-color: #6788bd;
+  }
+
+  thead th {
+    width: 25%;
+  }
+
+  tbody tr:nth-child(odd) {
+    background-color: #e1e7f2;
+  }
+
+  tbody tr:nth-child(even) {
+    background-color: #b3c4de;
+  }
+
+  th,
+  td {
+    padding: 1.6rem 1rem;
+    text-align: center;
+    font-size: 1.5rem;
+    max-width: 190px;
+    overflow: hidden;
+  }
+
+  .button {
+    background-color: transparent;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+}

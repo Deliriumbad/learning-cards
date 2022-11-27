@@ -35,9 +35,12 @@ const DeleteModal = ({ id }: DeleteModalT) => {
             <Modal show={showModal} backgroundOnClick={() => setShowModal(false)}>
                 <header className={styles.header}>Delete Pack</header>
                 <div>
-                    <p
-                        className={styles.content}
-                    >{`Do you really want to remove this Pack? \n All cards will be excluded from this course.`}</p>
+                    <p className={styles.content}>
+                        Do you really want to remove this Pack?
+                        <br />
+                        <br />
+                        All cards will be excluded from this course.
+                    </p>
                 </div>
                 <footer className={styles.actions}>
                     <Button onClick={onDeletePackCLickHandler}>Delete</Button>

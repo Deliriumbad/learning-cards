@@ -4,10 +4,9 @@ import { updateParamsCards } from 'bll/reducers/cards-reducer';
 import { getRequestPacks, setSortPacks, updatePacksParams } from 'bll/reducers/packs-reducer';
 import { useAppDispatch, useAppSelector } from 'bll/store/hooks';
 import { NavLink, useNavigate } from 'react-router-dom';
-// import { ReactComponent as Delete } from 'ui/assets/icons/delete.svg';
-import { ReactComponent as Edit } from 'ui/assets/icons/edit.svg';
 import InputText from 'ui/components/InputText/InputText';
 import DeleteModal from 'ui/components/Modals/Delete/DeleteModal';
+import EditModal from 'ui/components/Modals/Edit/EditModal';
 
 import Button from '../components/Button/Button';
 import MiniSpinner from '../components/MiniSpinner/MiniSpinner';
@@ -125,9 +124,7 @@ const Packs = () => {
                                     <td>{pack.user_name}</td>
                                     <td>
                                         <DeleteModal id={pack._id} />
-                                        <button type="button">
-                                            <Edit className={styles.icon} />
-                                        </button>
+                                        <EditModal />
                                     </td>
                                 </tr>
                             ))}
