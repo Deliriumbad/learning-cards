@@ -15,6 +15,7 @@ const PackTable = () => {
     const packs = useAppSelector(state => state.packs.cardPacks);
     const sortPacks = useAppSelector(state => state.packs.packParams.sortPacks);
     const isLoading = useAppSelector(state => state.packs.packParams.isLoading);
+    const userId = useAppSelector(state => state.login.id);
     const dispatch = useAppDispatch();
 
     const onOpenPackHandler = (packId: string) => {
@@ -39,7 +40,7 @@ const PackTable = () => {
                         Last updated &#8681;
                     </th>
                     <th onClick={() => onChangePacksSortHandler('updated')}>Created by &#8681;</th>
-                    <th className={styles.actions}>Actions</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             {isLoading ? (
@@ -61,8 +62,12 @@ const PackTable = () => {
                                 >
                                     <Learn className={styles.icon} />
                                 </NavLink>
-                                <DeleteModal id={pack._id} />
-                                <EditModal id={pack._id} />
+                                {userId === pack.user_id && (
+                                    <>
+                                        <DeleteModal id={pack._id} />
+                                        <EditModal id={pack._id} />
+                                    </>
+                                )}
                             </td>
                         </tr>
                     ))}
