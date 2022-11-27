@@ -1,6 +1,6 @@
 table {
   width: 100%;
-  border-collapse: separate;
+  border-collapse: collapse;
   font-size: 1.8rem;
 
   .thead {
@@ -12,7 +12,7 @@ table {
   }
 
   thead th {
-    width: 25%;
+    width: 20%;
   }
 
   tbody tr:nth-child(odd) {
@@ -26,15 +26,19 @@ table {
   th,
   td {
     padding: 1.6rem 1rem;
-    text-align: center;
+    text-align: left;
     font-size: 1.5rem;
-    max-width: 190px;
     overflow: hidden;
   }
+}
 
-  .button {
-    background-color: transparent;
-    font-size: 1.5rem;
-    cursor: pointer;
-  }
+.actions{
+	width: 10%;
+}
+
+.icon {
+  width: 2.5rem;
+  height: 2.5rem;
+	fill: transparent;
+	stroke: #373f4d;
 }

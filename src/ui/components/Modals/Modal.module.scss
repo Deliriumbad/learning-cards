@@ -9,15 +9,27 @@
 }
 
 .modal {
+    background-color: #fff;
     position: fixed;
-    top: 30vh;
-    left: 10%;
-    width: 80%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50rem;
+    height: 30rem;
     z-index: 100;
-    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+button {
+    background-color: transparent;
 }
 
 .icon {
-  width: 2.5rem;
-  height: 2.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    stroke: #373f4d;
+		cursor: pointer;
 }

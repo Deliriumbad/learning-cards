@@ -2,9 +2,10 @@ import { updateParamsCards } from 'bll/reducers/cards-reducer';
 import { setSortPacks } from 'bll/reducers/packs-reducer';
 import { useAppDispatch, useAppSelector } from 'bll/store/hooks';
 import { NavLink } from 'react-router-dom';
+import { ReactComponent as Learn } from 'ui/assets/icons/learn.svg';
 import MiniSpinner from 'ui/components/MiniSpinner/MiniSpinner';
-import DeleteModal from 'ui/components/Modals/Delete/DeleteModal';
-import EditModal from 'ui/components/Modals/Edit/EditModal';
+import DeleteModal from 'ui/components/Modals/DeleteModal/DeleteModal';
+import EditModal from 'ui/components/Modals/EditModal/EditModal';
 import { PATH } from 'ui/Main/Routes/RoutesPath';
 import { formatDate } from 'ui/utils/formatDate';
 
@@ -38,7 +39,7 @@ const PackTable = () => {
                         Last updated &#8681;
                     </th>
                     <th onClick={() => onChangePacksSortHandler('updated')}>Created by &#8681;</th>
-                    <th>Actions</th>
+                    <th className={styles.actions}>Actions</th>
                 </tr>
             </thead>
             {isLoading ? (
@@ -47,24 +48,21 @@ const PackTable = () => {
                 <tbody>
                     {packs.map(pack => (
                         <tr key={pack._id}>
-                            <td>
-                                <NavLink to={PATH.cards}>
-                                    <button
-                                        onClick={() => {
-                                            onOpenPackHandler(pack._id);
-                                        }}
-                                        type="button"
-                                    >
-                                        {pack.name}
-                                    </button>
-                                </NavLink>
-                            </td>
+                            <td>{pack.name}</td>
                             <td>{pack.cardsCount}</td>
                             <td>{formatDate(pack.updated)}</td>
                             <td>{pack.user_name}</td>
                             <td>
+                                <NavLink
+                                    onClick={() => {
+                                        onOpenPackHandler(pack._id);
+                                    }}
+                                    to={PATH.cards}
+                                >
+                                    <Learn className={styles.icon} />
+                                </NavLink>
                                 <DeleteModal id={pack._id} />
-                                <EditModal />
+                                <EditModal id={pack._id} />
                             </td>
                         </tr>
                     ))}

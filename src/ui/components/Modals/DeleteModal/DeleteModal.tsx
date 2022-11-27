@@ -43,8 +43,8 @@ const DeleteModal = ({ id }: DeleteModalT) => {
                     </p>
                 </div>
                 <footer className={styles.actions}>
+                    <Button onClick={() => setShowModal(false)}>Cancel</Button>
                     <Button onClick={onDeletePackCLickHandler}>Delete</Button>
-                    <Button onClick={() => setShowModal(false)}>Close</Button>
                 </footer>
             </Modal>
         </>

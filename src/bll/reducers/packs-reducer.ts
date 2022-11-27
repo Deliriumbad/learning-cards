@@ -1,5 +1,5 @@
 import { AppThunk } from 'bll/store/store';
-import { packApi, ResponsePacksType } from 'dal/packs-api';
+import { packApi, GetPacksResponseType } from 'dal/packs-api';
 
 export const packsInitState = {
     cardPacks: [
@@ -53,7 +53,7 @@ export const packsReducer = (
     }
 };
 
-export const setPacks = (data: ResponsePacksType) => {
+export const setPacks = (data: GetPacksResponseType) => {
     return { type: 'PACKS/GET_PACKS', data } as const;
 };
 
@@ -92,6 +92,14 @@ export const getRequestPacks = (): AppThunk => {
 export const deleteRequestPack = (packId: string): AppThunk => {
     return dispatch => {
         packApi.deletePack(packId).then(() => {
+            dispatch(getRequestPacks());
+        });
+    };
+};
+
+export const updateRequestPack = (packId: string, name: string): AppThunk => {
+    return dispatch => {
+        packApi.updatePack(packId, name).then(() => {
             dispatch(getRequestPacks());
         });
     };
