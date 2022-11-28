@@ -24,6 +24,8 @@ export const cardsInitState = {
     },
 };
 
+export type CardsStateType = typeof cardsInitState;
+
 export const cardsReducer = (
     state: CardsStateType = cardsInitState,
     action: CardsActionsType,
@@ -83,8 +85,6 @@ export const getCardsTC = (): AppThunk => {
             });
     };
 };
-
-export type CardsStateType = typeof cardsInitState;
 
 export type CardsActionsType =
     | ReturnType<typeof setCardsData>

@@ -6,10 +6,19 @@ const instance = axios.create({
 });
 
 export const packApi = {
-    packs(data: GetPacksParams) {
-        return instance.get<ResponsePacksType>('cards/pack', {
+    getPacks(data: GetPacksParams) {
+        return instance.get<GetPacksResponseType>('cards/pack', {
             params: data,
         });
+    },
+    deletePack(id: string) {
+        return instance.delete<DeletePackResponseType>('cards/pack', { params: { id } });
+    },
+    createPack(name: string) {
+        return instance.post('cards/pack', { cardsPack: { name } });
+    },
+    updatePack(packId: string, name: string) {
+        return instance.put('cards/pack', { cardsPack: { _id: packId, name } });
     },
 };
 
@@ -23,7 +32,17 @@ export type GetPacksParams = {
     user_id?: string;
 };
 
-export type ResponsePacksType = {
+export type PackType = {
+    _id: string;
+    user_id: string;
+    user_name: string;
+    name: string;
+    cardsCount: number;
+    created: string;
+    updated: string;
+};
+
+export type GetPacksResponseType = {
     cardPacks: PackType[];
     cardPacksTotalCount: number;
     maxCardsCount: number;
@@ -33,12 +52,21 @@ export type ResponsePacksType = {
     error?: string;
 };
 
-export type PackType = {
+type DeletePackResponseType = {
     _id: string;
     user_id: string;
     user_name: string;
+    private: boolean;
     name: string;
+    path: string;
+    grade: number;
+    shots: number;
+    deckCover: string;
     cardsCount: number;
+    type: string;
+    rating: number;
     created: string;
     updated: string;
+    more_id: string;
+    __v: number;
 };

@@ -1,0 +1,49 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1.8rem;
+
+    .thead {
+        cursor: pointer;
+    }
+
+    thead tr {
+        background-color: #6788bd;
+    }
+
+    thead th {
+        width: 20%;
+    }
+
+    thead th:last-child {
+        width: 10%;
+    }
+
+    tbody td:last-child {
+        display: flex;
+				justify-content: space-between;
+    }
+
+    tbody tr:nth-child(odd) {
+        background-color: #e1e7f2;
+    }
+
+    tbody tr:nth-child(even) {
+        background-color: #b3c4de;
+    }
+
+    th,
+    td {
+        padding: 1.6rem 1rem;
+        text-align: left;
+        font-size: 1.5rem;
+        overflow: hidden;
+    }
+}
+
+.icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    fill: transparent;
+    stroke: #373f4d;
+}

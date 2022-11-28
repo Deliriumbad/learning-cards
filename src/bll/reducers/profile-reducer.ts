@@ -10,8 +10,6 @@ export const profileInitState = {
 
 export type ProfileStateType = typeof profileInitState;
 
-export type ProfileActionsType = ReturnType<typeof updateUserProfile>;
-
 export const profileReducer = (
     state: ProfileStateType = profileInitState,
     action: ProfileActionsType,
@@ -41,3 +39,5 @@ export const updateUserProfileTC = (data: UserDataType): AppThunk => {
             });
     };
 };
+
+export type ProfileActionsType = ReturnType<typeof updateUserProfile>;

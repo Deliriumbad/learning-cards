@@ -1,5 +1,5 @@
 import { AppThunk } from 'bll/store/store';
-import { packApi, ResponsePacksType } from 'dal/packs-api';
+import { packApi, GetPacksResponseType } from 'dal/packs-api';
 
 export const packsInitState = {
     cardPacks: [
@@ -53,7 +53,7 @@ export const packsReducer = (
     }
 };
 
-export const setPacks = (data: ResponsePacksType) => {
+export const setPacks = (data: GetPacksResponseType) => {
     return { type: 'PACKS/GET_PACKS', data } as const;
 };
 
@@ -68,12 +68,12 @@ export const setError = (error: string | null) => ({ type: 'CARDS/SET_ERROR', er
 export const loadingCardsPack = (isLoading: boolean) =>
     ({ type: 'PACKS/IS_LOADING', isLoading } as const);
 
-export const requestPacks = (): AppThunk => {
+export const getRequestPacks = (): AppThunk => {
     return (dispatch, getState) => {
         const { packParams } = getState().packs;
         dispatch(loadingCardsPack(true));
         packApi
-            .packs(packParams)
+            .getPacks(packParams)
             .then(response => {
                 dispatch(setPacks(response.data));
             })
@@ -86,6 +86,30 @@ export const requestPacks = (): AppThunk => {
             .finally(() => {
                 dispatch(loadingCardsPack(false));
             });
+    };
+};
+
+export const deleteRequestPack = (packId: string): AppThunk => {
+    return dispatch => {
+        packApi.deletePack(packId).then(() => {
+            dispatch(getRequestPacks());
+        });
+    };
+};
+
+export const updateRequestPack = (packId: string, name: string): AppThunk => {
+    return dispatch => {
+        packApi.updatePack(packId, name).then(() => {
+            dispatch(getRequestPacks());
+        });
+    };
+};
+
+export const createRequestPack = (name: string): AppThunk => {
+    return dispatch => {
+        packApi.createPack(name).then(() => {
+            dispatch(getRequestPacks());
+        });
     };
 };
 
