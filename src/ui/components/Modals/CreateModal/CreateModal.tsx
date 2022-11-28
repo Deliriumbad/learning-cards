@@ -1,54 +1,48 @@
 import { ChangeEvent, useState } from 'react';
 
-import { updateRequestPack } from 'bll/reducers/packs-reducer';
+import { createRequestPack } from 'bll/reducers/packs-reducer';
 import { useAppDispatch } from 'bll/store/hooks';
-import { ReactComponent as Edit } from 'ui/assets/icons/edit.svg';
 import Button from 'ui/components/Button/Button';
 import InputText from 'ui/components/InputText/InputText';
 
 import Modal from '../Modal';
 import styles from '../Modal.module.scss';
 
-type DeleteModalT = {
-    id: string;
-};
-
-const EditModal = ({ id }: DeleteModalT) => {
+const CreateModal = () => {
     const [showModal, setShowModal] = useState(false);
     const [packName, setPackName] = useState('');
     const dispatch = useAppDispatch();
+
+    const onClickAddPackHandler = () => {
+        dispatch(createRequestPack(packName));
+        setShowModal(false);
+        setPackName('');
+    };
 
     const onChangePackNameHandler = (event: ChangeEvent<HTMLInputElement>) => {
         const { value } = event.currentTarget;
         setPackName(value);
     };
 
-    const onClickUpdatePackHandler = () => {
-        dispatch(updateRequestPack(id, packName));
-        setShowModal(false);
-        setPackName('');
-    };
-
     return (
         <>
-            <button
+            <Button
                 onClick={() => {
                     setShowModal(true);
                 }}
-                type="button"
             >
-                <Edit className={styles.icon} />
-            </button>
+                Add
+            </Button>
             <Modal show={showModal} backgroundOnClick={() => setShowModal(false)}>
-                <header className={styles.header}>Edit Pack</header>
+                <header className={styles.header}>Add Pack</header>
                 <InputText value={packName} onChange={onChangePackNameHandler} />
                 <footer className={styles.actions}>
                     <Button onClick={() => setShowModal(false)}>Cancel</Button>
-                    <Button onClick={onClickUpdatePackHandler}>Edit</Button>
+                    <Button onClick={onClickAddPackHandler}>Save</Button>
                 </footer>
             </Modal>
         </>
     );
 };
 
-export default EditModal;
+export default CreateModal;

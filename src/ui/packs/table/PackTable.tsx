@@ -16,6 +16,7 @@ const PackTable = () => {
     const sortPacks = useAppSelector(state => state.packs.packParams.sortPacks);
     const isLoading = useAppSelector(state => state.packs.packParams.isLoading);
     const userId = useAppSelector(state => state.login.id);
+
     const dispatch = useAppDispatch();
 
     const onOpenPackHandler = (packId: string) => {

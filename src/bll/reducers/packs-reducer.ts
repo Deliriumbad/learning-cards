@@ -105,6 +105,14 @@ export const updateRequestPack = (packId: string, name: string): AppThunk => {
     };
 };
 
+export const createRequestPack = (name: string): AppThunk => {
+    return dispatch => {
+        packApi.createPack(name).then(() => {
+            dispatch(getRequestPacks());
+        });
+    };
+};
+
 export type PacksActions =
     | ReturnType<typeof setPacks>
     | ReturnType<typeof updatePacksParams>

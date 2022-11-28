@@ -4,6 +4,7 @@ import { getRequestPacks, updatePacksParams } from 'bll/reducers/packs-reducer';
 import { useAppDispatch, useAppSelector } from 'bll/store/hooks';
 import { useNavigate } from 'react-router-dom';
 import InputText from 'ui/components/InputText/InputText';
+import CreateModal from 'ui/components/Modals/CreateModal/CreateModal';
 
 import Button from '../components/Button/Button';
 import { PATH } from '../Main/Routes/RoutesPath';
@@ -63,6 +64,7 @@ const Packs = () => {
                         className={styles.input}
                         placeholder="Search by name..."
                     />
+                    <CreateModal />
                 </div>
             </div>
             <div className={styles.container}>
