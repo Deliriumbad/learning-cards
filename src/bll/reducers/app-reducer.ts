@@ -1,12 +1,12 @@
 import { authAPI } from '../../dal/auth-api';
-import { AppThunk } from '../store/store';
+import { AppDispatch } from '../store/store';
 
-import { isAuthUserData } from './login-reducer';
+import { setAuthUserData, setEmailError } from './login-reducer';
 
 export const appInitState = {
     isInitialized: false,
     isLoading: false,
-    error: null as null | string,
+    emailError: null as null | string,
 };
 
 type InitStateType = typeof appInitState;
@@ -32,18 +32,18 @@ export const setIsLoading = (value: boolean) =>
 export const setError = (value: null | string) =>
     ({ type: 'APP/SET_ERROR', payload: { error: value } } as const);
 
-export const initialTC = (): AppThunk => {
+export const initialTC = (): AppDispatch => {
     return dispatch => {
         authAPI
             .getAuth()
-            .then(() => {
-                dispatch(isAuthUserData());
+            .then(res => {
+                dispatch(setAuthUserData(res));
             })
             .catch(e => {
                 const error = e.response
                     ? e.response.data.error
                     : `${e.message}, more details in the console`;
-                dispatch(setError(error));
+                dispatch(setEmailError(error));
             })
             .finally(() => {
                 dispatch(setIsInitialized(true));

@@ -9,11 +9,11 @@ import Header from './Header/Header';
 
 const Main = () => {
     const dispatch = useAppDispatch();
-    const initialized = useAppSelector<boolean>(state => state.app.isInitialized);
+    const initialized = useAppSelector(state => state.app.isInitialized);
 
     useEffect(() => {
         dispatch(initialTC());
-    }, [dispatch]);
+    }, []);
 
     if (!initialized) {
         return <Preloader />;

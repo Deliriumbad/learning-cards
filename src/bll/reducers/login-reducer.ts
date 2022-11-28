@@ -96,24 +96,3 @@ export const logoutTC = (): AppDispatch => {
             });
     };
 };
-
-export const isAuthUserData = (): AppDispatch => {
-    return dispatch => {
-        dispatch(isFetchingAC(true));
-        authAPI
-            .getAuth()
-            .then(res => {
-                dispatch(setAuthUserData(res));
-                dispatch(setUserId(res._id));
-            })
-            .catch(e => {
-                const error = e.response
-                    ? e.response.data.error
-                    : `${e.message}, more details in the console`;
-                dispatch(setEmailError(error));
-            })
-            .finally(() => {
-                dispatch(isFetchingAC(false));
-            });
-    };
-};
