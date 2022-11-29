@@ -1,7 +1,6 @@
-import { authAPI } from '../../dal/auth-api';
-import { AppDispatch } from '../store/store';
+import { AppThunk } from '../store/store';
 
-import { setAuthUserData, setEmailError } from './login-reducer';
+import { getAuthUserData, setEmailError } from './login-reducer';
 
 export const appInitState = {
     isInitialized: false,
@@ -32,23 +31,17 @@ export const setIsLoading = (value: boolean) =>
 export const setError = (value: null | string) =>
     ({ type: 'APP/SET_ERROR', payload: { error: value } } as const);
 
-export const initialTC = (): AppDispatch => {
-    return dispatch => {
-        authAPI
-            .getAuth()
-            .then(res => {
-                dispatch(setAuthUserData(res));
-            })
-            .catch(e => {
-                const error = e.response
-                    ? e.response.data.error
-                    : `${e.message}, more details in the console`;
-                dispatch(setEmailError(error));
-            })
-            .finally(() => {
-                dispatch(setIsInitialized(true));
-            });
-    };
+export const initialTC = (): AppThunk => async dispatch => {
+    try {
+        await dispatch(getAuthUserData());
+    } catch (e: any) {
+        const error = e.response
+            ? e.response.data.error
+            : `${e.message}, more details in the console`;
+        dispatch(setEmailError(error));
+    } finally {
+        dispatch(setIsInitialized(true));
+    }
 };
 
 export type AppInitActionsType =

@@ -96,3 +96,23 @@ export const logoutTC = (): AppDispatch => {
             });
     };
 };
+
+export const getAuthUserData = (): AppThunk => {
+    return dispatch => {
+        dispatch(isFetchingAC(true));
+        authAPI
+            .getAuth()
+            .then(res => {
+                dispatch(setAuthUserData(res));
+            })
+            .catch(e => {
+                const error = e.response
+                    ? e.response.data.error
+                    : `${e.message}, more details in the console`;
+                console.error(error);
+            })
+            .finally(() => {
+                dispatch(isFetchingAC(false));
+            });
+    };
+};
