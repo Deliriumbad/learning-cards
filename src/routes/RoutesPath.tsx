@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Navigate, Route, Routes } from 'react-router-dom';
 import ForgotPassword from 'ui/components/auth/ForgotPassword/ForgotPassword';
-import Packs from 'ui/components/Packs/Packs/Packs';
+import Packs from 'ui/components/Packs/Packs';
 
 import Error404 from '../ui/components/auth/Error404/Error404';
 import Login from '../ui/components/auth/Login/Login';

@@ -6,11 +6,11 @@ import { ReactComponent as Learn } from 'ui/assets/icons/learn.svg';
 import DeleteModal from 'ui/components/Modals/DeleteModal/DeleteModal';
 import EditModal from 'ui/components/Modals/EditModal/EditModal';
 
-import { PATH } from '../../../routes/RoutesPath';
-import { formatDate } from '../../../utils/formatDate';
-import MiniSpinner from '../../common/MiniSpinner/MiniSpinner';
+import { PATH } from '../../../../routes/RoutesPath';
+import { formatDate } from '../../../../utils/formatDate';
+import MiniSpinner from '../../../common/MiniSpinner/MiniSpinner';
 
-import styles from './Table.module.scss';
+import styles from './PacksTable.module.scss';
 
 const PackTable = () => {
     const packs = useAppSelector(state => state.packs.cardPacks);

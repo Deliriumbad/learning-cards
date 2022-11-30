@@ -51,7 +51,7 @@ export type GetCardsResponseType = {
 export type UpdateParamsType = {
     cardAnswer?: string;
     cardQuestion?: string;
-    cardsPack_id: string;
+    cardsPack_id?: string;
     min?: number;
     max?: number;
     sortCards?: string;

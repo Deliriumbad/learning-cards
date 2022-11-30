@@ -2,9 +2,9 @@ import { useEffect } from 'react';
 
 import { updatePacksParams } from 'bll/reducers/packs-reducer';
 import { useAppDispatch, useAppSelector } from 'bll/store/hooks';
+import usePagination from 'ui/hooks/usePagination';
 
 import styles from './Pagination.module.scss';
-import usePagination from './usePagination/usePagination';
 
 const Pagination = () => {
     const pageCount = useAppSelector(state => state.packs.packParams.pageCount);

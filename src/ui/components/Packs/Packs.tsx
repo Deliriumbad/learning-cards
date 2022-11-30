@@ -4,14 +4,14 @@ import { getRequestPacks, updatePacksParams } from 'bll/reducers/packs-reducer';
 import { useAppDispatch, useAppSelector } from 'bll/store/hooks';
 import { useNavigate } from 'react-router-dom';
 
-import { PATH } from '../../../../routes/RoutesPath';
-import Button from '../../../common/Button/Button';
-import InputText from '../../../common/InputText/InputText';
-import CreateModal from '../../Modals/CreateModal/CreateModal';
-import PackTable from '../PackTable';
+import { PATH } from '../../../routes/RoutesPath';
+import Button from '../../common/Button/Button';
+import InputText from '../../common/InputText/InputText';
+import CreateModal from '../Modals/CreateModal/CreateModal';
 
+import PackTable from './pack-utils/PackTable';
+import Pagination from './pack-utils/Pagination/Pagination';
 import styles from './Packs.module.scss';
-import Pagination from './Pagination/Pagination';
 
 const Packs = () => {
     const packPage = useAppSelector(state => state.packs.packParams.page);
