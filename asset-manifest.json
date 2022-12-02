@@ -1,21 +1,22 @@
 {
   "files": {
-    "main.css": "/learning-cards/static/css/main.f5c8e14e.css",
-    "main.js": "/learning-cards/static/js/main.73f8bc3e.js",
+    "main.css": "/learning-cards/static/css/main.8b209310.css",
+    "main.js": "/learning-cards/static/js/main.ac0f57cf.js",
     "static/js/787.5a03379c.chunk.js": "/learning-cards/static/js/787.5a03379c.chunk.js",
     "static/media/dog.png": "/learning-cards/static/media/dog.c3f80baa11498496cc95.png",
     "static/media/preloader_spinner.svg": "/learning-cards/static/media/preloader_spinner.abf596a6512efd3537c85ffb81a4a881.svg",
     "index.html": "/learning-cards/index.html",
+    "static/media/learn.svg": "/learning-cards/static/media/learn.75ffa1c0e2f2e09b2d56411cc0700cd2.svg",
     "static/media/delete.svg": "/learning-cards/static/media/delete.dfb60ac1b6e36ae32ba74fff2585eaa8.svg",
     "static/media/edit.svg": "/learning-cards/static/media/edit.00cc7742d2d8d29a7f4fd433246ce0b3.svg",
     "static/media/left-indicator.svg": "/learning-cards/static/media/left-indicator.e6ef43d38f1152134483724d256e019c.svg",
     "static/media/right-indicator.svg": "/learning-cards/static/media/right-indicator.3056a106d113d922fbd3c246ddd12534.svg",
-    "main.f5c8e14e.css.map": "/learning-cards/static/css/main.f5c8e14e.css.map",
-    "main.73f8bc3e.js.map": "/learning-cards/static/js/main.73f8bc3e.js.map",
+    "main.8b209310.css.map": "/learning-cards/static/css/main.8b209310.css.map",
+    "main.ac0f57cf.js.map": "/learning-cards/static/js/main.ac0f57cf.js.map",
     "787.5a03379c.chunk.js.map": "/learning-cards/static/js/787.5a03379c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.f5c8e14e.css",
-    "static/js/main.73f8bc3e.js"
+    "static/css/main.8b209310.css",
+    "static/js/main.ac0f57cf.js"
   ]
 }
