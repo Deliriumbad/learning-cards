@@ -1,9 +1,9 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 
-import { getRequestPacks, updatePacksParams } from 'bll/reducers/packs-reducer';
-import { useAppDispatch, useAppSelector } from 'bll/store/hooks';
 import { useNavigate } from 'react-router-dom';
 
+import { getRequestPacks, updatePacksParams } from '../../../bll/reducers/packs-reducer';
+import { useAppDispatch, useAppSelector } from '../../../bll/store/hooks';
 import { PATH } from '../../../routes/RoutesPath';
 import Button from '../../common/Button/Button';
 import InputText from '../../common/InputText/InputText';
