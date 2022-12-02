@@ -6,7 +6,6 @@ import { ReactComponent as Learn } from 'ui/assets/icons/learn.svg';
 import PackDeleteModal from 'ui/components/Modals/PackDeleteModal/PackDeleteModal';
 import PackEditModal from 'ui/components/Modals/PackEditModal/PackEditModal';
 
-// import { PATH } from '../../../../routes/RoutesPath';
 import { formatDate } from '../../../../utils/formatDate';
 import MiniSpinner from '../../../common/MiniSpinner/MiniSpinner';
 
