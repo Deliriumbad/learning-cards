@@ -68,21 +68,27 @@ export const setError = (error: string | null) => ({ type: 'CARDS/SET_ERROR', er
 export const getCardsTC = (): AppThunk => {
     return (dispatch, getState) => {
         const { cardsParams } = getState().cards;
-        dispatch(loadingCards(true));
-        cardsAPI
-            .getCards(cardsParams)
-            .then(res => {
-                dispatch(setCardsData(res.data));
-            })
-            .catch(e => {
-                const error = e.response
-                    ? e.response.data.error
-                    : `${e.message}, more details in the console`;
-                dispatch(setError(error));
-            })
-            .finally(() => {
-                dispatch(loadingCards(false));
-            });
+        // dispatch(loadingCards(true));
+        cardsAPI.getCards(cardsParams).then(res => {
+            dispatch(setCardsData(res.data));
+        });
+        // .catch(e => {
+        //     const error = e.response
+        //         ? e.response.data.error
+        //         : `${e.message}, more details in the console`;
+        //     dispatch(setError(error));
+        // })
+        // .finally(() => {
+        //     dispatch(loadingCards(false));
+        // });
+    };
+};
+
+export const updateRequestCard = (cardId: string, question: string, answer: string): AppThunk => {
+    return dispatch => {
+        cardsAPI.changeCard(cardId, question, answer).then(() => {
+            dispatch(getCardsTC);
+        });
     };
 };
 

@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { PATH } from '../../../routes/RoutesPath';
 import Button from '../../common/Button/Button';
 import InputText from '../../common/InputText/InputText';
-import CreateModal from '../Modals/CreateModal/CreateModal';
+import PackCreateModal from '../Modals/PackCreateModal/PackCreateModal';
 
 import PackTable from './pack-utils/PackTable';
 import Pagination from './pack-utils/Pagination/Pagination';
@@ -64,7 +64,7 @@ const Packs = () => {
                         className={styles.input}
                         placeholder="Search by name..."
                     />
-                    <CreateModal />
+                    <PackCreateModal />
                 </div>
             </div>
             <div className={styles.container}>

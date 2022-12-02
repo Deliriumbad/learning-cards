@@ -1,6 +1,6 @@
 import { ChangeEvent, useState } from 'react';
 
-import { updateRequestPack } from 'bll/reducers/packs-reducer';
+import { updateRequestCard } from 'bll/reducers/cards-reducer';
 import { useAppDispatch } from 'bll/store/hooks';
 import { ReactComponent as Edit } from 'ui/assets/icons/edit.svg';
 
@@ -13,20 +13,24 @@ type DeleteModalT = {
     id: string;
 };
 
-const EditModal = ({ id }: DeleteModalT) => {
+const CardEditModal = ({ id }: DeleteModalT) => {
     const [showModal, setShowModal] = useState(false);
-    const [packName, setPackName] = useState('');
+    const [cardQuestion, setCardQuestion] = useState('');
+    const [cardAnswer, setCardAnswer] = useState('');
     const dispatch = useAppDispatch();
 
-    const onChangePackNameHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    const onChangeCardQuestionHandler = (event: ChangeEvent<HTMLInputElement>) => {
         const { value } = event.currentTarget;
-        setPackName(value);
+        setCardQuestion(value);
+    };
+    const onChangeCardAnswerHandler = (event: ChangeEvent<HTMLInputElement>) => {
+        const { value } = event.currentTarget;
+        setCardAnswer(value);
     };
 
-    const onClickUpdatePackHandler = () => {
-        dispatch(updateRequestPack(id, packName));
+    const onClickUpdateCardHandler = () => {
+        dispatch(updateRequestCard(id, cardQuestion, cardAnswer));
         setShowModal(false);
-        setPackName('');
     };
 
     return (
@@ -41,14 +45,15 @@ const EditModal = ({ id }: DeleteModalT) => {
             </button>
             <Modal show={showModal} backgroundOnClick={() => setShowModal(false)}>
                 <header className={styles.header}>Edit Pack</header>
-                <InputText value={packName} onChange={onChangePackNameHandler} />
+                <InputText value={cardQuestion} onChange={onChangeCardQuestionHandler} />
+                <InputText value={cardAnswer} onChange={onChangeCardAnswerHandler} />
                 <footer className={styles.actions}>
                     <Button onClick={() => setShowModal(false)}>Cancel</Button>
-                    <Button onClick={onClickUpdatePackHandler}>Edit</Button>
+                    <Button onClick={onClickUpdateCardHandler}>Edit</Button>
                 </footer>
             </Modal>
         </>
     );
 };
 
-export default EditModal;
+export default CardEditModal;

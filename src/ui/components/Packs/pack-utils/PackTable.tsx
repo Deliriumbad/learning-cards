@@ -3,10 +3,10 @@ import { setSortPacks } from 'bll/reducers/packs-reducer';
 import { useAppDispatch, useAppSelector } from 'bll/store/hooks';
 import { NavLink } from 'react-router-dom';
 import { ReactComponent as Learn } from 'ui/assets/icons/learn.svg';
-import DeleteModal from 'ui/components/Modals/DeleteModal/DeleteModal';
-import EditModal from 'ui/components/Modals/EditModal/EditModal';
+import PackDeleteModal from 'ui/components/Modals/PackDeleteModal/PackDeleteModal';
+import PackEditModal from 'ui/components/Modals/PackEditModal/PackEditModal';
 
-import { PATH } from '../../../../routes/RoutesPath';
+// import { PATH } from '../../../../routes/RoutesPath';
 import { formatDate } from '../../../../utils/formatDate';
 import MiniSpinner from '../../../common/MiniSpinner/MiniSpinner';
 
@@ -60,14 +60,14 @@ const PackTable = () => {
                                     onClick={() => {
                                         onOpenPackHandler(pack._id);
                                     }}
-                                    to={PATH.cards}
+                                    to={`/Cards/${pack._id}`}
                                 >
                                     <Learn className={styles.icon} />
                                 </NavLink>
                                 {userId === pack.user_id && (
                                     <>
-                                        <DeleteModal id={pack._id} />
-                                        <EditModal id={pack._id} />
+                                        <PackDeleteModal id={pack._id} />
+                                        <PackEditModal id={pack._id} />
                                     </>
                                 )}
                             </td>

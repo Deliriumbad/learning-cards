@@ -9,6 +9,15 @@ export const cardsAPI = {
     getCards(data: GetCardsParamsType) {
         return instance.get<GetCardsResponseType>('cards/card', { params: data });
     },
+    changeCard(cardId: string, question: string, answer: string) {
+        return instance.put<UpdateCardResponseType>('cards/card', {
+            card: {
+                _id: cardId,
+                question,
+                answer,
+            },
+        });
+    },
 };
 
 export type GetCardsParamsType = {
@@ -46,6 +55,27 @@ export type GetCardsResponseType = {
     page: number;
     pageCount: number;
     packUserId: string;
+};
+
+type UpdateCardResponseType = {
+    _id: string;
+    cardsPack_id: string;
+    user_id: string;
+    answer: string;
+    question: string;
+    grade: number;
+    shots: number;
+    comments: string;
+    type: string;
+    rating: number;
+    more_id: string;
+    created: string;
+    updated: string;
+    __v: number;
+    answerImg: string;
+    answerVideo: string;
+    questionImg: string;
+    questionVideo: string;
 };
 
 export type UpdateParamsType = {

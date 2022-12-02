@@ -1,12 +1,14 @@
 import { setSortCards } from 'bll/reducers/cards-reducer';
 import { useAppDispatch, useAppSelector } from 'bll/store/hooks';
 import MiniSpinner from 'ui/common/MiniSpinner/MiniSpinner';
+import CardEditModal from 'ui/components/Modals/CardEditModal/CardEditModal';
 import { formatDate } from 'utils/formatDate';
 
 import styles from './CardsTable.module.scss';
 
 const CardsTable = () => {
     const dispatch = useAppDispatch();
+    const userId = useAppSelector(state => state.login.id);
     const isLoading = useAppSelector(state => state.cards.cardsParams.isLoading);
     const sortCards = useAppSelector(state => state.cards.cardsParams.sortCards);
     const cards = useAppSelector(state => state.cards.cards);
@@ -47,6 +49,7 @@ const CardsTable = () => {
                     >
                         Grade &#8681;
                     </th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             {isLoading ? (
@@ -60,6 +63,7 @@ const CardsTable = () => {
                                 <td>{card.answer}</td>
                                 <td>{formatDate(card.updated)}</td>
                                 <td>{card.grade}</td>
+                                {userId === card.user_id && <CardEditModal id={card._id} />}
                             </tr>
                         );
                     })}

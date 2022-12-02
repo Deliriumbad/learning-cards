@@ -31,15 +31,19 @@ const Pagination = () => {
     }, [currentPage]);
 
     return (
-        <div className={styles.pagination}>
-            <p>
-                {currentPage}/{totalPages}
-            </p>
-            {leftIArrow}
-            {pageDecrementBtn}
-            {renderPageNumbers}
-            {pageIncrementBtn}
-            {rightArrow}
+        <div>
+            {totalPages === 1 ? null : (
+                <div className={styles.pagination}>
+                    <p>
+                        {currentPage}/{totalPages}
+                    </p>
+                    {leftIArrow}
+                    {pageDecrementBtn}
+                    {renderPageNumbers}
+                    {pageIncrementBtn}
+                    {rightArrow}
+                </div>
+            )}
         </div>
     );
 };

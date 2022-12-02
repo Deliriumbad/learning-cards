@@ -12,7 +12,7 @@ type DeleteModalT = {
     id: string;
 };
 
-const DeleteModal = ({ id }: DeleteModalT) => {
+const PackDeleteModal = ({ id }: DeleteModalT) => {
     const [showModal, setShowModal] = useState(false);
 
     const dispatch = useAppDispatch();
@@ -51,4 +51,4 @@ const DeleteModal = ({ id }: DeleteModalT) => {
     );
 };
 
-export default DeleteModal;
+export default PackDeleteModal;

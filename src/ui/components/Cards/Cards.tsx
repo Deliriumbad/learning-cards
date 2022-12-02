@@ -1,8 +1,12 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
-import { getCardsTC, setSearchCardsByQuestion } from '../../../bll/reducers/cards-reducer';
+import {
+    getCardsTC,
+    setSearchCardsByQuestion,
+    updateParamsCards,
+} from '../../../bll/reducers/cards-reducer';
 import { useAppDispatch, useAppSelector } from '../../../bll/store/hooks';
 import { PATH } from '../../../routes/RoutesPath';
 import Button from '../../common/Button/Button';
@@ -21,6 +25,8 @@ const Cards = () => {
     const sortCards = useAppSelector(state => state.cards.cardsParams.sortCards);
     const isAuth = useAppSelector(state => state.login.isAuth);
 
+    const params = useParams();
+
     const [value, setValue] = useState<string>('');
 
     const onChangeSearchCardsHandler = (event: ChangeEvent<HTMLInputElement>) => {
@@ -35,6 +41,10 @@ const Cards = () => {
     useEffect(() => {
         dispatch(getCardsTC());
     }, [packId, value, sortCards, isAuth, cardPage]);
+
+    useEffect(() => {
+        dispatch(updateParamsCards({ cardsPack_id: params.packId }));
+    }, []);
 
     return (
         <div className={styles.cardsPage}>
@@ -55,7 +65,9 @@ const Cards = () => {
             </div>
             <div className={styles.tableBlock}>
                 <CardsTable />
-                <Pagination />
+                <div className={styles.pagination}>
+                    <Pagination />
+                </div>
             </div>
         </div>
     );

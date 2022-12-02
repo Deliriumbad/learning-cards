@@ -8,7 +8,7 @@ import InputText from '../../../common/InputText/InputText';
 import Modal from '../Modal';
 import styles from '../Modal.module.scss';
 
-const CreateModal = () => {
+const PackCreateModal = () => {
     const [showModal, setShowModal] = useState(false);
     const [packName, setPackName] = useState('');
     const dispatch = useAppDispatch();
@@ -45,4 +45,4 @@ const CreateModal = () => {
     );
 };
 
-export default CreateModal;
+export default PackCreateModal;
