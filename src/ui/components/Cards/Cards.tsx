@@ -3,7 +3,7 @@ import React, { ChangeEvent, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import {
-    getCardsTC,
+    getRequestCards,
     setSearchCardsByQuestion,
     updateParamsCards,
 } from '../../../bll/reducers/cards-reducer';
@@ -21,9 +21,6 @@ const Cards = () => {
     const navigate = useNavigate();
 
     const cardPage = useAppSelector(state => state.cards.cardsParams.page);
-    const packId = useAppSelector(state => state.cards.cardsParams.cardsPack_id);
-    const sortCards = useAppSelector(state => state.cards.cardsParams.sortCards);
-    const isAuth = useAppSelector(state => state.login.isAuth);
 
     const params = useParams();
 
@@ -39,12 +36,12 @@ const Cards = () => {
     };
 
     useEffect(() => {
-        dispatch(getCardsTC());
-    }, [packId, value, sortCards, isAuth, cardPage]);
-
-    useEffect(() => {
         dispatch(updateParamsCards({ cardsPack_id: params.packId }));
     }, []);
+
+    useEffect(() => {
+        dispatch(getRequestCards());
+    }, [value, cardPage]);
 
     return (
         <div className={styles.cardsPage}>

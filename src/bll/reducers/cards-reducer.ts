@@ -65,7 +65,7 @@ export const setSortCards = (value: string) => ({ type: 'CARDS/SET_SORT_CARDS', 
 
 export const setError = (error: string | null) => ({ type: 'CARDS/SET_ERROR', error } as const);
 
-export const getCardsTC = (): AppThunk => {
+export const getRequestCards = (): AppThunk => {
     return (dispatch, getState) => {
         const { cardsParams } = getState().cards;
         // dispatch(loadingCards(true));
@@ -87,7 +87,7 @@ export const getCardsTC = (): AppThunk => {
 export const updateRequestCard = (cardId: string, question: string, answer: string): AppThunk => {
     return dispatch => {
         cardsAPI.changeCard(cardId, question, answer).then(() => {
-            dispatch(getCardsTC);
+            dispatch(getRequestCards);
         });
     };
 };

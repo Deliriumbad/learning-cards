@@ -1,20 +1,27 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import './App.scss';
-import { Provider } from 'react-redux';
-import { HashRouter } from 'react-router-dom';
+import { requestInitial } from 'bll/reducers/app-reducer';
+import { useAppDispatch, useAppSelector } from 'bll/store/hooks';
+import Preloader from 'ui/common/Preloader/Preloader';
 
-import { store } from './bll/store/store';
 import Main from './ui/components/Main/Main';
 
 const App = () => {
+    const dispatch = useAppDispatch();
+    const initialized = useAppSelector(state => state.app.isInitialized);
+
+    useEffect(() => {
+        dispatch(requestInitial());
+    }, []);
+
+    if (!initialized) {
+        return <Preloader />;
+    }
+
     return (
         <div className="App">
-            <HashRouter>
-                <Provider store={store}>
-                    <Main />
-                </Provider>
-            </HashRouter>
+            <Main />
         </div>
     );
 };

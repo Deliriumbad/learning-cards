@@ -1,13 +1,22 @@
 import React from 'react';
 
+import { store } from 'bll/store/store';
 import ReactDOM from 'react-dom/client';
-
 import './index.css';
+import { Provider } from 'react-redux';
+import { HashRouter } from 'react-router-dom';
+
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
-root.render(<App />);
+root.render(
+    <Provider store={store}>
+        <HashRouter>
+            <App />
+        </HashRouter>
+    </Provider>,
+);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

@@ -16,8 +16,9 @@ import styles from './Packs.module.scss';
 const Packs = () => {
     const packPage = useAppSelector(state => state.packs.packParams.page);
     const sortPacks = useAppSelector(state => state.packs.packParams.sortPacks);
-    const paramsPackId = useAppSelector(state => state.packs.packParams.user_id);
     const userId = useAppSelector(state => state.login.id);
+    const isLoggedIn = useAppSelector(state => state.login.isLoggedIn);
+
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
@@ -37,8 +38,15 @@ const Packs = () => {
     };
 
     useEffect(() => {
+        if (!isLoggedIn) {
+            return;
+        }
         dispatch(getRequestPacks());
-    }, [value, dispatch, packPage, sortPacks, paramsPackId]);
+    }, [value, dispatch, packPage, sortPacks, userId]);
+
+    if (!isLoggedIn) {
+        navigate(PATH.login);
+    }
 
     return (
         <div className={styles.wrapper}>

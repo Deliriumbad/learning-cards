@@ -13,7 +13,7 @@ import EditableSpan from '../../../common/EditableSpan/EditableSpan';
 import s from './Profile.module.scss';
 
 const Profile = () => {
-    const isAuth = useAppSelector(state => state.login.isAuth);
+    const isLoggedIn = useAppSelector(state => state.login.isLoggedIn);
     const userEmail = useAppSelector(state => state.login.user.email);
     const userName = useAppSelector(state => state.login.user.name);
     const dispatch = useAppDispatch();
@@ -39,10 +39,10 @@ const Profile = () => {
     };
 
     useEffect(() => {
-        if (!isAuth) {
+        if (!isLoggedIn) {
             return navigate(PATH.login);
         }
-    }, [isAuth, userEmail, userName]);
+    }, [isLoggedIn, userEmail, userName]);
 
     return (
         <div className={s.container}>

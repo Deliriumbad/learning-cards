@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { useFormik } from 'formik';
 import { NavLink, useNavigate } from 'react-router-dom';
 
-import { loginTC } from '../../../../bll/reducers/login-reducer';
+import { requestLogin } from '../../../../bll/reducers/login-reducer';
 import { useAppDispatch, useAppSelector } from '../../../../bll/store/hooks';
 import { PATH } from '../../../../routes/RoutesPath';
 import Button from '../../../common/Button/Button';
@@ -21,7 +21,7 @@ type FormikErrorType = {
 
 const Login = () => {
     const isFetching = useAppSelector(state => state.login.isFetching);
-    const isAuth = useAppSelector(state => state.login.isAuth);
+    const isLoggedIn = useAppSelector(state => state.login.isLoggedIn);
     const error = useAppSelector(state => state.login.emailError);
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
@@ -49,15 +49,15 @@ const Login = () => {
             return errors;
         },
         onSubmit: values => {
-            dispatch(loginTC(values));
+            dispatch(requestLogin(values));
         },
     });
 
     useEffect(() => {
-        if (isAuth) {
+        if (isLoggedIn) {
             return navigate(PATH.profile);
         }
-    }, [isAuth]);
+    }, [isLoggedIn]);
 
     if (isFetching) {
         return <Preloader />;
