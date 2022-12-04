@@ -1,7 +1,7 @@
 import { ChangeEvent, useState } from 'react';
 
 import { updateRequestCard } from 'bll/reducers/cards-reducer';
-import { useAppDispatch } from 'bll/store/hooks';
+import { useAppDispatch, useAppSelector } from 'bll/store/hooks';
 import { ReactComponent as Edit } from 'ui/assets/icons/edit.svg';
 
 import Button from '../../../common/Button/Button';
@@ -15,8 +15,10 @@ type DeleteModalT = {
 
 const CardEditModal = ({ id }: DeleteModalT) => {
     const [showModal, setShowModal] = useState(false);
-    const [cardQuestion, setCardQuestion] = useState('');
-    const [cardAnswer, setCardAnswer] = useState('');
+
+    const currentCard = useAppSelector(state => state.cards.cards.find(card => card._id === id));
+    const [cardQuestion, setCardQuestion] = useState(currentCard?.question || '');
+    const [cardAnswer, setCardAnswer] = useState(currentCard?.answer || '');
     const dispatch = useAppDispatch();
 
     const onChangeCardQuestionHandler = (event: ChangeEvent<HTMLInputElement>) => {

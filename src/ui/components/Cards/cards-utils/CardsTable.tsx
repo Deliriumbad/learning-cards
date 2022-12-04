@@ -1,5 +1,6 @@
 import { setSortCards } from 'bll/reducers/cards-reducer';
 import { useAppDispatch, useAppSelector } from 'bll/store/hooks';
+import { useParams } from 'react-router-dom';
 import MiniSpinner from 'ui/common/MiniSpinner/MiniSpinner';
 import CardEditModal from 'ui/components/Modals/CardEditModal/CardEditModal';
 import { formatDate } from 'utils/formatDate';
@@ -8,11 +9,15 @@ import styles from './CardsTable.module.scss';
 
 const CardsTable = () => {
     const dispatch = useAppDispatch();
+    const params = useParams();
+
     const userId = useAppSelector(state => state.login.userData._id);
     const isLoading = useAppSelector(state => state.cards.cardsParams.isLoading);
     const sortCards = useAppSelector(state => state.cards.cardsParams.sortCards);
-    const packId = useAppSelector(state => state.packs.packParams.user_id);
     const cards = useAppSelector(state => state.cards.cards);
+    const currentCard = useAppSelector(state =>
+        state.cards.cards.find(card => card.cardsPack_id === params.packId),
+    );
 
     const onChangeCardsSortHandler = (sortType: string) => {
         if (sortCards === '0' + sortType) {
@@ -50,7 +55,7 @@ const CardsTable = () => {
                     >
                         Grade &#8681;
                     </th>
-                    {userId === packId && <th>Actions</th>}
+                    {userId === currentCard?.user_id && <th>Actions</th>}
                 </tr>
             </thead>
             {isLoading ? (

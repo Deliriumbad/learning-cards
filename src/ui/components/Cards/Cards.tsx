@@ -21,6 +21,8 @@ const Cards = () => {
     const navigate = useNavigate();
 
     const cardPage = useAppSelector(state => state.cards.cardsParams.page);
+    const cardQuestion = useAppSelector(state => state.cards.cardsParams.cardQuestion);
+    const cardAnswer = useAppSelector(state => state.cards.cardsParams.cardAnswer);
 
     const params = useParams();
 
@@ -41,7 +43,7 @@ const Cards = () => {
 
     useEffect(() => {
         dispatch(getRequestCards());
-    }, [value, cardPage]);
+    }, [value, cardPage, cardQuestion, cardAnswer]);
 
     return (
         <div className={styles.cardsPage}>

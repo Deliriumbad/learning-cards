@@ -1,7 +1,7 @@
 import { ChangeEvent, useState } from 'react';
 
 import { updateRequestPack } from 'bll/reducers/packs-reducer';
-import { useAppDispatch } from 'bll/store/hooks';
+import { useAppDispatch, useAppSelector } from 'bll/store/hooks';
 import { ReactComponent as Edit } from 'ui/assets/icons/edit.svg';
 
 import Button from '../../../common/Button/Button';
@@ -15,7 +15,11 @@ type DeleteModalT = {
 
 const PackEditModal = ({ id }: DeleteModalT) => {
     const [showModal, setShowModal] = useState(false);
-    const [packName, setPackName] = useState('');
+
+    const currentPack = useAppSelector(state =>
+        state.packs.cardPacks.find(pack => pack._id === id),
+    );
+    const [packName, setPackName] = useState(currentPack?.name || '');
     const dispatch = useAppDispatch();
 
     const onChangePackNameHandler = (event: ChangeEvent<HTMLInputElement>) => {

@@ -9,7 +9,7 @@ export const cardsAPI = {
     getCards(data: GetCardsParamsType) {
         return instance.get<GetCardsResponseType>('cards/card', { params: data });
     },
-    changeCard(cardId: string, question: string, answer: string) {
+    updateCard(cardId: string, question: string, answer: string) {
         return instance.put<UpdateCardResponseType>('cards/card', {
             card: {
                 _id: cardId,

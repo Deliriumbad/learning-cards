@@ -86,8 +86,8 @@ export const getRequestCards = (): AppThunk => {
 
 export const updateRequestCard = (cardId: string, question: string, answer: string): AppThunk => {
     return dispatch => {
-        cardsAPI.changeCard(cardId, question, answer).then(() => {
-            dispatch(getRequestCards);
+        cardsAPI.updateCard(cardId, question, answer).then(() => {
+            dispatch(getRequestCards());
         });
     };
 };
