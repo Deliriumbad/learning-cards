@@ -18,16 +18,17 @@ const Packs = () => {
     const sortPacks = useAppSelector(state => state.packs.packParams.sortPacks);
     const userId = useAppSelector(state => state.login.userData._id);
     const packId = useAppSelector(state => state.packs.packParams.user_id);
+    const packName = useAppSelector(state => state.packs.packParams.packName);
     const isLoggedIn = useAppSelector(state => state.login.isLoggedIn);
 
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
-    const [value, setValue] = useState<string>('');
+    const [newPackName, setNewPackName] = useState<string>('');
 
     const onChangePackNameHandler = (event: ChangeEvent<HTMLInputElement>) => {
-        setValue(event.target.value);
-        dispatch(updatePacksParams({ packName: event.target.value }));
+        const { value } = event.currentTarget;
+        setNewPackName(value);
     };
 
     const onSetMyPackHandler = () => {
@@ -46,7 +47,16 @@ const Packs = () => {
             return;
         }
         dispatch(getRequestPacks());
-    }, [value, dispatch, packPage, sortPacks, packId]);
+    }, [dispatch, packPage, sortPacks, packId, packName]);
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            dispatch(updatePacksParams({ packName: newPackName }));
+        }, 800);
+        return () => {
+            clearTimeout(timer);
+        };
+    }, [newPackName]);
 
     if (!isLoggedIn) {
         navigate(PATH.login);
@@ -66,7 +76,7 @@ const Packs = () => {
                 </div>
                 <div>
                     <InputText
-                        value={value}
+                        value={newPackName}
                         onChange={onChangePackNameHandler}
                         className={styles.input}
                         placeholder="Search by name..."

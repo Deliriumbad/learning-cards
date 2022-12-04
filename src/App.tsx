@@ -4,8 +4,7 @@ import './App.scss';
 import { requestInitial } from 'bll/reducers/app-reducer';
 import { useAppDispatch, useAppSelector } from 'bll/store/hooks';
 import Preloader from 'ui/common/Preloader/Preloader';
-
-import Main from './ui/components/Main/Main';
+import Pages from 'ui/components/pages/Pages';
 
 const App = () => {
     const dispatch = useAppDispatch();
@@ -13,7 +12,7 @@ const App = () => {
 
     useEffect(() => {
         dispatch(requestInitial());
-    }, []);
+    }, [dispatch]);
 
     if (!initialized) {
         return <Preloader />;
@@ -21,7 +20,7 @@ const App = () => {
 
     return (
         <div className="App">
-            <Main />
+            <Pages />
         </div>
     );
 };

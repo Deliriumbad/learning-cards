@@ -2,7 +2,7 @@ import RoutesPath from '../../../routes/RoutesPath';
 
 import Header from './Header/Header';
 
-const Main = () => {
+const Pages = () => {
     return (
         <div>
             <Header />
@@ -10,4 +10,4 @@ const Main = () => {
         </div>
     );
 };
-export default Main;
+export default Pages;

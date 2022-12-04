@@ -11,6 +11,7 @@ const CardsTable = () => {
     const userId = useAppSelector(state => state.login.userData._id);
     const isLoading = useAppSelector(state => state.cards.cardsParams.isLoading);
     const sortCards = useAppSelector(state => state.cards.cardsParams.sortCards);
+    const packId = useAppSelector(state => state.packs.packParams.user_id);
     const cards = useAppSelector(state => state.cards.cards);
 
     const onChangeCardsSortHandler = (sortType: string) => {
@@ -49,7 +50,7 @@ const CardsTable = () => {
                     >
                         Grade &#8681;
                     </th>
-                    <th>Actions</th>
+                    {userId === packId && <th>Actions</th>}
                 </tr>
             </thead>
             {isLoading ? (
