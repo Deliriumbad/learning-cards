@@ -15,7 +15,7 @@ const PackTable = () => {
     const packs = useAppSelector(state => state.packs.cardPacks);
     const sortPacks = useAppSelector(state => state.packs.packParams.sortPacks);
     const isLoading = useAppSelector(state => state.packs.packParams.isLoading);
-    const userId = useAppSelector(state => state.login.id);
+    const userId = useAppSelector(state => state.login.userData._id);
 
     const dispatch = useAppDispatch();
 

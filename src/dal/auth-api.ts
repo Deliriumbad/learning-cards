@@ -7,13 +7,13 @@ const instance = axios.create({
 
 export const authAPI = {
     login(data: LoginRequestType) {
-        return instance.post<LoginResponseType>('auth/login', data);
+        return instance.post<ResponseUserDataT>('auth/login', data);
     },
     logout() {
         return instance.delete('auth/me');
     },
     me() {
-        return instance.post<MeResponseT>('auth/me');
+        return instance.post<ResponseUserDataT>('auth/me');
     },
     updateUserData(data: UserDataType) {
         return instance.put('auth/me', data).then(res => res.data);
@@ -31,21 +31,18 @@ export type UserDataType = {
     avatar: string;
 };
 
-export type LoginResponseType = {
+export type ResponseUserDataT = {
     _id: string;
     email: string;
-    rememberMe: boolean;
-    isAdmin: boolean;
     name: string;
-    verified: boolean;
+    avatar: string;
     publicCardPacksCount: number;
+
     created: string;
     updated: string;
-    __v: number;
-    token: string;
-    tokenDeathTime: number;
-    avatar: string;
+    isAdmin: boolean;
+    verified: boolean;
+    rememberMe: boolean;
+
     error?: string;
 };
-
-type MeResponseT = LoginResponseType;

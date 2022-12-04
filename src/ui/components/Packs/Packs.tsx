@@ -16,7 +16,8 @@ import styles from './Packs.module.scss';
 const Packs = () => {
     const packPage = useAppSelector(state => state.packs.packParams.page);
     const sortPacks = useAppSelector(state => state.packs.packParams.sortPacks);
-    const userId = useAppSelector(state => state.login.id);
+    const userId = useAppSelector(state => state.login.userData._id);
+    const packId = useAppSelector(state => state.packs.packParams.user_id);
     const isLoggedIn = useAppSelector(state => state.login.isLoggedIn);
 
     const dispatch = useAppDispatch();
@@ -32,6 +33,9 @@ const Packs = () => {
     const onSetMyPackHandler = () => {
         dispatch(updatePacksParams({ user_id: userId }));
     };
+    const onSetAllPackHandler = () => {
+        dispatch(updatePacksParams({ user_id: '' }));
+    };
 
     const onButtonHandler = () => {
         navigate(PATH.profile);
@@ -42,7 +46,7 @@ const Packs = () => {
             return;
         }
         dispatch(getRequestPacks());
-    }, [value, dispatch, packPage, sortPacks, userId]);
+    }, [value, dispatch, packPage, sortPacks, packId]);
 
     if (!isLoggedIn) {
         navigate(PATH.login);
@@ -57,13 +61,8 @@ const Packs = () => {
                     </Button>
                 </div>
                 <div>
-                    <Button
-                        onClick={() => {
-                            onSetMyPackHandler();
-                        }}
-                    >
-                        My pack
-                    </Button>
+                    <Button onClick={onSetMyPackHandler}>My</Button>
+                    <Button onClick={onSetAllPackHandler}>All</Button>
                 </div>
                 <div>
                     <InputText

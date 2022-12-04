@@ -2,7 +2,7 @@ import { authAPI } from 'dal/auth-api';
 
 import { AppThunk } from '../store/store';
 
-import { setIsLoggedIn } from './login-reducer';
+import { setIsLoggedIn, setUserData } from './login-reducer';
 
 export const appInitState = {
     isInitialized: false,
@@ -37,7 +37,8 @@ export const requestInitial = (): AppThunk => {
     return dispatch => {
         authAPI
             .me()
-            .then(() => {
+            .then(response => {
+                dispatch(setUserData(response.data));
                 dispatch(setIsLoggedIn(true));
             })
             .finally(() => {

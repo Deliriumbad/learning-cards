@@ -8,7 +8,7 @@ import styles from './CardsTable.module.scss';
 
 const CardsTable = () => {
     const dispatch = useAppDispatch();
-    const userId = useAppSelector(state => state.login.id);
+    const userId = useAppSelector(state => state.login.userData._id);
     const isLoading = useAppSelector(state => state.cards.cardsParams.isLoading);
     const sortCards = useAppSelector(state => state.cards.cardsParams.sortCards);
     const cards = useAppSelector(state => state.cards.cards);

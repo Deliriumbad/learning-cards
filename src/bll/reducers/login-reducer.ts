@@ -1,14 +1,23 @@
-import { authAPI } from '../../dal/auth-api';
+import { authAPI, ResponseUserDataT } from '../../dal/auth-api';
 import { AppDispatch, AppThunk } from '../store/store';
 
 export const loginInitState = {
-    user: {
+    userData: {
+        _id: '',
+        email: 'nya-admin@nya.nya',
         name: '',
-        email: '',
         avatar: '',
+        publicCardPacksCount: 0,
+
+        created: '',
+        updated: '',
+        isAdmin: false,
+        verified: false,
+        rememberMe: false,
+
+        error: '',
     },
     isLoggedIn: false,
-    id: '',
     emailError: null as null | string,
     isAuth: false,
     isFetching: false,
@@ -17,7 +26,7 @@ export const loginInitState = {
 export type LoginStateType = typeof loginInitState;
 
 export type LoginActionsType =
-    | ReturnType<typeof setUserId>
+    | ReturnType<typeof setUserData>
     | ReturnType<typeof setIsLoggedIn>
     | ReturnType<typeof setEmailError>
     | ReturnType<typeof logout>
@@ -30,8 +39,8 @@ export const loginReducer = (
     switch (action.type) {
         case 'LOGIN/SET_IS_LOGGED-IN':
             return { ...state, isLoggedIn: action.value };
-        case 'LOGIN/SET_USER_ID':
-            return { ...state, id: action.userId };
+        case 'LOGIN/SET_USER_DATA':
+            return { ...state, userData: { ...state.userData, ...action.userData } };
         case 'LOGIN/SET_EMAIL_ERROR':
             return { ...state, emailError: action.error };
         case 'LOGIN/LOGOUT':
@@ -46,7 +55,8 @@ export const loginReducer = (
 export const setIsLoggedIn = (value: boolean) =>
     ({ type: 'LOGIN/SET_IS_LOGGED-IN', value } as const);
 
-export const setUserId = (userId: string) => ({ type: 'LOGIN/SET_USER_ID', userId } as const);
+export const setUserData = (userData: ResponseUserDataT) =>
+    ({ type: 'LOGIN/SET_USER_DATA', userData } as const);
 
 export const setEmailError = (error: string | null) =>
     ({ type: 'LOGIN/SET_EMAIL_ERROR', error } as const);
@@ -65,7 +75,8 @@ export const requestLogin = (data: {
         dispatch(isFetchingAC(true));
         authAPI
             .login(data)
-            .then(() => {
+            .then(response => {
+                dispatch(setUserData(response.data));
                 dispatch(setIsLoggedIn(true));
             })
             .catch(e => {
