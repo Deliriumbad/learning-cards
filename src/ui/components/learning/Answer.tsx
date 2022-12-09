@@ -1,12 +1,20 @@
-// import { useAppDispatch } from 'bll/store/hooks';
+import { ChangeEvent } from 'react';
+
+import { updateGradeRequest } from 'bll/reducers/cards-reducer';
+import { useAppDispatch } from 'bll/store/hooks';
+
 import styles from './Answer.module.scss';
 
 type AnswerT = {
     answer: string;
+    cardId: string;
 };
 
-const Answer = ({ answer }: AnswerT) => {
-    // const dispatch = useAppDispatch();
+const Answer = ({ answer, cardId }: AnswerT) => {
+    const dispatch = useAppDispatch();
+
+    const onSetGrade = (event: ChangeEvent<HTMLInputElement>) =>
+        dispatch(updateGradeRequest(cardId, Number(event.currentTarget.value)));
     return (
         <div className={styles.main}>
             <p>
@@ -20,23 +28,23 @@ const Answer = ({ answer }: AnswerT) => {
                 <span>Rate yourself</span>
                 <ul>
                     <li>
-                        <input type="radio" value={1} />
+                        <input onChange={onSetGrade} type="radio" value={1} />
                         <span>Did not know</span>
                     </li>
                     <li>
-                        <input type="radio" value={2} />
+                        <input onChange={onSetGrade} type="radio" value={2} />
                         <span>Forgot</span>
                     </li>
                     <li>
-                        <input type="radio" value={3} />
+                        <input onChange={onSetGrade} type="radio" value={3} />
                         <span>A lot of thought</span>
                     </li>
                     <li>
-                        <input type="radio" value={4} />
+                        <input onChange={onSetGrade} type="radio" value={4} />
                         <span>Confused</span>
                     </li>
                     <li>
-                        <input type="radio" value={5} />
+                        <input onChange={onSetGrade} type="radio" value={5} />
                         <span>Knew the answer</span>
                     </li>
                 </ul>

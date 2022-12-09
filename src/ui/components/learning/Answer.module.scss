@@ -6,13 +6,13 @@
     width: 50rem;
     height: 30rem;
     font-size: 1.6rem;
-    position: fixed;
+    position: absolute;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
 }
 
-ul{
-	list-style: none;
+ul {
+    list-style: none;
 }

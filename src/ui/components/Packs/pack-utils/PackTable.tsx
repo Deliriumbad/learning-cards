@@ -1,4 +1,3 @@
-import { updateParamsCards } from 'bll/reducers/cards-reducer';
 import { setSortPacks } from 'bll/reducers/packs-reducer';
 import { useAppDispatch, useAppSelector } from 'bll/store/hooks';
 import { useNavigate } from 'react-router-dom';
@@ -20,8 +19,7 @@ const PackTable = () => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
 
-    const onSetCurrentCardsHandler = (packId: string, path: string) => {
-        dispatch(updateParamsCards({ cardsPack_id: packId }));
+    const onNavigateCurrentCardsHandler = (packId: string, path: string) => {
         navigate(`/${path}/${packId}`);
     };
 
@@ -53,7 +51,7 @@ const PackTable = () => {
                             <td>
                                 <button
                                     onClick={() => {
-                                        onSetCurrentCardsHandler(pack._id, 'Cards');
+                                        onNavigateCurrentCardsHandler(pack._id, 'Cards');
                                     }}
                                     type="button"
                                 >
@@ -66,7 +64,7 @@ const PackTable = () => {
                             <td>
                                 <button
                                     onClick={() => {
-                                        onSetCurrentCardsHandler(pack._id, 'learning');
+                                        onNavigateCurrentCardsHandler(pack._id, 'learning');
                                     }}
                                     type="button"
                                 >

@@ -1,11 +1,28 @@
-import { useAppSelector } from 'bll/store/hooks';
+import { useEffect, useState } from 'react';
+
+import { getRequestCards, updateParamsCards } from 'bll/reducers/cards-reducer';
+import { useAppDispatch, useAppSelector } from 'bll/store/hooks';
 import { CardType } from 'dal/cards-api';
+import { useParams } from 'react-router-dom';
 
 import Answer from './Answer';
 import Question from './Question';
 
 const Learning = () => {
+    const [showAnswer, setShowAnswer] = useState(false);
     const arrayCards = useAppSelector(state => state.cards.cards);
+
+    const dispatch = useAppDispatch();
+
+    const params = useParams();
+
+    useEffect(() => {
+        dispatch(updateParamsCards({ cardsPack_id: params.packId }));
+    }, []);
+
+    useEffect(() => {
+        dispatch(getRequestCards());
+    }, []);
 
     const getCard = (cards: CardType[]) => {
         const length = cards.reduce((acc, card) => acc + (6 - card.grade) ** 2, 0);
@@ -31,8 +48,11 @@ const Learning = () => {
         <>
             <h1>Learn</h1>
             <div>
-                <Question question={currentCard.question} />
-                <Answer answer={currentCard.answer} />
+                {showAnswer ? (
+                    <Answer cardId={currentCard._id} answer={currentCard.answer} />
+                ) : (
+                    <Question onSetIsShow={setShowAnswer} question={currentCard.question} />
+                )}
             </div>
         </>
     );
