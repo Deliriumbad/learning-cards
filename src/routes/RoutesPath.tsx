@@ -2,6 +2,7 @@ import React from 'react';
 
 import { Navigate, Route, Routes } from 'react-router-dom';
 import ForgotPassword from 'ui/components/auth/ForgotPassword/ForgotPassword';
+import Learning from 'ui/components/learning/Learning';
 import Packs from 'ui/components/Packs/Packs';
 
 import Error404 from '../ui/components/auth/Error404/Error404';
@@ -20,6 +21,7 @@ export const PATH = {
     registration: '/registration',
     packs: '/Packs',
     cards: '/Cards/:packId',
+    learning: '/learning/:packId',
 };
 
 export const dataPATH = [
@@ -54,6 +56,10 @@ export const dataPATH = [
     {
         path: PATH.cards,
         element: <Cards />,
+    },
+    {
+        path: PATH.learning,
+        element: <Learning />,
     },
 ];
 

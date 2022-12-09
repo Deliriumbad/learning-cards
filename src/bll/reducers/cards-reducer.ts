@@ -36,6 +36,19 @@ export const cardsReducer = (
         case 'CARDS/UPDATE_PARAMS_CARDS': {
             return { ...state, cardsParams: { ...state.cardsParams, ...action.params } };
         }
+        case 'CARD/SET_UPDATED_CARD_GRADE': {
+            return {
+                ...state,
+                cards: state.cards.map(card =>
+                    card._id === action.gradeData.cardId
+                        ? {
+                              ...card,
+                              grade: action.gradeData.grade,
+                          }
+                        : card,
+                ),
+            };
+        }
         case 'CARDS/SET_ERROR':
             return { ...state, error: action.error };
         case 'CARDS/SET_SEARCH_BY_QUESTION':
@@ -65,6 +78,9 @@ export const setSortCards = (value: string) => ({ type: 'CARDS/SET_SORT_CARDS', 
 
 export const setError = (error: string | null) => ({ type: 'CARDS/SET_ERROR', error } as const);
 
+export const setUpdatedCardGrade = (gradeData: { cardId: string; grade: number }) =>
+    ({ type: 'CARD/SET_UPDATED_CARD_GRADE', gradeData } as const);
+
 export const getRequestCards = (): AppThunk => {
     return (dispatch, getState) => {
         const { cardsParams } = getState().cards;
@@ -92,10 +108,19 @@ export const updateRequestCard = (cardId: string, question: string, answer: stri
     };
 };
 
+export const updateGradeRequest = (cardId: string, grade: number): AppThunk => {
+    return dispatch => {
+        cardsAPI.gradeCard(cardId, grade).then(() => {
+            dispatch(setUpdatedCardGrade({ cardId, grade }));
+        });
+    };
+};
+
 export type CardsActionsType =
     | ReturnType<typeof setCardsData>
     | ReturnType<typeof updateParamsCards>
     | ReturnType<typeof setError>
     | ReturnType<typeof setSearchCardsByQuestion>
     | ReturnType<typeof setSortCards>
-    | ReturnType<typeof loadingCards>;
+    | ReturnType<typeof loadingCards>
+    | ReturnType<typeof setUpdatedCardGrade>;

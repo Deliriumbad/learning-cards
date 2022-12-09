@@ -1,7 +1,7 @@
 import { updateParamsCards } from 'bll/reducers/cards-reducer';
 import { setSortPacks } from 'bll/reducers/packs-reducer';
 import { useAppDispatch, useAppSelector } from 'bll/store/hooks';
-import { NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { ReactComponent as Learn } from 'ui/assets/icons/learn.svg';
 import PackDeleteModal from 'ui/components/Modals/PackDeleteModal/PackDeleteModal';
 import PackEditModal from 'ui/components/Modals/PackEditModal/PackEditModal';
@@ -17,10 +17,12 @@ const PackTable = () => {
     const isLoading = useAppSelector(state => state.packs.packParams.isLoading);
     const userId = useAppSelector(state => state.login.userData._id);
 
+    const navigate = useNavigate();
     const dispatch = useAppDispatch();
 
-    const onOpenPackHandler = (packId: string) => {
+    const onSetCurrentCardsHandler = (packId: string, path: string) => {
         dispatch(updateParamsCards({ cardsPack_id: packId }));
+        navigate(`/${path}/${packId}`);
     };
 
     const onChangePacksSortHandler = (sortType: string) => {
@@ -35,12 +37,10 @@ const PackTable = () => {
         <table>
             <thead className={styles.thead}>
                 <tr>
-                    <th onClick={() => onChangePacksSortHandler('name')}>Name &#8681;</th>
-                    <th onClick={() => onChangePacksSortHandler('cardsCount')}>Cards &#8681;</th>
-                    <th onClick={() => onChangePacksSortHandler('created')}>
-                        Last updated &#8681;
-                    </th>
-                    <th onClick={() => onChangePacksSortHandler('updated')}>Created by &#8681;</th>
+                    <th onClick={() => onChangePacksSortHandler('name')}>Name</th>
+                    <th onClick={() => onChangePacksSortHandler('cardsCount')}>Cards </th>
+                    <th onClick={() => onChangePacksSortHandler('created')}>Last updated;</th>
+                    <th onClick={() => onChangePacksSortHandler('updated')}>Created by</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -50,19 +50,29 @@ const PackTable = () => {
                 <tbody>
                     {packs.map(pack => (
                         <tr key={pack._id}>
-                            <td>{pack.name}</td>
+                            <td>
+                                <button
+                                    onClick={() => {
+                                        onSetCurrentCardsHandler(pack._id, 'Cards');
+                                    }}
+                                    type="button"
+                                >
+                                    {pack.name}
+                                </button>
+                            </td>
                             <td>{pack.cardsCount}</td>
                             <td>{formatDate(pack.updated)}</td>
                             <td>{pack.user_name}</td>
                             <td>
-                                <NavLink
+                                <button
                                     onClick={() => {
-                                        onOpenPackHandler(pack._id);
+                                        onSetCurrentCardsHandler(pack._id, 'learning');
                                     }}
-                                    to={`/Cards/${pack._id}`}
+                                    type="button"
                                 >
                                     <Learn className={styles.icon} />
-                                </NavLink>
+                                </button>
+
                                 {userId === pack.user_id && (
                                     <>
                                         <PackDeleteModal id={pack._id} />
