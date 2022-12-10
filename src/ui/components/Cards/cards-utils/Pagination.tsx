@@ -32,7 +32,7 @@ const Pagination = () => {
 
     return (
         <div>
-            {totalPages === 1 ? null : (
+            {totalPages < 2 ? null : (
                 <div className={styles.pagination}>
                     <p>
                         {currentPage}/{totalPages}

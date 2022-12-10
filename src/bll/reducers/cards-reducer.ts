@@ -11,6 +11,12 @@ export const cardsInitState = {
     packUserId: '',
     error: null as null | string,
 
+    currentCard: {
+        _id: '',
+        answer: '',
+        question: '',
+    },
+
     cardsParams: {
         cardAnswer: '',
         cardQuestion: '',
@@ -35,6 +41,9 @@ export const cardsReducer = (
             return { ...state, ...action.data };
         case 'CARDS/UPDATE_PARAMS_CARDS': {
             return { ...state, cardsParams: { ...state.cardsParams, ...action.params } };
+        }
+        case 'CARDS/SET_CURRENT_CARD': {
+            return { ...state, currentCard: { ...action.card } };
         }
         case 'CARD/SET_UPDATED_CARD_GRADE': {
             return {
@@ -62,7 +71,7 @@ export const cardsReducer = (
     }
 };
 
-export const setCardsData = (data: GetCardsResponseType) =>
+export const setCards = (data: GetCardsResponseType) =>
     ({ type: 'CARDS/SET_CARDS_DATA', data } as const);
 
 export const updateParamsCards = (params: UpdateParamsType) =>
@@ -70,6 +79,9 @@ export const updateParamsCards = (params: UpdateParamsType) =>
 
 export const setSearchCardsByQuestion = (value: string) =>
     ({ type: 'CARDS/SET_SEARCH_BY_QUESTION', value } as const);
+
+export const setCurrentCard = (card: { _id: string; answer: string; question: string }) =>
+    ({ type: 'CARDS/SET_CURRENT_CARD', card } as const);
 
 export const loadingCards = (isLoading: boolean) =>
     ({ type: 'CARDS/IS_LOADING', isLoading } as const);
@@ -86,7 +98,7 @@ export const getRequestCards = (): AppThunk => {
         const { cardsParams } = getState().cards;
         // dispatch(loadingCards(true));
         cardsAPI.getCards(cardsParams).then(res => {
-            dispatch(setCardsData(res.data));
+            dispatch(setCards(res.data));
         });
         // .catch(e => {
         //     const error = e.response
@@ -117,7 +129,8 @@ export const updateGradeRequest = (cardId: string, grade: number): AppThunk => {
 };
 
 export type CardsActionsType =
-    | ReturnType<typeof setCardsData>
+    | ReturnType<typeof setCards>
+    | ReturnType<typeof setCurrentCard>
     | ReturnType<typeof updateParamsCards>
     | ReturnType<typeof setError>
     | ReturnType<typeof setSearchCardsByQuestion>

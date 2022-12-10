@@ -1,20 +1,30 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useState } from 'react';
 
-import { updateGradeRequest } from 'bll/reducers/cards-reducer';
-import { useAppDispatch } from 'bll/store/hooks';
+import { setCurrentCard, updateGradeRequest } from 'bll/reducers/cards-reducer';
+import { useAppDispatch, useAppSelector } from 'bll/store/hooks';
+import Button from 'ui/common/Button/Button';
 
 import styles from './Answer.module.scss';
 
 type AnswerT = {
-    answer: string;
     cardId: string;
+    onSetIsShow: (value: boolean) => void;
 };
 
-const Answer = ({ answer, cardId }: AnswerT) => {
+const Answer = ({ cardId, onSetIsShow }: AnswerT) => {
+    const [grade, setGrade] = useState(0);
+    const currentCard = useAppSelector(state => state.cards.currentCard);
     const dispatch = useAppDispatch();
 
     const onSetGrade = (event: ChangeEvent<HTMLInputElement>) =>
-        dispatch(updateGradeRequest(cardId, Number(event.currentTarget.value)));
+        setGrade(Number(event.currentTarget.value));
+
+    const onNextClickHandler = () => {
+        dispatch(updateGradeRequest(cardId, grade));
+        dispatch(setCurrentCard({ _id: '', answer: '', question: '' }));
+        onSetIsShow(false);
+    };
+
     return (
         <div className={styles.main}>
             <p>
@@ -23,7 +33,7 @@ const Answer = ({ answer, cardId }: AnswerT) => {
             </p>
             <div>
                 <p>
-                    <strong>Answer: {answer}</strong>
+                    <strong>Answer: {currentCard.answer}</strong>
                 </p>
                 <span>Rate yourself</span>
                 <ul>
@@ -49,6 +59,7 @@ const Answer = ({ answer, cardId }: AnswerT) => {
                     </li>
                 </ul>
             </div>
+            <Button onClick={onNextClickHandler}>Next</Button>
         </div>
     );
 };
