@@ -33,8 +33,20 @@
         margin: 0 auto;
     }
 
+    .profile_fields {
+        @include flexForForm(space-evenly, 35rem);
+        width: 30rem;
+        margin: 0 auto;
+        // margin-top: 7rem;
+    }
+
     .field {
         height: 7.5rem;
+    }
+
+    .img {
+        height: 100%;
+        border-radius: 50%;
     }
 
     .checkBoxField {

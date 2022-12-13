@@ -5,12 +5,11 @@ import { useAppDispatch, useAppSelector } from 'bll/store/hooks';
 import { FormikValues, useFormik } from 'formik';
 import { useNavigate, useParams } from 'react-router-dom';
 import { PATH } from 'routes/RoutesPath';
+import styles from 'styles/Form.module.scss';
 import Button from 'ui/common/Button/Button';
 import InputText from 'ui/common/InputText/InputText';
 
 import Preloader from '../../../common/Preloader/Preloader';
-
-import s from './NewPassword.module.scss';
 
 type Error = {
     password?: string;
@@ -59,38 +58,44 @@ const NewPassword = () => {
     }
 
     return (
-        <div className={s.container}>
-            <form onSubmit={formik.handleSubmit} className={s.form}>
-                <div className={s.title}>Create new password</div>
-                <div className={s.inputGroup}>
-                    <InputText
-                        type="text"
-                        id="password"
-                        placeholder=" "
-                        {...formik.getFieldProps('password')}
-                    />
-                    <label htmlFor="password">New Password</label>
-                    {formik.errors.password && formik.touched.password && (
-                        <div className={s.error}>{formik.errors.password}</div>
-                    )}
+        <div className={styles.container}>
+            <form onSubmit={formik.handleSubmit} className={styles.form}>
+                <span className={styles.title}>Create new password</span>
+                <div className={styles.login_fields}>
+                    <div className={styles.field}>
+                        <label className={styles.label} htmlFor="password">
+                            New Password
+                        </label>
+                        <InputText
+                            type="text"
+                            id="password"
+                            placeholder=" "
+                            {...formik.getFieldProps('password')}
+                        />
+                        {formik.errors.password && formik.touched.password && (
+                            <span className={styles.error}>{formik.errors.password}</span>
+                        )}
+                    </div>
+                    <div className={styles.field}>
+                        <label className={styles.label} htmlFor="confirmPassword">
+                            Confirm New Password
+                        </label>
+                        <InputText
+                            type="text"
+                            id="confirmPassword"
+                            placeholder=" "
+                            {...formik.getFieldProps('confirmPassword')}
+                        />
+                        {formik.touched.confirmPassword && formik.errors.confirmPassword && (
+                            <span className={styles.error}>{formik.errors.confirmPassword}</span>
+                        )}
+                        {error && <span className={styles.error}>{error}</span>}
+                    </div>
                 </div>
-                <div className={s.inputGroup}>
-                    <InputText
-                        type="text"
-                        id="confirmPassword"
-                        placeholder=" "
-                        {...formik.getFieldProps('confirmPassword')}
-                    />
-                    <label htmlFor="confirmPassword">Confirm New Password</label>
-                    {formik.touched.confirmPassword && formik.errors.confirmPassword && (
-                        <div className={s.error}>{formik.errors.confirmPassword}</div>
-                    )}
-                    {error && <div className={s.errorResponse}>{error}</div>}
-                </div>
-                <div className={s.message}>
+                <span className={styles.message}>
                     Create new password and we will send you further instructions to email
-                </div>
-                <Button type="submit" className={s.button}>
+                </span>
+                <Button type="submit" className={styles.btn}>
                     Create new password
                 </Button>
             </form>

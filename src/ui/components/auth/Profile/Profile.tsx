@@ -1,16 +1,15 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
+import styles from 'styles/Form.module.scss';
+import Button from 'ui/common/Button/Button';
 
 import { logoutTC } from '../../../../bll/reducers/login-reducer';
 import { updateUserProfileTC } from '../../../../bll/reducers/profile-reducer';
 import { useAppDispatch, useAppSelector } from '../../../../bll/store/hooks';
 import { PATH } from '../../../../routes/RoutesPath';
 import dog from '../../../assets/images/dog.png';
-import logout from '../../../assets/images/logout.png';
 import EditableSpan from '../../../common/EditableSpan/EditableSpan';
-
-import s from './Profile.module.scss';
 
 const Profile = () => {
     const isLoggedIn = useAppSelector(state => state.login.isLoggedIn);
@@ -45,26 +44,25 @@ const Profile = () => {
     }, [isLoggedIn, userEmail, userName]);
 
     return (
-        <div className={s.container}>
-            <div className={s.card_style}>
-                <div className={s.title}>Personal Information</div>
-                <div className={s.photo}>
-                    <img src={dog} alt="dog" className={s.image} />
+        <div className={styles.form}>
+            <span className={styles.title}>Personal Information</span>
+            <div className={styles.profile_fields}>
+                <div className={styles.field}>
+                    <img src={dog} alt="dog" className={styles.img} />
                 </div>
-                <div className={s.email}>{userEmail}</div>
-                <div className={s.name}>
+                <div className={styles.message}>{userEmail}</div>
+                <div className={styles.message}>
                     <EditableSpan
-                        className={s.span}
+                        className={styles.span}
                         onChange={onChangeHandler}
                         onBlur={onSpanHandler}
                         onEnter={onSpanHandler}
                         value={name}
                     />
                 </div>
-                <button type="button" className={s.button_style} onClick={onClickHandler}>
-                    <img src={logout} className={s.log_out_png} alt="img" />
-                    <div className={s.title_button}>log out</div>
-                </button>
+                <Button type="button" className={styles.btn} onClick={onClickHandler}>
+                    log out
+                </Button>
             </div>
         </div>
     );

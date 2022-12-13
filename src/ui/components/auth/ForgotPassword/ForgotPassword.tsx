@@ -56,7 +56,7 @@ const ForgotPassword = () => {
                 <CheckEmail />
             ) : (
                 <form onSubmit={formik.handleSubmit} className={styles.form}>
-                    <div className={styles.title}>Forgot your password?</div>
+                    <span className={styles.title}>Forgot your password?</span>
                     <div className={styles.forgot_password_fields}>
                         <div className={styles.field}>
                             <label className={styles.label} htmlFor="email">
