@@ -29,16 +29,13 @@ const Checkbox: React.FC<SuperCheckboxPropsType> = ({
     const finalInputClassName = `${s.checkbox} ${className || ''}`;
 
     return (
-        <label htmlFor="checkbox" className={s.checkboxLabel}>
-            <input
-                id="checkbox"
-                type="checkbox"
-                onChange={onChangeCallback}
-                className={finalInputClassName}
-                {...restProps}
-            />
-            {children && <span className={s.spanClassName}>{children}</span>}
-        </label>
+        <input
+            id="checkbox"
+            type="checkbox"
+            onChange={onChangeCallback}
+            className={finalInputClassName}
+            {...restProps}
+        />
     );
 };
 

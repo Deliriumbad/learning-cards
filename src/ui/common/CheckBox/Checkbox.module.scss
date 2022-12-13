@@ -1,17 +1,14 @@
 .checkbox {
-  appearance: none;
-  width: 16px;
-  height: 16px;
-  margin: 0;
-  background: #f6f6f6;
-  border: 1px solid #9f9f9f;
-  cursor: pointer;
-
-  &:checked {
     appearance: none;
-    background-image: url("check_img.png");
-  }
-}
+    width: 1.6rem;
+    height: 1.6rem;
+    margin: 0;
+    background: #f6f6f6;
+    border: 1px solid #9f9f9f;
+    cursor: pointer;
 
-.spanClassName {
+    &:checked {
+        appearance: none;
+        background-image: url('check_img.png');
+    }
 }

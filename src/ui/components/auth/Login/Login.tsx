@@ -22,7 +22,7 @@ type FormikErrorType = {
 const Login = () => {
     const isFetching = useAppSelector(state => state.login.isFetching);
     const isLoggedIn = useAppSelector(state => state.login.isLoggedIn);
-    const error = useAppSelector(state => state.login.emailError);
+    const responseError = useAppSelector(state => state.login.emailError);
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
 
@@ -64,53 +64,56 @@ const Login = () => {
     }
 
     return (
-        <div className={s.container}>
-            <form onSubmit={formik.handleSubmit} className={s.form}>
-                <div className={s.title}>Sign in</div>
-                <div className={s.inputGroup}>
-                    <InputText
-                        type="email"
-                        id="email"
-                        {...formik.getFieldProps('email')}
-                        placeholder=" "
-                    />
-                    <label htmlFor="email">Email</label>
+        <form onSubmit={formik.handleSubmit} className={s.form}>
+            <span className={s.title}>Sign in</span>
+
+            <div className={s.fields}>
+                <div className={s.field}>
+                    <label className={s.label} htmlFor="email">
+                        Email
+                    </label>
+                    <InputText type="email" id="email" {...formik.getFieldProps('email')} />
                     {formik.errors.email && formik.touched.email && (
-                        <div className={s.error}>{formik.errors.email}</div>
+                        <span className={s.error}>{formik.errors.email}</span>
                     )}
                 </div>
-                <div className={s.inputGroup}>
+
+                <div className={s.field}>
+                    <label className={s.label} htmlFor="password">
+                        Password
+                    </label>
                     <InputText
                         type="password"
                         id="password"
                         {...formik.getFieldProps('password')}
-                        placeholder=" "
                     />
-                    <label htmlFor="password">Password</label>
                     {formik.errors.password && formik.touched.password && (
-                        <div className={s.error}>{formik.errors.password}</div>
+                        <span className={s.error}>{formik.errors.password}</span>
                     )}
-                    {error && <div className={s.errorResponse}>{error}</div>}
+                    {responseError && <span className={s.error}>{responseError}</span>}
                 </div>
-                <label className={s.checkbox}>
+
+                <div className={s.checkBoxField}>
+                    <label htmlFor="checkbox">Remember me</label>
                     <Checkbox
+                        id="checkbox"
                         {...formik.getFieldProps('rememberMe')}
                         checked={formik.values.rememberMe}
-                    />{' '}
-                    Remember me
-                </label>
-                <NavLink to={PATH.forgotPassword} className={s.forgotPass}>
-                    Forgot password?
-                </NavLink>
-                <Button type="submit" className={s.button}>
-                    Sign In
-                </Button>
-                <div className={s.message}>Already have an account?</div>
-                <NavLink to={PATH.registration} className={s.signUp}>
-                    Sign Up
-                </NavLink>
-            </form>
-        </div>
+                    />
+                </div>
+            </div>
+
+            <NavLink to={PATH.forgotPassword} className={s.link}>
+                Forgot password?
+            </NavLink>
+            <Button type="submit" className={s.btn}>
+                Sign In
+            </Button>
+            <div className={s.message}>Already have an account?</div>
+            <NavLink to={PATH.registration} className={s.link}>
+                Sign Up
+            </NavLink>
+        </form>
     );
 };
 

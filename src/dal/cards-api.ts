@@ -19,7 +19,7 @@ export const cardsAPI = {
         });
     },
     gradeCard(cardId: string, grade: number) {
-        return instance.put<RateResponseT>('cards/grade', { grade, card_id: cardId });
+        return instance.put<GradeResponseT>('cards/grade', { grade, card_id: cardId });
     },
 };
 
@@ -92,7 +92,7 @@ export type UpdateParamsType = {
     pageCount?: number;
 };
 
-export type RateResponseT = {
+export type GradeResponseT = {
     _id: string;
     cardsPack_id: string;
     card_id: string;

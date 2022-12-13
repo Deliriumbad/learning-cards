@@ -3,8 +3,9 @@ import React, { useEffect } from 'react';
 import './App.scss';
 import { requestInitial } from 'bll/reducers/app-reducer';
 import { useAppDispatch, useAppSelector } from 'bll/store/hooks';
+import RoutesPath from 'routes/RoutesPath';
 import Preloader from 'ui/common/Preloader/Preloader';
-import Pages from 'ui/components/pages/Pages';
+import Layout from 'ui/components/pages/Layout';
 
 const App = () => {
     const dispatch = useAppDispatch();
@@ -20,7 +21,9 @@ const App = () => {
 
     return (
         <div className="App">
-            <Pages />
+            <Layout>
+                <RoutesPath />
+            </Layout>
         </div>
     );
 };

@@ -1,143 +1,86 @@
-.container {
-  background-color: gainsboro;
-  min-height: calc(100vh - 70px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-
-  .loading {
-    position: absolute;
-    left: 10%;
-    top: 10%;
-  }
-
-  .form {
+.form {
     display: flex;
     flex-direction: column;
-    width: 400px;
-    height: 500px;
-    align-items: flex-start;
-    border: solid #c6c6c6 1px;
-    box-shadow: 3px 3px 7px 0px rgba(0, 0, 0, 0.25);
-    border-radius: 3px;
-    position: relative;
-    background-color: lightgrey;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 0 auto;
+    width: 40rem;
+    height: 50rem;
+    background-color: #fff;
+    box-shadow: 0 0 1.8rem 1rem rgba(0, 0, 0, 0.2);
+    border-radius: 0.5rem;
 
     .title {
-      align-self: center;
-      margin: 40px 0 40px;
-      font-size: 26px;
-      font-weight: bold;
+        text-transform: uppercase;
+        font-size: 2.5rem;
+        color: #333;
+        font-weight: 600;
     }
 
-    .inputGroup {
-      position: relative;
-      margin-bottom: 25px;
-      align-self: center;
+    .fields {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 30rem;
+        height: 20rem;
+        margin: 0 auto;
 
-      input {
-        width: 295px;
-        border: none;
-        border-bottom: 2px solid white;
-        border-radius: 0;
-        outline: none;
-        font-size: 16px;
-        box-shadow: inset 20px 20px 0px 20px lightgrey;
-        margin-bottom: 0;
-        padding-bottom: 3px;
-
-        &:focus ~ label, &:not(:placeholder-shown) ~ label {
-          transform: translateY(-18px) scale(0.8);
+        .field {
+            height: 7.5rem;
         }
-      }
 
-      label {
-        position: absolute;
-        left: 12px;
-        top: 10px;
-        transition: 0.2s ease-in-out;
-        transform-origin: 0 0;
+        .checkBoxField {
+            display: flex;
+
+            label {
+                font-size: 1.4rem;
+                font-weight: 500;
+                text-transform: uppercase;
+                margin-right: 1rem;
+            }
+        }
+
+        .label {
+            text-align: left;
+            display: block;
+            font-size: 1.4rem;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+    }
+
+    .error {
+        color: #990000;
         font-size: 1.4rem;
-      }
-
-      .error {
-        color: #990000;
-        align-self: center;
-        height: 16px;
-        position: absolute;
-        left: 12px;
-        font-size: 14px;
-      }
-
-      .errorResponse {
-        color: #990000;
-        align-self: center;
-        height: 16px;
-        position: absolute;
-        left: 12px;
-        bottom: -30px;
-        font-size: 14px;
-      }
     }
 
-    .checkbox {
-      align-self: flex-start;
-      margin-left: 50px;
-      margin-top: 20px;
-      font-size: 1.4rem;
-    }
-
-    .forgotPass {
-      align-self: flex-end;
-      margin-right: 50px;
-      text-decoration: none;
-      color: black;
-      margin-bottom: 30px;
-      font-size: 1.4rem;
-    }
-
-    .button {
-      align-self: center;
-      width: 300px;
-      height: 35px;
-      border-radius: 10px;
-      font-weight: bolder;
-      letter-spacing: 1.2px;
-      font-size: 16px;
+    .btn {
+        width: 30rem;
+        border-radius: 10px;
+        font-weight: bolder;
+        letter-spacing: 1.2px;
+        font-size: 1.6rem;
     }
 
     .message {
-      align-self: center;
-      color: grey;
-      margin-top: 15px;
-      font-size: 1.4rem;
+        color: #333;
+        font-size: 1.4rem;
     }
 
-    .signUp {
-      align-self: center;
-      margin-top: 20px;
-      font-weight: bolder;
-      letter-spacing: 1.2px;
-      color: #091349;
-      font-size: 1.6rem;
-      text-decoration: underline;
+    .link {
+        text-transform: uppercase;
+        font-weight: bolder;
+        letter-spacing: 0.2rem;
+        color: #091349;
+        font-size: 1.6rem;
     }
-  }
-  .errorRes {
-    color: #990000;
-    height: 20px;
-    width: 400px;
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
-    font-size: 1.8rem;
-  }
 }
-
-
-
-
-
-
-
+// .errorRes {
+//     color: #990000;
+//     height: 20px;
+//     width: 400px;
+//     position: absolute;
+//     bottom: 10px;
+//     left: 10px;
+//     font-size: 1.8rem;
+// }

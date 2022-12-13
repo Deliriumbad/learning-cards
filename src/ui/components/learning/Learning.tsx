@@ -1,36 +1,33 @@
 import { useEffect, useState } from 'react';
 
-import { getRequestCards, setCurrentCard, updateParamsCards } from 'bll/reducers/cards-reducer';
-import { useAppDispatch, useAppSelector } from 'bll/store/hooks';
+import { getRequestCurrentCards, updateParamsCards } from 'bll/reducers/cards-reducer';
+import { useAppDispatch } from 'bll/store/hooks';
 import { useParams } from 'react-router-dom';
-import { getSmartRandom } from 'utils/getSmartRandom';
 
 import Answer from './Answer';
 import Question from './Question';
 
 const Learning = () => {
     const [showAnswer, setShowAnswer] = useState(false);
-    const cards = useAppSelector(state => state.cards.cards);
-    const currentCard = useAppSelector(state => state.cards.currentCard);
+    // const id = useAppSelector(state => state.cards.cardsParams.cardsPack_id);
+
     const dispatch = useAppDispatch();
 
     const params = useParams();
 
     useEffect(() => {
         dispatch(updateParamsCards({ cardsPack_id: params.packId }));
-        dispatch(getRequestCards());
-    }, [dispatch]);
+        dispatch(getRequestCurrentCards());
+    }, []);
 
-    useEffect(() => {
-        cards.length && dispatch(setCurrentCard(getSmartRandom(cards)));
-    }, [cards]);
+    // useEffect(() => {}, [id]);
 
     return (
         <>
             <h1>Learn</h1>
             <div>
                 {showAnswer ? (
-                    <Answer onSetIsShow={setShowAnswer} cardId={currentCard._id} />
+                    <Answer onSetIsShow={setShowAnswer} />
                 ) : (
                     <Question onSetIsShow={setShowAnswer} />
                 )}

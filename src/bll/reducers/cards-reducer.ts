@@ -1,3 +1,5 @@
+import { getSmartRandom } from 'utils/getSmartRandom';
+
 import { cardsAPI, CardType, GetCardsResponseType, UpdateParamsType } from '../../dal/cards-api';
 import { AppThunk } from '../store/store';
 
@@ -10,6 +12,8 @@ export const cardsInitState = {
     pageCount: 4,
     packUserId: '',
     error: null as null | string,
+
+    load: false,
 
     currentCard: {
         _id: '',
@@ -41,6 +45,9 @@ export const cardsReducer = (
             return { ...state, ...action.data };
         case 'CARDS/UPDATE_PARAMS_CARDS': {
             return { ...state, cardsParams: { ...state.cardsParams, ...action.params } };
+        }
+        case 'CARDS/LOAD': {
+            return { ...state, load: action.isLoading };
         }
         case 'CARDS/SET_CURRENT_CARD': {
             return { ...state, currentCard: { ...action.card } };
@@ -86,29 +93,33 @@ export const setCurrentCard = (card: { _id: string; answer: string; question: st
 export const loadingCards = (isLoading: boolean) =>
     ({ type: 'CARDS/IS_LOADING', isLoading } as const);
 
+export const load = (isLoading: boolean) => ({ type: 'CARDS/LOAD', isLoading } as const);
+
 export const setSortCards = (value: string) => ({ type: 'CARDS/SET_SORT_CARDS', value } as const);
 
 export const setError = (error: string | null) => ({ type: 'CARDS/SET_ERROR', error } as const);
 
-export const setUpdatedCardGrade = (gradeData: { cardId: string; grade: number }) =>
+export const setUpdatedCardGrade = (gradeData: { cardId: string | undefined; grade: number }) =>
     ({ type: 'CARD/SET_UPDATED_CARD_GRADE', gradeData } as const);
 
 export const getRequestCards = (): AppThunk => {
     return (dispatch, getState) => {
         const { cardsParams } = getState().cards;
-        // dispatch(loadingCards(true));
         cardsAPI.getCards(cardsParams).then(res => {
             dispatch(setCards(res.data));
         });
-        // .catch(e => {
-        //     const error = e.response
-        //         ? e.response.data.error
-        //         : `${e.message}, more details in the console`;
-        //     dispatch(setError(error));
-        // })
-        // .finally(() => {
-        //     dispatch(loadingCards(false));
-        // });
+    };
+};
+
+export const getRequestCurrentCards = (): AppThunk => {
+    return (dispatch, getState) => {
+        const { cardsParams } = getState().cards;
+        dispatch(load(true));
+        cardsAPI.getCards(cardsParams).then(res => {
+            dispatch(setCards(res.data));
+            dispatch(load(false));
+            dispatch(setCurrentCard(getSmartRandom(res.data.cards)));
+        });
     };
 };
 
@@ -136,4 +147,5 @@ export type CardsActionsType =
     | ReturnType<typeof setSearchCardsByQuestion>
     | ReturnType<typeof setSortCards>
     | ReturnType<typeof loadingCards>
+    | ReturnType<typeof load>
     | ReturnType<typeof setUpdatedCardGrade>;

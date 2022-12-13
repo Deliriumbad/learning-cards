@@ -1,17 +1,16 @@
 import { ChangeEvent, useState } from 'react';
 
-import { setCurrentCard, updateGradeRequest } from 'bll/reducers/cards-reducer';
+import { getRequestCurrentCards, updateGradeRequest } from 'bll/reducers/cards-reducer';
 import { useAppDispatch, useAppSelector } from 'bll/store/hooks';
 import Button from 'ui/common/Button/Button';
 
 import styles from './Answer.module.scss';
 
 type AnswerT = {
-    cardId: string;
     onSetIsShow: (value: boolean) => void;
 };
 
-const Answer = ({ cardId, onSetIsShow }: AnswerT) => {
+const Answer = ({ onSetIsShow }: AnswerT) => {
     const [grade, setGrade] = useState(0);
     const currentCard = useAppSelector(state => state.cards.currentCard);
     const dispatch = useAppDispatch();
@@ -20,8 +19,8 @@ const Answer = ({ cardId, onSetIsShow }: AnswerT) => {
         setGrade(Number(event.currentTarget.value));
 
     const onNextClickHandler = () => {
-        dispatch(updateGradeRequest(cardId, grade));
-        dispatch(setCurrentCard({ _id: '', answer: '', question: '' }));
+        dispatch(updateGradeRequest(currentCard._id, grade));
+        dispatch(getRequestCurrentCards());
         onSetIsShow(false);
     };
 
