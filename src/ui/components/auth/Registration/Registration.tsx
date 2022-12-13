@@ -4,12 +4,10 @@ import { requestRegistration } from 'bll/reducers/register-reducer';
 import { useAppSelector, useAppDispatch } from 'bll/store/hooks';
 import { FormikValues, useFormik } from 'formik';
 import { useNavigate, NavLink } from 'react-router-dom';
+import { PATH } from 'routes/RoutesPath';
+import styles from 'styles/Form.module.scss';
 import Button from 'ui/common/Button/Button';
 import InputText from 'ui/common/InputText/InputText';
-
-import { PATH } from '../../../../routes/RoutesPath';
-
-import s from './Registration.module.scss';
 
 type Error = {
     email?: string;
@@ -61,55 +59,61 @@ const Registration = () => {
     });
 
     return (
-        <div className={s.container}>
-            <form onSubmit={formik.handleSubmit} className={s.form}>
-                <div className={s.title}>Sign Up</div>
-                <div className={s.inputGroup}>
+        <form onSubmit={formik.handleSubmit} className={styles.form}>
+            <span className={styles.title}>Sign Up</span>
+            <div className={styles.registration_fields}>
+                <div className={styles.field}>
+                    <label className={styles.label} htmlFor="email">
+                        Email
+                    </label>
                     <InputText
                         type="text"
                         id="email"
                         placeholder=" "
                         {...formik.getFieldProps('email')}
                     />
-                    <label htmlFor="email">Email</label>
                     {formik.errors.email && formik.touched.email && (
-                        <div className={s.error}>{formik.errors.email}</div>
+                        <span className={styles.error}>{formik.errors.email}</span>
                     )}
                 </div>
-                <div className={s.inputGroup}>
+                <div className={styles.field}>
+                    <label className={styles.label} htmlFor="password">
+                        Password
+                    </label>
                     <InputText
                         type="text"
                         id="password"
                         placeholder=" "
                         {...formik.getFieldProps('password')}
                     />
-                    <label htmlFor="password">Password</label>
                     {formik.errors.password && formik.touched.password && (
-                        <div className={s.error}>{formik.errors.password}</div>
+                        <span className={styles.error}>{formik.errors.password}</span>
                     )}
                 </div>
-                <div className={s.inputGroup}>
+                <div className={styles.field}>
+                    <label className={styles.label} htmlFor="confirmPassword">
+                        Confirm Password
+                    </label>
                     <InputText
                         type="text"
                         id="confirmPassword"
                         placeholder=" "
                         {...formik.getFieldProps('confirmPassword')}
                     />
-                    <label htmlFor="confirmPassword">Confirm Password</label>
                     {formik.touched.confirmPassword && formik.errors.confirmPassword && (
-                        <div className={s.error}>{formik.errors.confirmPassword}</div>
+                        <span className={styles.error}>{formik.errors.confirmPassword}</span>
                     )}
-                    {error && <div className={s.errorResponse}>{error}</div>}
+                    {error && <span className={styles.errorResponse}>{error}</span>}
                 </div>
-                <Button type="submit" className={s.button}>
-                    Sign Up
-                </Button>
-                <div className={s.message}>Already have an account?</div>
-                <NavLink to={PATH.login} className={s.signIn}>
-                    Sign In
-                </NavLink>
-            </form>
-        </div>
+            </div>
+            <Button type="submit" className={styles.btn}>
+                Sign Up
+            </Button>
+            <span className={styles.message}>Already have an account?</span>
+            <NavLink to={PATH.login} className={styles.link}>
+                Sign In
+            </NavLink>
+        </form>
     );
 };
 

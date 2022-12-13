@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 
 import { useFormik } from 'formik';
 import { NavLink, useNavigate } from 'react-router-dom';
+import styles from 'styles/Form.module.scss';
 
 import { requestLogin } from '../../../../bll/reducers/login-reducer';
 import { useAppDispatch, useAppSelector } from '../../../../bll/store/hooks';
@@ -10,8 +11,6 @@ import Button from '../../../common/Button/Button';
 import Checkbox from '../../../common/CheckBox/Checkbox';
 import InputText from '../../../common/InputText/InputText';
 import Preloader from '../../../common/Preloader/Preloader';
-
-import s from './Login.module.scss';
 
 type FormikErrorType = {
     email?: string;
@@ -64,22 +63,22 @@ const Login = () => {
     }
 
     return (
-        <form onSubmit={formik.handleSubmit} className={s.form}>
-            <span className={s.title}>Sign in</span>
+        <form onSubmit={formik.handleSubmit} className={styles.form}>
+            <span className={styles.title}>Sign in</span>
 
-            <div className={s.fields}>
-                <div className={s.field}>
-                    <label className={s.label} htmlFor="email">
+            <div className={styles.login_fields}>
+                <div className={styles.field}>
+                    <label className={styles.label} htmlFor="email">
                         Email
                     </label>
                     <InputText type="email" id="email" {...formik.getFieldProps('email')} />
                     {formik.errors.email && formik.touched.email && (
-                        <span className={s.error}>{formik.errors.email}</span>
+                        <span className={styles.error}>{formik.errors.email}</span>
                     )}
                 </div>
 
-                <div className={s.field}>
-                    <label className={s.label} htmlFor="password">
+                <div className={styles.field}>
+                    <label className={styles.label} htmlFor="password">
                         Password
                     </label>
                     <InputText
@@ -88,12 +87,12 @@ const Login = () => {
                         {...formik.getFieldProps('password')}
                     />
                     {formik.errors.password && formik.touched.password && (
-                        <span className={s.error}>{formik.errors.password}</span>
+                        <span className={styles.error}>{formik.errors.password}</span>
                     )}
-                    {responseError && <span className={s.error}>{responseError}</span>}
+                    {responseError && <span className={styles.error}>{responseError}</span>}
                 </div>
 
-                <div className={s.checkBoxField}>
+                <div className={styles.checkBoxField}>
                     <label htmlFor="checkbox">Remember me</label>
                     <Checkbox
                         id="checkbox"
@@ -103,14 +102,14 @@ const Login = () => {
                 </div>
             </div>
 
-            <NavLink to={PATH.forgotPassword} className={s.link}>
+            <NavLink to={PATH.forgotPassword} className={styles.link}>
                 Forgot password?
             </NavLink>
-            <Button type="submit" className={s.btn}>
+            <Button type="submit" className={styles.btn}>
                 Sign In
             </Button>
-            <div className={s.message}>Already have an account?</div>
-            <NavLink to={PATH.registration} className={s.link}>
+            <div className={styles.message}>Already have an account?</div>
+            <NavLink to={PATH.registration} className={styles.link}>
                 Sign Up
             </NavLink>
         </form>

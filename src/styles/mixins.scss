@@ -1,0 +1,6 @@
+@mixin flexForForm($layout, $height) {
+    display: flex;
+    flex-direction: column;
+    justify-content: $layout;
+    height: $height;
+}

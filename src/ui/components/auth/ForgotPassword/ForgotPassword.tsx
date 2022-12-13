@@ -4,6 +4,7 @@ import { requestForgotPassword } from 'bll/reducers/forgot-password-reducer';
 import { useAppDispatch, useAppSelector } from 'bll/store/hooks';
 import { FormikValues, useFormik } from 'formik';
 import { NavLink } from 'react-router-dom';
+import styles from 'styles/Form.module.scss';
 import Button from 'ui/common/Button/Button';
 import InputText from 'ui/common/InputText/InputText';
 
@@ -11,7 +12,6 @@ import { PATH } from '../../../../routes/RoutesPath';
 import Preloader from '../../../common/Preloader/Preloader';
 
 import CheckEmail from './CheckEmail';
-import s from './ForgotPassword.module.scss';
 
 type Error = {
     email?: string;
@@ -51,33 +51,37 @@ const ForgotPassword = () => {
     }
 
     return (
-        <div className={s.container}>
+        <div>
             {successfulSend ? (
                 <CheckEmail />
             ) : (
-                <form onSubmit={formik.handleSubmit} className={s.form}>
-                    <div className={s.title}>Forgot your password?</div>
-                    <div className={s.inputGroup}>
-                        <InputText
-                            type="text"
-                            id="email"
-                            placeholder=" "
-                            {...formik.getFieldProps('email')}
-                        />
-                        <label htmlFor="email">Email</label>
-                        {formik.errors.email && formik.touched.email && (
-                            <div className={s.error}>{formik.errors.email}</div>
-                        )}
-                        {error && <div className={s.errorResponse}>{error}</div>}
+                <form onSubmit={formik.handleSubmit} className={styles.form}>
+                    <div className={styles.title}>Forgot your password?</div>
+                    <div className={styles.forgot_password_fields}>
+                        <div className={styles.field}>
+                            <label className={styles.label} htmlFor="email">
+                                Email
+                            </label>
+                            <InputText
+                                type="text"
+                                id="email"
+                                placeholder=" "
+                                {...formik.getFieldProps('email')}
+                            />
+                            {formik.errors.email && formik.touched.email && (
+                                <div className={styles.error}>{formik.errors.email}</div>
+                            )}
+                            {error && <div className={styles.error}>{error}</div>}
+                        </div>
                     </div>
-                    <div className={s.fist_message}>
+                    <div className={styles.message}>
                         Enter your email address and we will send you further instructions
                     </div>
-                    <Button type="submit" className={s.button}>
+                    <Button type="submit" className={styles.btn}>
                         Send Instructions
                     </Button>
-                    <div className={s.second_message}>Did you remember your password?</div>
-                    <NavLink to={PATH.login} className={s.signIn}>
+                    <div className={styles.message}>Did you remember your password?</div>
+                    <NavLink to={PATH.login} className={styles.link}>
                         Try logging in
                     </NavLink>
                 </form>
