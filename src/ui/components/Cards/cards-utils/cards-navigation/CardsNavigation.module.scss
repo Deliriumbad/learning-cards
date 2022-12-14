@@ -1,0 +1,27 @@
+@import 'styles/mixins.scss';
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 7rem;
+
+    .links {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        list-style: none;
+
+        .item {
+            list-style-type: none;
+
+            &:last-child {
+                width: 30rem;
+            }
+
+            .link:link {
+                @include link();
+            }
+        }
+    }
+}

@@ -1,26 +1,11 @@
 .wrapper {
-    max-width: 1300px;
-    margin: 35px auto;
-    padding: 25px 50px;
     border-radius: 8px;
     border: solid #c6c6c6 1px;
     box-shadow: 3px 3px 7px 0px rgba(0, 0, 0, 0.25);
-    background-color: gainsboro;
 
     .nav {
         display: flex;
-        flex-direction: row;
         justify-content: space-evenly;
-
-        .button {
-            width: 250px;
-            height: 35px;
-        }
-
-        .input {
-            width: 250px;
-            height: 35px;
-        }
     }
 }
 

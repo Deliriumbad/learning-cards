@@ -1,31 +1,22 @@
 .default {
-  text-decoration: none;
-  display: inline-block;
-  padding: 5px 15px;
-  margin: 10px 20px;
-  border-radius: 5px;
-  color: white;
-  box-shadow: 3px 3px 7px 0px rgba(9, 19, 73, 0.5);
-  font-family: 'Montserrat', sans-serif;
-  font-weight: bold;
-  letter-spacing: 1px;
-  width: 100px;
-  text-align: center;
-  background-color: #091349;
-  border-color: #091349;;
+    text-decoration: none;
+    display: inline-block;
+    min-width: 10rem;
+    padding: 0.7rem 1.5rem;
+    margin: 1rem 2rem;
+    border-radius: 1rem;
+    font-weight: 600;
+    text-align: center;
+    text-transform: uppercase;
+    color: white;
+    box-shadow: .3rem .5rem 0.3rem 0.1rem rgba(102, 117, 204, 0.5);
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 1px;
+    background-color: #525d9b;
+    transition: all 0.3s;
 
-  &:hover {
-    box-shadow: 5px 5px 8px 0px rgba(9, 19, 73, 0.6);
-    cursor: pointer;
-    align-items: center;
-    justify-content: center;
-    transition: .4s ease-in-out;
-    scale: 1.03;
-  }
+    &:hover {
+        cursor: pointer;
+        background-color: #333e7a;
+    }
 }
-
-
-
-
-
-

@@ -31,7 +31,7 @@ const PackCreateModal = () => {
                     setShowModal(true);
                 }}
             >
-                Add
+                Add pack
             </Button>
             <Modal show={showModal} backgroundOnClick={() => setShowModal(false)}>
                 <header className={styles.header}>Add Pack</header>

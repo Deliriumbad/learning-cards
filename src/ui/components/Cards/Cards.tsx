@@ -1,24 +1,17 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
-import {
-    getRequestCards,
-    setSearchCardsByQuestion,
-    updateParamsCards,
-} from '../../../bll/reducers/cards-reducer';
+import { getRequestCards, updateParamsCards } from '../../../bll/reducers/cards-reducer';
 import { useAppDispatch, useAppSelector } from '../../../bll/store/hooks';
-import { PATH } from '../../../routes/RoutesPath';
-import Button from '../../common/Button/Button';
-import InputText from '../../common/InputText/InputText';
 
+import CardsNavigation from './cards-utils/cards-navigation/CardsNavigation';
 import CardsTable from './cards-utils/CardsTable';
 import Pagination from './cards-utils/Pagination';
 import styles from './Cards.module.scss';
 
 const Cards = () => {
     const dispatch = useAppDispatch();
-    const navigate = useNavigate();
 
     const cardPage = useAppSelector(state => state.cards.cardsParams.page);
     const cardQuestion = useAppSelector(state => state.cards.cardsParams.cardQuestion);
@@ -26,42 +19,17 @@ const Cards = () => {
 
     const params = useParams();
 
-    const [value, setValue] = useState<string>('');
-
-    const onChangeSearchCardsHandler = (event: ChangeEvent<HTMLInputElement>) => {
-        setValue(event.target.value);
-        dispatch(setSearchCardsByQuestion(value));
-    };
-
-    const onButtonHandler = () => {
-        navigate(PATH.packs);
-    };
-
     useEffect(() => {
         dispatch(updateParamsCards({ cardsPack_id: params.packId }));
     }, []);
 
     useEffect(() => {
         dispatch(getRequestCards());
-    }, [value, cardPage, cardQuestion, cardAnswer]);
+    }, [cardPage, cardQuestion, cardAnswer]);
 
     return (
         <div className={styles.cardsPage}>
-            <div className={styles.nav}>
-                <div>
-                    <Button onClick={onButtonHandler} className={styles.button}>
-                        &#10094; Back to Packs List
-                    </Button>
-                </div>
-                <div>
-                    <InputText
-                        placeholder="Search by question..."
-                        className={styles.input}
-                        onChange={onChangeSearchCardsHandler}
-                        value={value}
-                    />
-                </div>
-            </div>
+            <CardsNavigation />
             <div className={styles.tableBlock}>
                 <CardsTable />
                 <div className={styles.pagination}>
