@@ -11,6 +11,7 @@ import { useParams } from 'react-router-dom';
 import Button from 'ui/common/Button/Button';
 import { getSmartRandom } from 'utils/getSmartRandom';
 
+import EmptyPack from './EmptyPack';
 import styles from './Learning.module.scss';
 
 const Learning = () => {
@@ -42,6 +43,10 @@ const Learning = () => {
         dispatch(setCurrentCard(getSmartRandom(cards)));
         setShowAnswer(false);
     };
+
+    if (cards.length === 0) {
+        return <EmptyPack />;
+    }
 
     return (
         <div>

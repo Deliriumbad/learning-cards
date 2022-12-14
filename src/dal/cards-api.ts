@@ -18,6 +18,9 @@ export const cardsAPI = {
             },
         });
     },
+    createCards(data: GetCardsParamsType) {
+        return instance.post<GetCardsResponseType>('cards/card', { params: data });
+    },
     gradeCard(cardId: string, grade: number) {
         return instance.put<GradeResponseT>('cards/grade', { grade, card_id: cardId });
     },

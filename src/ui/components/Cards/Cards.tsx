@@ -19,11 +19,12 @@ const Cards = () => {
 
     const params = useParams();
 
-    useEffect(() => {
-        dispatch(updateParamsCards({ cardsPack_id: params.packId }));
-    }, []);
+    // useEffect(() => {
+    //     dispatch(updateParamsCards({ cardsPack_id: params.packId }));
+    // }, []);
 
     useEffect(() => {
+        dispatch(updateParamsCards({ cardsPack_id: params.packId }));
         dispatch(getRequestCards());
     }, [cardPage, cardQuestion, cardAnswer]);
 
