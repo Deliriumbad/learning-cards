@@ -1,5 +1,3 @@
-import { getSmartRandom } from 'utils/getSmartRandom';
-
 import { cardsAPI, CardType, GetCardsResponseType, UpdateParamsType } from '../../dal/cards-api';
 import { AppThunk } from '../store/store';
 
@@ -111,17 +109,17 @@ export const getRequestCards = (): AppThunk => {
     };
 };
 
-export const getRequestCurrentCards = (): AppThunk => {
-    return (dispatch, getState) => {
-        const { cardsParams } = getState().cards;
-        dispatch(load(true));
-        cardsAPI.getCards(cardsParams).then(res => {
-            dispatch(setCards(res.data));
-            dispatch(load(false));
-            dispatch(setCurrentCard(getSmartRandom(res.data.cards)));
-        });
-    };
-};
+// export const getRequestCurrentCards = (): AppThunk => {
+//     return (dispatch, getState) => {
+//         const { cardsParams } = getState().cards;
+//         dispatch(load(true));
+//         cardsAPI.getCards(cardsParams).then(res => {
+//             dispatch(setCards(res.data));
+//             dispatch(load(false));
+//             dispatch(setCurrentCard(getSmartRandom(res.data.cards)));
+//         });
+//     };
+// };
 
 export const updateRequestCard = (cardId: string, question: string, answer: string): AppThunk => {
     return dispatch => {
@@ -133,8 +131,10 @@ export const updateRequestCard = (cardId: string, question: string, answer: stri
 
 export const updateGradeRequest = (cardId: string, grade: number): AppThunk => {
     return dispatch => {
+        dispatch(load(true));
         cardsAPI.gradeCard(cardId, grade).then(() => {
             dispatch(setUpdatedCardGrade({ cardId, grade }));
+            dispatch(load(false));
         });
     };
 };

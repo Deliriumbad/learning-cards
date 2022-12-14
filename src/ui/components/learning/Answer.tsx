@@ -1,6 +1,6 @@
 import { ChangeEvent, useState } from 'react';
 
-import { getRequestCurrentCards, updateGradeRequest } from 'bll/reducers/cards-reducer';
+import { updateGradeRequest } from 'bll/reducers/cards-reducer';
 import { useAppDispatch, useAppSelector } from 'bll/store/hooks';
 import Button from 'ui/common/Button/Button';
 
@@ -20,7 +20,6 @@ const Answer = ({ onSetIsShow }: AnswerT) => {
 
     const onNextClickHandler = () => {
         dispatch(updateGradeRequest(currentCard._id, grade));
-        dispatch(getRequestCurrentCards());
         onSetIsShow(false);
     };
 

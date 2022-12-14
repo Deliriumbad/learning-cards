@@ -1,6 +1,6 @@
 @import 'styles/mixins.scss';
 table {
-    width: 120rem;
+    max-width: 120rem;
     border-collapse: collapse;
     font-size: 1.8rem;
     margin: 0 auto;
@@ -31,6 +31,10 @@ table {
     tbody a {
         @include link(none);
     }
+    tbody td {
+        width: 20rem;
+        text-overflow: ellipsis;
+    }
 
     tbody tr:nth-child(odd) {
         background-color: #fef7d9;
@@ -45,7 +49,6 @@ table {
         padding: 1.6rem 1rem;
         text-align: left;
         font-size: 1.5rem;
-        overflow: hidden;
     }
 }
 

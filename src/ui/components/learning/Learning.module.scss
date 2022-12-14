@@ -1,0 +1,18 @@
+.main {
+    background-color: #fff;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50rem;
+    height: 30rem;
+    font-size: 1.6rem;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+ul {
+    list-style: none;
+}

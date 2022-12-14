@@ -9,20 +9,16 @@ type QuestionT = {
 
 const Question = ({ onSetIsShow }: QuestionT) => {
     const currentCard = useAppSelector(state => state.cards.currentCard);
-    const isLoading = useAppSelector(state => state.cards.load);
+
     const onSetShowAnswerClickHandler = () => {
         onSetIsShow(true);
     };
 
     return (
         <div className={styles.main}>
-            {isLoading ? (
-                <h1>Load</h1>
-            ) : (
-                <p>
-                    <strong>Quesion: {currentCard.question}</strong>
-                </p>
-            )}
+            <p>
+                <strong>Quesion: {currentCard.question}</strong>
+            </p>
 
             <span>Количество попыток ответов на вопрос: 10</span>
             <Button onClick={onSetShowAnswerClickHandler}>Show answer</Button>
