@@ -19,7 +19,7 @@
             }
 
             .link:link {
-                @include link();
+                @include link(uppercase);
             }
         }
     }

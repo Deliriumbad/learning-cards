@@ -9,7 +9,7 @@
     text-align: center;
     text-transform: uppercase;
     color: white;
-    box-shadow: .3rem .5rem 0.3rem 0.1rem rgba(102, 117, 204, 0.5);
+    box-shadow: .3rem .5rem 0.3rem 0.1rem rgba(102, 117, 204, 0.502);
     font-family: 'Montserrat', sans-serif;
     letter-spacing: 1px;
     background-color: #525d9b;
@@ -17,6 +17,6 @@
 
     &:hover {
         cursor: pointer;
-        background-color: #333e7a;
+        background-color: #39416d;
     }
 }

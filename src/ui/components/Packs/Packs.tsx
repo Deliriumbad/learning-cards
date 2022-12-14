@@ -7,8 +7,8 @@ import { useAppDispatch, useAppSelector } from '../../../bll/store/hooks';
 import { PATH } from '../../../routes/RoutesPath';
 
 import PackNavigation from './pack-utils/pack-navigation/PacksNavigation';
-import PackTable from './pack-utils/PackTable';
-import Pagination from './pack-utils/Pagination/Pagination';
+import PackTable from './pack-utils/packs-table/PackTable';
+import Pagination from './pack-utils/pagination/Pagination';
 import styles from './Packs.module.scss';
 
 const Packs = () => {

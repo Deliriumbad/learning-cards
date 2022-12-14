@@ -20,16 +20,14 @@
                 font-size: 1.7rem;
                 font-weight: 400;
                 padding: 0.8rem 2.5rem;
-                border-radius: 3rem;
-                color: inherit;
+                color: #6f6f6f;
                 text-decoration: none;
                 display: block;
                 transition: all 0.5s;
             }
             .link:hover,
             .link:active {
-                background-color: #4bbb7d;
-                box-shadow: 0 0 1rem 0.2rem #4bbb7d;
+                box-shadow: 0.2rem 0.2rem 0.2rem 0.1rem rgba(0, 0, 0, 0.2);
             }
         }
     }

@@ -1,11 +1,10 @@
 import { setSortCards } from 'bll/reducers/cards-reducer';
 import { useAppDispatch, useAppSelector } from 'bll/store/hooks';
 import { useParams } from 'react-router-dom';
+import styles from 'styles/Table.module.scss';
 import MiniSpinner from 'ui/common/MiniSpinner/MiniSpinner';
 import CardEditModal from 'ui/components/Modals/CardEditModal/CardEditModal';
 import { formatDate } from 'utils/formatDate';
-
-import styles from './CardsTable.module.scss';
 
 const CardsTable = () => {
     const dispatch = useAppDispatch();

@@ -6,7 +6,7 @@ import { getRequestCards, updateParamsCards } from '../../../bll/reducers/cards-
 import { useAppDispatch, useAppSelector } from '../../../bll/store/hooks';
 
 import CardsNavigation from './cards-utils/cards-navigation/CardsNavigation';
-import CardsTable from './cards-utils/CardsTable';
+import CardsTable from './cards-utils/cards-table/CardsTable';
 import Pagination from './cards-utils/Pagination';
 import styles from './Cards.module.scss';
 

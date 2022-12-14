@@ -78,7 +78,7 @@
     }
 
     .link {
-        @include link();
+        @include link(uppercase);
     }
 }
 // .errorRes {

@@ -1,14 +1,12 @@
 import { setSortPacks } from 'bll/reducers/packs-reducer';
 import { useAppDispatch, useAppSelector } from 'bll/store/hooks';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+import styles from 'styles/Table.module.scss';
 import { ReactComponent as Learn } from 'ui/assets/icons/learn.svg';
+import MiniSpinner from 'ui/common/MiniSpinner/MiniSpinner';
 import PackDeleteModal from 'ui/components/Modals/PackDeleteModal/PackDeleteModal';
 import PackEditModal from 'ui/components/Modals/PackEditModal/PackEditModal';
-
-import { formatDate } from '../../../../utils/formatDate';
-import MiniSpinner from '../../../common/MiniSpinner/MiniSpinner';
-
-import styles from './PacksTable.module.scss';
+import { formatDate } from 'utils/formatDate';
 
 const PackTable = () => {
     const packs = useAppSelector(state => state.packs.cardPacks);
@@ -49,14 +47,7 @@ const PackTable = () => {
                     {packs.map(pack => (
                         <tr key={pack._id}>
                             <td>
-                                <button
-                                    onClick={() => {
-                                        onNavigateCurrentCardsHandler(pack._id, 'Cards');
-                                    }}
-                                    type="button"
-                                >
-                                    {pack.name}
-                                </button>
+                                <NavLink to={`/Cards/${pack._id}`}>{pack.name}</NavLink>
                             </td>
                             <td>{pack.cardsCount}</td>
                             <td>{formatDate(pack.updated)}</td>

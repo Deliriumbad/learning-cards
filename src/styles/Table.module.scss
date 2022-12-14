@@ -1,14 +1,18 @@
+@import 'styles/mixins.scss';
 table {
-    // width: 100%;
+    width: 120rem;
     border-collapse: collapse;
     font-size: 1.8rem;
+    margin: 0 auto;
+    box-shadow: 0.5rem 0.5rem 0.5rem 0.3rem rgba(0, 0, 0, 0.2);
 
     .thead {
         cursor: pointer;
     }
 
     thead tr {
-        background-color: #6788bd;
+        background-color: #525d9b;
+        color: #fff;
     }
 
     thead th {
@@ -21,15 +25,19 @@ table {
 
     tbody td:last-child {
         display: flex;
-				justify-content: space-between;
+        justify-content: space-between;
+    }
+
+    tbody a {
+        @include link(none);
     }
 
     tbody tr:nth-child(odd) {
-        background-color: #e1e7f2;
+        background-color: #fef7d9;
     }
 
     tbody tr:nth-child(even) {
-        background-color: #b3c4de;
+        background-color: #fff;
     }
 
     th,
