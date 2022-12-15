@@ -18,8 +18,8 @@ export const cardsAPI = {
             },
         });
     },
-    createCards(data: GetCardsParamsType) {
-        return instance.post<GetCardsResponseType>('cards/card', { params: data });
+    createCards(data: CreateCardParamsT) {
+        return instance.post('cards/card', { card: data });
     },
     gradeCard(cardId: string, grade: number) {
         return instance.put<GradeResponseT>('cards/grade', { grade, card_id: cardId });
@@ -82,6 +82,18 @@ type UpdateCardResponseType = {
     answerVideo: string;
     questionImg: string;
     questionVideo: string;
+};
+
+export type CreateCardParamsT = {
+    cardsPack_id: string | undefined;
+    question: string;
+    answer: string;
+    grade?: number;
+    shots?: number;
+    answerImg?: string;
+    questionImg?: string;
+    questionVideo?: string;
+    answerVideo?: string;
 };
 
 export type UpdateParamsType = {

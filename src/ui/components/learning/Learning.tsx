@@ -11,7 +11,8 @@ import { useParams } from 'react-router-dom';
 import Button from 'ui/common/Button/Button';
 import { getSmartRandom } from 'utils/getSmartRandom';
 
-import EmptyPack from './EmptyPack';
+import CardCreateModal from '../Modals/CardCreateModal/CardCreateModal';
+
 import styles from './Learning.module.scss';
 
 const Learning = () => {
@@ -45,7 +46,7 @@ const Learning = () => {
     };
 
     if (cards.length === 0) {
-        return <EmptyPack />;
+        return <CardCreateModal />;
     }
 
     return (

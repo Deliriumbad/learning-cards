@@ -44,7 +44,7 @@ const PackEditModal = ({ id }: DeleteModalT) => {
                 <Edit className={styles.icon} />
             </button>
             <Modal show={showModal} backgroundOnClick={() => setShowModal(false)}>
-                <header className={styles.header}>Edit Pack</header>
+                <header>Edit Pack</header>
                 <InputText value={packName} onChange={onChangePackNameHandler} />
                 <footer className={styles.actions}>
                     <Button onClick={() => setShowModal(false)}>Cancel</Button>

@@ -1,4 +1,10 @@
-import { cardsAPI, CardType, GetCardsResponseType, UpdateParamsType } from '../../dal/cards-api';
+import {
+    cardsAPI,
+    CardType,
+    CreateCardParamsT,
+    GetCardsResponseType,
+    UpdateParamsType,
+} from '../../dal/cards-api';
 import { AppThunk } from '../store/store';
 
 export const cardsInitState = {
@@ -109,21 +115,17 @@ export const getRequestCards = (): AppThunk => {
     };
 };
 
-// export const getRequestCurrentCards = (): AppThunk => {
-//     return (dispatch, getState) => {
-//         const { cardsParams } = getState().cards;
-//         dispatch(load(true));
-//         cardsAPI.getCards(cardsParams).then(res => {
-//             dispatch(setCards(res.data));
-//             dispatch(load(false));
-//             dispatch(setCurrentCard(getSmartRandom(res.data.cards)));
-//         });
-//     };
-// };
-
 export const updateRequestCard = (cardId: string, question: string, answer: string): AppThunk => {
     return dispatch => {
         cardsAPI.updateCard(cardId, question, answer).then(() => {
+            dispatch(getRequestCards());
+        });
+    };
+};
+
+export const createRequestCard = (data: CreateCardParamsT): AppThunk => {
+    return dispatch => {
+        cardsAPI.createCards(data).then(() => {
             dispatch(getRequestCards());
         });
     };
