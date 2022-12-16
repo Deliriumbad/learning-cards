@@ -1,5 +1,7 @@
+@import 'styles/variables.scss';
+
 .btn {
-    border: 1px solid #6788bd;
+    border: 1px solid $primary;
     height: 5rem;
     width: 5rem;
     border-radius: 50%;
@@ -7,8 +9,8 @@
     cursor: pointer;
     font-size: 1.4rem;
     &:hover {
-        border: 1px solid #6788bd;
-        background-color: #6788bd;
+        border: 1px solid $primary;
+        background-color: $primary;
         color: #fff;
     }
     &:hover .btnIcon {
@@ -17,8 +19,8 @@
 }
 
 .btnActive {
-    border: 1px solid #6788bd;
-    background-color: #6788bd;
+    border: 1px solid $primary;
+    background-color: $primary;
     color: #fff;
     height: 5rem;
     width: 5rem;

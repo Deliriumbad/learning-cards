@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 
 import { useNavigate } from 'react-router-dom';
+import styles from 'styles/MainContent.module.scss';
 
 import { getRequestPacks } from '../../../bll/reducers/packs-reducer';
 import { useAppDispatch, useAppSelector } from '../../../bll/store/hooks';
@@ -9,7 +10,6 @@ import { PATH } from '../../../routes/RoutesPath';
 import PackNavigation from './pack-utils/pack-navigation/PacksNavigation';
 import PackTable from './pack-utils/packs-table/PackTable';
 import Pagination from './pack-utils/pagination/Pagination';
-import styles from './Packs.module.scss';
 
 const Packs = () => {
     const packPage = useAppSelector(state => state.packs.packParams.page);
@@ -33,17 +33,11 @@ const Packs = () => {
     }
 
     return (
-        <>
-            <div className={styles.nav}>
-                <PackNavigation />
-            </div>
-            <div className={styles.container}>
-                <PackTable />
-                <div className={styles.pagination}>
-                    <Pagination />
-                </div>
-            </div>
-        </>
+        <main className={styles.container}>
+            <PackNavigation />
+            <PackTable />
+            <Pagination />
+        </main>
     );
 };
 

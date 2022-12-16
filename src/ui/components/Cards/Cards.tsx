@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 
 import { useParams } from 'react-router-dom';
+import styles from 'styles/MainContent.module.scss';
 
 import { getRequestCards, updateParamsCards } from '../../../bll/reducers/cards-reducer';
 import { useAppDispatch, useAppSelector } from '../../../bll/store/hooks';
@@ -9,7 +10,6 @@ import CardCreateModal from '../Modals/CardCreateModal/CardCreateModal';
 import CardsNavigation from './cards-utils/cards-navigation/CardsNavigation';
 import CardsTable from './cards-utils/cards-table/CardsTable';
 import Pagination from './cards-utils/Pagination';
-import styles from './Cards.module.scss';
 
 const Cards = () => {
     const dispatch = useAppDispatch();
@@ -47,14 +47,10 @@ const Cards = () => {
     }
 
     return (
-        <div className={styles.cardsPage}>
+        <div className={styles.container}>
             <CardsNavigation />
-            <div className={styles.tableBlock}>
-                <CardsTable />
-                <div className={styles.pagination}>
-                    <Pagination />
-                </div>
-            </div>
+            <CardsTable />
+            <Pagination />
         </div>
     );
 };

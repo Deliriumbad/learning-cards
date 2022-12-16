@@ -1,0 +1,9 @@
+@import 'styles/mixins.scss';
+
+.container {
+    @include container();
+}
+
+.card {
+    @include card(50rem, 30rem, center);
+}
