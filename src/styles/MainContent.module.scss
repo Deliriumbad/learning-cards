@@ -5,5 +5,5 @@
 }
 
 .card {
-    @include card(50rem, 30rem, center);
+    @include card(50rem, 30rem);
 }

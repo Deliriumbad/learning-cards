@@ -9,12 +9,14 @@ import InputText from 'ui/common/InputText/InputText';
 import { PATH } from '../../../../../routes/RoutesPath';
 import PackCreateModal from '../../../Modals/PackCreateModal/PackCreateModal';
 
-import style from './PacksNavigation.module.scss';
+import styles from './PacksNavigation.module.scss';
 
 const PackNavigation = () => {
     const userId = useAppSelector(state => state.login.userData._id);
 
-    const [newPackName, setNewPackName] = useState<string>('');
+    const [newPackName, setNewPackName] = useState('');
+    const [activeMy, setActiveMy] = useState(false);
+    const [activeAll, setActiveAll] = useState(true);
 
     const dispatch = useAppDispatch();
 
@@ -29,9 +31,13 @@ const PackNavigation = () => {
 
     const onSetMyPacksHandler = () => {
         dispatch(updatePacksParams({ user_id: userId }));
+        setActiveMy(true);
+        setActiveAll(false);
     };
     const onSetAllPacksHandler = () => {
         dispatch(updatePacksParams({ user_id: '' }));
+        setActiveAll(true);
+        setActiveMy(false);
     };
 
     const onChangePackNameHandler = (event: ChangeEvent<HTMLInputElement>) => {
@@ -40,20 +46,30 @@ const PackNavigation = () => {
     };
 
     return (
-        <nav className={style.nav}>
-            <ul className={style.links}>
-                <li className={style.item}>
-                    <NavLink className={style.link} to={PATH.profile}>
+        <nav className={styles.nav}>
+            <ul className={styles.links}>
+                <li className={styles.item}>
+                    <NavLink className={styles.link} to={PATH.profile}>
                         🠠 Back to Profile
                     </NavLink>
                 </li>
 
-                <li className={style.item}>
-                    <Button onClick={onSetMyPacksHandler}>My packs</Button>
-                    <Button onClick={onSetAllPacksHandler}>All packs</Button>
+                <li className={styles.item}>
+                    <Button
+                        className={`${activeMy ? styles.active : ''}`}
+                        onClick={onSetMyPacksHandler}
+                    >
+                        My packs
+                    </Button>
+                    <Button
+                        className={`${activeAll ? styles.active : ''}`}
+                        onClick={onSetAllPacksHandler}
+                    >
+                        All packs
+                    </Button>
                 </li>
 
-                <li className={style.item}>
+                <li className={styles.item}>
                     <InputText
                         value={newPackName}
                         onChange={onChangePackNameHandler}
@@ -61,7 +77,7 @@ const PackNavigation = () => {
                     />
                 </li>
 
-                <li className={style.item}>
+                <li className={styles.item}>
                     <PackCreateModal />
                 </li>
             </ul>

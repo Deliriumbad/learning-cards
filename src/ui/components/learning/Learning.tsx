@@ -64,9 +64,7 @@ const Learning = () => {
                     </p>
 
                     <span>Количество попыток ответов на вопрос: 10</span>
-                    <Button className={styles.btn} onClick={onSetShowAnswerClickHandler}>
-                        Show answer
-                    </Button>
+                    <Button onClick={onSetShowAnswerClickHandler}>Show answer</Button>
                 </div>
             ) : (
                 <div className={styles.quiz}>

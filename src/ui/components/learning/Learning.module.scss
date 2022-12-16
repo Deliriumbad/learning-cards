@@ -5,15 +5,11 @@ ul {
 }
 
 .card {
-    @include card(50rem, 30rem, center);
+    @include card(50rem, 30rem);
 }
 
 .quiz {
-    @include card(50rem, 30rem, none);
+    @include card(50rem, 30rem);
     background-color: #fff;
-		text-align: left;
-
-    .btn {
-        margin: 1rem 0;
-    }
+    text-align: left;
 }
