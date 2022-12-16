@@ -131,6 +131,14 @@ export const createRequestCard = (data: CreateCardParamsT): AppThunk => {
     };
 };
 
+export const deleteRequestCard = (cardId: string): AppThunk => {
+    return dispatch => {
+        cardsAPI.deleteCards(cardId).then(() => {
+            dispatch(getRequestCards());
+        });
+    };
+};
+
 export const updateGradeRequest = (cardId: string, grade: number): AppThunk => {
     return dispatch => {
         dispatch(load(true));

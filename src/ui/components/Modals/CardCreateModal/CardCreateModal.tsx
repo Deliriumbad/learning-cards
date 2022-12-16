@@ -36,17 +36,13 @@ const CardCreateModal = () => {
 
     return (
         <>
-            <div className={styles.modal}>
-                <header>This is empty pack</header>
-                <p>Create card to start learn</p>
-                <Button
-                    onClick={() => {
-                        setShowModal(true);
-                    }}
-                >
-                    Add card
-                </Button>
-            </div>
+            <Button
+                onClick={() => {
+                    setShowModal(true);
+                }}
+            >
+                Add card
+            </Button>
 
             <Modal show={showModal} backgroundOnClick={() => setShowModal(false)}>
                 <header>Add Card</header>
@@ -54,7 +50,7 @@ const CardCreateModal = () => {
                 <InputText value={answer} onChange={onChangeAnswerHandler} />
                 <footer className={styles.actions}>
                     <Button onClick={() => setShowModal(false)}>Cancel</Button>
-                    <Button onClick={onClickAddCardHandler}>Save</Button>
+                    <Button onClick={onClickAddCardHandler}>Add</Button>
                 </footer>
             </Modal>
         </>

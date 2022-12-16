@@ -23,3 +23,25 @@
         text-decoration: none;
     }
 }
+
+@mixin card($width, $height, $align) {
+    margin-top: 10rem;
+    margin-right: auto;
+    margin-bottom: 0;
+    margin-left: auto;
+    padding: 0 5rem;
+    align-items: $align;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    max-width: $width;
+    height: $height;
+
+    p {
+        font-size: 1.6rem;
+    }
+
+    span {
+        font-size: 1.6rem;
+    }
+}

@@ -46,29 +46,39 @@ const Learning = () => {
     };
 
     if (cards.length === 0) {
-        return <CardCreateModal />;
+        return (
+            <div className={styles.card}>
+                <h1>This is empty pack</h1>
+                <p>Create card to start learn</p>
+                <CardCreateModal />
+            </div>
+        );
     }
 
     return (
         <div>
             {!showAnswer ? (
-                <div className={styles.main}>
+                <div className={styles.quiz}>
                     <p>
                         <strong>Quesion:{currentCard.question}</strong>
                     </p>
 
                     <span>Количество попыток ответов на вопрос: 10</span>
-                    <Button onClick={onSetShowAnswerClickHandler}>Show answer</Button>
+                    <Button className={styles.btn} onClick={onSetShowAnswerClickHandler}>
+                        Show answer
+                    </Button>
                 </div>
             ) : (
-                <div className={styles.main}>
+                <div className={styles.quiz}>
                     <p>
-                        <strong>Question</strong>
+                        <strong>Question {currentCard.question}</strong>
+                        <br />
+                        <br />
                         <span>Количество попыток ответов на вопрос: 10</span>
                     </p>
                     <div>
                         <p>
-                            <strong>Answer:{currentCard.answer}</strong>
+                            <strong>Answer: {currentCard.answer}</strong>
                         </p>
                         <span>Rate yourself</span>
                         <ul>
@@ -94,7 +104,9 @@ const Learning = () => {
                             </li>
                         </ul>
                     </div>
-                    <Button onClick={onNextClickHandler}>Next</Button>
+                    <Button className={styles.btn} onClick={onNextClickHandler}>
+                        Next
+                    </Button>
                 </div>
             )}
         </div>

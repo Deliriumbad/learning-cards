@@ -16,7 +16,7 @@ const Modal = ({ children, show, backgroundOnClick }: ModalT) => {
                 onClick={backgroundOnClick}
                 onKeyPress={() => {}}
             >
-                Backdrop
+                <div />
             </div>
             <div className={styles.modal}>{children}</div>
         </>

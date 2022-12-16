@@ -1,3 +1,4 @@
+@import 'styles/mixins.scss';
 .nav {
     display: flex;
     flex-direction: row;
@@ -51,4 +52,8 @@
 .pagination {
     align-self: center;
     margin-top: 1rem;
+}
+
+.card {
+    @include card(50rem, 30rem, center);
 }

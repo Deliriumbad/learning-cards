@@ -1,9 +1,10 @@
 import React, { ChangeEvent, useState } from 'react';
 
 import { setSearchCardsByQuestion } from 'bll/reducers/cards-reducer';
-import { useAppDispatch } from 'bll/store/hooks';
+import { useAppDispatch, useAppSelector } from 'bll/store/hooks';
 import { NavLink } from 'react-router-dom';
 import InputText from 'ui/common/InputText/InputText';
+import CardCreateModal from 'ui/components/Modals/CardCreateModal/CardCreateModal';
 
 import { PATH } from '../../../../../routes/RoutesPath';
 
@@ -11,6 +12,9 @@ import style from './CardsNavigation.module.scss';
 
 const CardsNavigation = () => {
     const [value, setValue] = useState<string>('');
+
+    const userId = useAppSelector(state => state.login.userData._id);
+    const id = useAppSelector(state => state.cards.packUserId);
 
     const dispatch = useAppDispatch();
 
@@ -35,6 +39,11 @@ const CardsNavigation = () => {
                         value={value}
                     />
                 </li>
+                {userId === id && (
+                    <li className={style.item}>
+                        <CardCreateModal />
+                    </li>
+                )}
             </ul>
         </nav>
     );
