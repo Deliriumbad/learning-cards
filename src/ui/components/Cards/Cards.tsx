@@ -33,17 +33,30 @@ const Cards = () => {
 
     if (cards.length === 0 && userId === id) {
         return (
-            <div className={styles.card}>
-                <h1>This is empty pack</h1>
-                <p>Create card to start learn</p>
-                <CardCreateModal />
+            <div>
+                {isLoading ? (
+                    <Loader />
+                ) : (
+                    <div className={styles.card}>
+                        <h1>This is empty pack</h1>
+                        <p>There is nothing to learn. Create cards to fill this pack</p>
+                        <CardCreateModal />
+                    </div>
+                )}
             </div>
         );
     }
     if (cards.length === 0) {
         return (
-            <div className={styles.card}>
-                <h1>This is empty pack</h1>
+            <div>
+                {isLoading ? (
+                    <Loader />
+                ) : (
+                    <div className={styles.card}>
+                        <h1>This is empty pack</h1>
+                        <p>There is nothing to learn</p>
+                    </div>
+                )}
             </div>
         );
     }

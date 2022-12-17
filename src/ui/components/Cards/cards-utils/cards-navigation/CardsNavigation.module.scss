@@ -15,8 +15,8 @@
         .item {
             list-style-type: none;
 
-            &:last-child {
-                width: 30rem;
+            &:nth-child(2) {
+                width: 50rem;
             }
 
             .link:link {

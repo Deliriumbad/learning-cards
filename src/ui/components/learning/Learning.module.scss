@@ -9,7 +9,7 @@ ul {
 }
 
 .quiz {
-    @include card(50rem, 30rem);
+    @include card(45rem, 30rem);
     background-color: #fff;
     text-align: left;
 }

@@ -37,12 +37,13 @@
     margin-right: auto;
     margin-bottom: 0;
     margin-left: auto;
-    padding: 0 5rem;
+    padding: 0 4rem;
+		text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     max-width: $width;
-    height: $height;
+    min-height: $height;
 
     p {
         font-size: 1.6rem;

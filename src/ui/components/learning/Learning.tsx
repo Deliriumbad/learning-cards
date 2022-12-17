@@ -60,7 +60,8 @@ const Learning = () => {
             {!showAnswer ? (
                 <div className={styles.quiz}>
                     <p>
-                        <strong>Quesion:{currentCard.question}</strong>
+                        <strong>Quesion: </strong>
+                        <span>{currentCard.question}</span>
                     </p>
 
                     <span>Количество попыток ответов на вопрос: 10</span>
