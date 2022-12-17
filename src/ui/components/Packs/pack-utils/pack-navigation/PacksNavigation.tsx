@@ -27,14 +27,14 @@ const PackNavigation = () => {
     }, [newPackName]);
 
     const onSetMyPacksHandler = () => {
-        dispatch(updatePacksParams({ user_id: userId }));
         setActiveMy(true);
         setActiveAll(false);
+        dispatch(updatePacksParams({ user_id: userId }));
     };
     const onSetAllPacksHandler = () => {
-        dispatch(updatePacksParams({ user_id: '' }));
         setActiveAll(true);
         setActiveMy(false);
+        dispatch(updatePacksParams({ user_id: '' }));
     };
 
     const onChangePackNameHandler = (event: ChangeEvent<HTMLInputElement>) => {
