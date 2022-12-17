@@ -3,7 +3,6 @@ import { useAppDispatch, useAppSelector } from 'bll/store/hooks';
 import { NavLink, useNavigate } from 'react-router-dom';
 import styles from 'styles/Table.module.scss';
 import { ReactComponent as Learn } from 'ui/assets/icons/learn.svg';
-import MiniSpinner from 'ui/common/MiniSpinner/MiniSpinner';
 import PackDeleteModal from 'ui/components/Modals/PackDeleteModal/PackDeleteModal';
 import PackEditModal from 'ui/components/Modals/PackEditModal/PackEditModal';
 import { formatDate } from 'utils/formatDate';
@@ -11,7 +10,6 @@ import { formatDate } from 'utils/formatDate';
 const PackTable = () => {
     const packs = useAppSelector(state => state.packs.cardPacks);
     const sortPacks = useAppSelector(state => state.packs.packParams.sortPacks);
-    const isLoading = useAppSelector(state => state.packs.packParams.isLoading);
     const userId = useAppSelector(state => state.login.userData._id);
 
     const navigate = useNavigate();
@@ -40,39 +38,36 @@ const PackTable = () => {
                     <th>Actions</th>
                 </tr>
             </thead>
-            {isLoading ? (
-                <MiniSpinner />
-            ) : (
-                <tbody>
-                    {packs.map(pack => (
-                        <tr key={pack._id}>
-                            <td>
-                                <NavLink to={`/Cards/${pack._id}`}>{pack.name}</NavLink>
-                            </td>
-                            <td>{pack.cardsCount}</td>
-                            <td>{formatDate(pack.updated)}</td>
-                            <td>{pack.user_name}</td>
-                            <td>
-                                <button
-                                    onClick={() => {
-                                        onNavigateCurrentCardsHandler(pack._id, 'learning');
-                                    }}
-                                    type="button"
-                                >
-                                    <Learn className={styles.icon} />
-                                </button>
 
-                                {userId === pack.user_id && (
-                                    <>
-                                        <PackDeleteModal id={pack._id} />
-                                        <PackEditModal id={pack._id} />
-                                    </>
-                                )}
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            )}
+            <tbody>
+                {packs.map(pack => (
+                    <tr key={pack._id}>
+                        <td>
+                            <NavLink to={`/Cards/${pack._id}`}>{pack.name}</NavLink>
+                        </td>
+                        <td>{pack.cardsCount}</td>
+                        <td>{formatDate(pack.updated)}</td>
+                        <td>{pack.user_name}</td>
+                        <td>
+                            <button
+                                onClick={() => {
+                                    onNavigateCurrentCardsHandler(pack._id, 'learning');
+                                }}
+                                type="button"
+                            >
+                                <Learn className={styles.icon} />
+                            </button>
+
+                            {userId === pack.user_id && (
+                                <>
+                                    <PackDeleteModal id={pack._id} />
+                                    <PackEditModal id={pack._id} />
+                                </>
+                            )}
+                        </td>
+                    </tr>
+                ))}
+            </tbody>
         </table>
     );
 };

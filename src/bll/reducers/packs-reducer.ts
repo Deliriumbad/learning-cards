@@ -1,6 +1,8 @@
 import { AppThunk } from 'bll/store/store';
 import { packApi, GetPacksResponseType } from 'dal/packs-api';
 
+import { setIsLoading } from './app-reducer';
+
 export const packsInitState = {
     cardPacks: [
         {
@@ -29,7 +31,6 @@ export const packsInitState = {
         page: 1,
         pageCount: 8,
         user_id: '',
-        isLoading: false,
     },
 };
 
@@ -46,8 +47,7 @@ export const packsReducer = (
             return { ...state, packParams: { ...state.packParams, ...action.params } };
         case 'PACKS/SET_SORT_PACKS':
             return { ...state, packParams: { ...state.packParams, sortPacks: action.params } };
-        case 'PACKS/IS_LOADING':
-            return { ...state, packParams: { ...state.packParams, isLoading: action.isLoading } };
+
         default:
             return state;
     }
@@ -65,13 +65,10 @@ export const setSortPacks = (params: string) => ({ type: 'PACKS/SET_SORT_PACKS',
 
 export const setError = (error: string | null) => ({ type: 'CARDS/SET_ERROR', error } as const);
 
-export const loadingCardsPack = (isLoading: boolean) =>
-    ({ type: 'PACKS/IS_LOADING', isLoading } as const);
-
 export const getRequestPacks = (): AppThunk => {
     return (dispatch, getState) => {
         const { packParams } = getState().packs;
-        dispatch(loadingCardsPack(true));
+        dispatch(setIsLoading(true));
         packApi
             .getPacks(packParams)
             .then(response => {
@@ -84,7 +81,7 @@ export const getRequestPacks = (): AppThunk => {
                 dispatch(setError(error));
             })
             .finally(() => {
-                dispatch(loadingCardsPack(false));
+                dispatch(setIsLoading(false));
             });
     };
 };
@@ -117,7 +114,6 @@ export type PacksActions =
     | ReturnType<typeof setPacks>
     | ReturnType<typeof updatePacksParams>
     | ReturnType<typeof setSortPacks>
-    | ReturnType<typeof loadingCardsPack>
     | ReturnType<typeof setError>;
 
 export type UpdateParamsT = {

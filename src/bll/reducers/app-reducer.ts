@@ -19,6 +19,8 @@ export const appReducer = (
     switch (action.type) {
         case 'APP/SET_IS_INITIALIZED':
             return { ...state, isInitialized: action.value };
+        case 'APP/SET_IS_LOADING':
+            return { ...state, isLoading: action.value };
         case 'APP/SET_ERROR':
             return { ...state, ...action.payload };
         default:
@@ -28,8 +30,7 @@ export const appReducer = (
 
 export const setIsInitialized = (value: boolean) =>
     ({ type: 'APP/SET_IS_INITIALIZED', value } as const);
-export const setIsLoading = (value: boolean) =>
-    ({ type: 'APP/SET_IS_LOADING', payload: { isLoading: value } } as const);
+export const setIsLoading = (value: boolean) => ({ type: 'APP/SET_IS_LOADING', value } as const);
 export const setError = (value: null | string) =>
     ({ type: 'APP/SET_ERROR', payload: { error: value } } as const);
 

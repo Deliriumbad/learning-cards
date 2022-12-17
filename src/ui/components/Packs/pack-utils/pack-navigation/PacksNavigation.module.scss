@@ -15,13 +15,13 @@
 
         .item {
             list-style-type: none;
-            &:nth-child(2) {
+            &:nth-child(1) {
                 width: 23.5rem;
                 display: flex;
                 justify-content: space-between;
             }
-            &:nth-child(3) {
-                width: 30rem;
+            &:nth-child(2) {
+                width: 50rem;
             }
 
             .link:link {

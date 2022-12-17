@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 import styles from 'styles/MainContent.module.scss';
+import Loader from 'ui/common/Loader/Loader';
 
 import { getRequestPacks } from '../../../bll/reducers/packs-reducer';
 import { useAppDispatch, useAppSelector } from '../../../bll/store/hooks';
@@ -17,6 +18,7 @@ const Packs = () => {
     const packId = useAppSelector(state => state.packs.packParams.user_id);
     const packName = useAppSelector(state => state.packs.packParams.packName);
     const isLoggedIn = useAppSelector(state => state.login.isLoggedIn);
+    const isLoading = useAppSelector(state => state.app.isLoading);
 
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
@@ -33,11 +35,17 @@ const Packs = () => {
     }
 
     return (
-        <main className={styles.container}>
-            <PackNavigation />
-            <PackTable />
-            <Pagination />
-        </main>
+        <div>
+            {isLoading ? (
+                <Loader />
+            ) : (
+                <main className={styles.container}>
+                    <PackNavigation />
+                    <PackTable />
+                    <Pagination />
+                </main>
+            )}
+        </div>
     );
 };
 

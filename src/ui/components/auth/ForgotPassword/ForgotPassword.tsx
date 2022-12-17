@@ -9,7 +9,7 @@ import Button from 'ui/common/Button/Button';
 import InputText from 'ui/common/InputText/InputText';
 
 import { PATH } from '../../../../routes/RoutesPath';
-import Preloader from '../../../common/Preloader/Preloader';
+import Preloader from '../../../common/Loader/Loader';
 
 import CheckEmail from './CheckEmail';
 

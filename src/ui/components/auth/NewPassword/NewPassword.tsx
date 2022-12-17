@@ -9,7 +9,7 @@ import styles from 'styles/Form.module.scss';
 import Button from 'ui/common/Button/Button';
 import InputText from 'ui/common/InputText/InputText';
 
-import Preloader from '../../../common/Preloader/Preloader';
+import Preloader from '../../../common/Loader/Loader';
 
 type Error = {
     password?: string;

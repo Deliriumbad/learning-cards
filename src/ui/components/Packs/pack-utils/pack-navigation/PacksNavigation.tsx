@@ -2,12 +2,9 @@ import React, { ChangeEvent, useEffect, useState } from 'react';
 
 import { updatePacksParams } from 'bll/reducers/packs-reducer';
 import { useAppDispatch, useAppSelector } from 'bll/store/hooks';
-import { NavLink } from 'react-router-dom';
 import Button from 'ui/common/Button/Button';
 import InputText from 'ui/common/InputText/InputText';
-
-import { PATH } from '../../../../../routes/RoutesPath';
-import PackCreateModal from '../../../Modals/PackCreateModal/PackCreateModal';
+import PackCreateModal from 'ui/components/Modals/PackCreateModal/PackCreateModal';
 
 import styles from './PacksNavigation.module.scss';
 
@@ -48,12 +45,6 @@ const PackNavigation = () => {
     return (
         <nav className={styles.nav}>
             <ul className={styles.links}>
-                <li className={styles.item}>
-                    <NavLink className={styles.link} to={PATH.profile}>
-                        🠠 Back to Profile
-                    </NavLink>
-                </li>
-
                 <li className={styles.item}>
                     <Button
                         className={`${activeMy ? styles.active : ''}`}

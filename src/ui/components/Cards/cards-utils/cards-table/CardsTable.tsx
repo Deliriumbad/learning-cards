@@ -2,7 +2,6 @@ import { setSortCards } from 'bll/reducers/cards-reducer';
 import { useAppDispatch, useAppSelector } from 'bll/store/hooks';
 import { useParams } from 'react-router-dom';
 import styles from 'styles/Table.module.scss';
-import MiniSpinner from 'ui/common/MiniSpinner/MiniSpinner';
 import CardEditModal from 'ui/components/Modals/CardEditModal/CardEditModal';
 import { formatDate } from 'utils/formatDate';
 
@@ -11,7 +10,6 @@ const CardsTable = () => {
     const params = useParams();
 
     const userId = useAppSelector(state => state.login.userData._id);
-    const isLoading = useAppSelector(state => state.cards.cardsParams.isLoading);
     const sortCards = useAppSelector(state => state.cards.cardsParams.sortCards);
     const cards = useAppSelector(state => state.cards.cards);
     const currentCard = useAppSelector(state =>
@@ -57,23 +55,20 @@ const CardsTable = () => {
                     {userId === currentCard?.user_id && <th>Actions</th>}
                 </tr>
             </thead>
-            {isLoading ? (
-                <MiniSpinner />
-            ) : (
-                <tbody className={styles.tbody}>
-                    {cards.map(card => {
-                        return (
-                            <tr key={card._id}>
-                                <td>{card.question}</td>
-                                <td>{card.answer}</td>
-                                <td>{formatDate(card.updated)}</td>
-                                <td>{card.grade}</td>
-                                {userId === card.user_id && <CardEditModal id={card._id} />}
-                            </tr>
-                        );
-                    })}
-                </tbody>
-            )}
+
+            <tbody className={styles.tbody}>
+                {cards.map(card => {
+                    return (
+                        <tr key={card._id}>
+                            <td>{card.question}</td>
+                            <td>{card.answer}</td>
+                            <td>{formatDate(card.updated)}</td>
+                            <td>{card.grade}</td>
+                            {userId === card.user_id && <CardEditModal id={card._id} />}
+                        </tr>
+                    );
+                })}
+            </tbody>
         </table>
     );
 };

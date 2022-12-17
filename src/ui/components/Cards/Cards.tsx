@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 
 import { useParams } from 'react-router-dom';
 import styles from 'styles/MainContent.module.scss';
+import Loader from 'ui/common/Loader/Loader';
 
 import { getRequestCards, updateParamsCards } from '../../../bll/reducers/cards-reducer';
 import { useAppDispatch, useAppSelector } from '../../../bll/store/hooks';
@@ -21,6 +22,7 @@ const Cards = () => {
     const cardPage = useAppSelector(state => state.cards.cardsParams.page);
     const cardQuestion = useAppSelector(state => state.cards.cardsParams.cardQuestion);
     const cardAnswer = useAppSelector(state => state.cards.cardsParams.cardAnswer);
+    const isLoading = useAppSelector(state => state.app.isLoading);
 
     const params = useParams();
 
@@ -47,10 +49,16 @@ const Cards = () => {
     }
 
     return (
-        <div className={styles.container}>
-            <CardsNavigation />
-            <CardsTable />
-            <Pagination />
+        <div>
+            {isLoading ? (
+                <Loader />
+            ) : (
+                <div className={styles.container}>
+                    <CardsNavigation />
+                    <CardsTable />
+                    <Pagination />
+                </div>
+            )}
         </div>
     );
 };

@@ -10,7 +10,7 @@ import { PATH } from '../../../../routes/RoutesPath';
 import Button from '../../../common/Button/Button';
 import Checkbox from '../../../common/CheckBox/Checkbox';
 import InputText from '../../../common/InputText/InputText';
-import Preloader from '../../../common/Preloader/Preloader';
+import Preloader from '../../../common/Loader/Loader';
 
 type FormikErrorType = {
     email?: string;

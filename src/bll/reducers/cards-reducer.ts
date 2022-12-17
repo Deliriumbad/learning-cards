@@ -7,6 +7,8 @@ import {
 } from '../../dal/cards-api';
 import { AppThunk } from '../store/store';
 
+import { setIsLoading } from './app-reducer';
+
 export const cardsInitState = {
     cards: [] as CardType[],
     cardsTotalCount: 3,
@@ -16,8 +18,6 @@ export const cardsInitState = {
     pageCount: 4,
     packUserId: '',
     error: null as null | string,
-
-    load: false,
 
     currentCard: {
         _id: '',
@@ -34,7 +34,6 @@ export const cardsInitState = {
         sortCards: '0grade',
         page: 1,
         pageCount: 8,
-        isLoading: false,
     },
 };
 
@@ -49,9 +48,6 @@ export const cardsReducer = (
             return { ...state, ...action.data };
         case 'CARDS/UPDATE_PARAMS_CARDS': {
             return { ...state, cardsParams: { ...state.cardsParams, ...action.params } };
-        }
-        case 'CARDS/LOAD': {
-            return { ...state, load: action.isLoading };
         }
         case 'CARDS/SET_CURRENT_CARD': {
             return { ...state, currentCard: { ...action.card } };
@@ -75,8 +71,7 @@ export const cardsReducer = (
             return { ...state, cardsParams: { ...state.cardsParams, cardQuestion: action.value } };
         case 'CARDS/SET_SORT_CARDS':
             return { ...state, cardsParams: { ...state.cardsParams, sortCards: action.value } };
-        case 'CARDS/IS_LOADING':
-            return { ...state, cardsParams: { ...state.cardsParams, isLoading: action.isLoading } };
+
         default:
             return state;
     }
@@ -97,8 +92,6 @@ export const setCurrentCard = (card: { _id: string; answer: string; question: st
 export const loadingCards = (isLoading: boolean) =>
     ({ type: 'CARDS/IS_LOADING', isLoading } as const);
 
-export const load = (isLoading: boolean) => ({ type: 'CARDS/LOAD', isLoading } as const);
-
 export const setSortCards = (value: string) => ({ type: 'CARDS/SET_SORT_CARDS', value } as const);
 
 export const setError = (error: string | null) => ({ type: 'CARDS/SET_ERROR', error } as const);
@@ -108,10 +101,16 @@ export const setUpdatedCardGrade = (gradeData: { cardId: string | undefined; gra
 
 export const getRequestCards = (): AppThunk => {
     return (dispatch, getState) => {
+        dispatch(setIsLoading(true));
         const { cardsParams } = getState().cards;
-        cardsAPI.getCards(cardsParams).then(res => {
-            dispatch(setCards(res.data));
-        });
+        cardsAPI
+            .getCards(cardsParams)
+            .then(res => {
+                dispatch(setCards(res.data));
+            })
+            .finally(() => {
+                dispatch(setIsLoading(false));
+            });
     };
 };
 
@@ -141,10 +140,10 @@ export const deleteRequestCard = (cardId: string): AppThunk => {
 
 export const updateGradeRequest = (cardId: string, grade: number): AppThunk => {
     return dispatch => {
-        dispatch(load(true));
+        dispatch(setIsLoading(true));
         cardsAPI.gradeCard(cardId, grade).then(() => {
             dispatch(setUpdatedCardGrade({ cardId, grade }));
-            dispatch(load(false));
+            dispatch(setIsLoading(false));
         });
     };
 };
@@ -157,5 +156,4 @@ export type CardsActionsType =
     | ReturnType<typeof setSearchCardsByQuestion>
     | ReturnType<typeof setSortCards>
     | ReturnType<typeof loadingCards>
-    | ReturnType<typeof load>
     | ReturnType<typeof setUpdatedCardGrade>;
