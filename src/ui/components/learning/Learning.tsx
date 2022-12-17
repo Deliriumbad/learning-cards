@@ -9,6 +9,7 @@ import {
 import { useAppDispatch, useAppSelector } from 'bll/store/hooks';
 import { useParams } from 'react-router-dom';
 import Button from 'ui/common/Button/Button';
+import Loader from 'ui/common/Loader/Loader';
 import { getSmartRandom } from 'utils/getSmartRandom';
 
 import CardCreateModal from '../Modals/CardCreateModal/CardCreateModal';
@@ -18,7 +19,10 @@ import styles from './Learning.module.scss';
 const Learning = () => {
     const [showAnswer, setShowAnswer] = useState(false);
     const [grade, setGrade] = useState(0);
-    // const isLoading = useAppSelector(state => state.cards.load);
+
+    const isLoading = useAppSelector(state => state.app.isLoading);
+    const userId = useAppSelector(state => state.login.userData._id);
+    const id = useAppSelector(state => state.cards.packUserId);
     const cards = useAppSelector(state => state.cards.cards);
     const currentCard = useAppSelector(state => state.cards.currentCard);
 
@@ -45,12 +49,32 @@ const Learning = () => {
         setShowAnswer(false);
     };
 
+    if (cards.length === 0 && userId === id) {
+        return (
+            <div>
+                {isLoading ? (
+                    <Loader />
+                ) : (
+                    <div className={styles.card}>
+                        <h1>This is empty pack</h1>
+                        <p>Create card to start learn</p>
+                        <CardCreateModal />
+                    </div>
+                )}
+            </div>
+        );
+    }
+
     if (cards.length === 0) {
         return (
-            <div className={styles.card}>
-                <h1>This is empty pack</h1>
-                <p>Create card to start learn</p>
-                <CardCreateModal />
+            <div>
+                {isLoading ? (
+                    <Loader />
+                ) : (
+                    <div className={styles.card}>
+                        <h1>This is empty pack</h1>
+                    </div>
+                )}
             </div>
         );
     }

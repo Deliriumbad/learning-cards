@@ -5,7 +5,7 @@ ul {
 }
 
 .card {
-    @include card(50rem, 30rem);
+    @include card(40rem, 20rem);
 }
 
 .quiz {
