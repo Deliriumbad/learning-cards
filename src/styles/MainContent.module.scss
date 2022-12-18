@@ -6,4 +6,7 @@
 
 .card {
     @include card(40rem, 20rem);
+    .link {
+        @include link(uppercase);
+    }
 }

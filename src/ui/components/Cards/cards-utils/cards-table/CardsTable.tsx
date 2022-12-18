@@ -64,7 +64,7 @@ const CardsTable = () => {
                             <td>{card.answer}</td>
                             <td>{formatDate(card.updated)}</td>
                             <td>{card.grade}</td>
-                            {userId === card.user_id && <CardEditModal id={card._id} />}
+                            <td>{userId === card.user_id && <CardEditModal id={card._id} />}</td>
                         </tr>
                     );
                 })}

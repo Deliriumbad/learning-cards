@@ -7,7 +7,8 @@ import {
     updateParamsCards,
 } from 'bll/reducers/cards-reducer';
 import { useAppDispatch, useAppSelector } from 'bll/store/hooks';
-import { useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
+import { PATH } from 'routes/RoutesPath';
 import Button from 'ui/common/Button/Button';
 import Loader from 'ui/common/Loader/Loader';
 import { getSmartRandom } from 'utils/getSmartRandom';
@@ -59,6 +60,9 @@ const Learning = () => {
                         <h1>This is empty pack</h1>
                         <p>Create card to start learn</p>
                         <CardCreateModal />
+                        <NavLink className={styles.link} to={PATH.packs}>
+                            Back to Packs List
+                        </NavLink>
                     </div>
                 )}
             </div>
@@ -73,6 +77,9 @@ const Learning = () => {
                 ) : (
                     <div className={styles.card}>
                         <h1>This is empty pack</h1>
+                        <NavLink className={styles.link} to={PATH.packs}>
+                            Back to Packs List
+                        </NavLink>
                     </div>
                 )}
             </div>
@@ -89,7 +96,12 @@ const Learning = () => {
                     </p>
 
                     <span>Количество попыток ответов на вопрос: 10</span>
-                    <Button onClick={onSetShowAnswerClickHandler}>Show answer</Button>
+                    <footer className={styles.footer}>
+                        <Button onClick={onSetShowAnswerClickHandler}>Show answer</Button>
+                        <NavLink className={styles.link} to={PATH.packs}>
+                            🠠 Back to Packs List
+                        </NavLink>
+                    </footer>
                 </div>
             ) : (
                 <div className={styles.quiz}>
@@ -127,9 +139,14 @@ const Learning = () => {
                             </li>
                         </ul>
                     </div>
-                    <Button className={styles.btn} onClick={onNextClickHandler}>
-                        Next
-                    </Button>
+                    <footer>
+                        <Button className={styles.btn} onClick={onNextClickHandler}>
+                            Next
+                        </Button>
+                        <NavLink className={styles.link} to={PATH.packs}>
+                            🠠 Back to Packs List
+                        </NavLink>
+                    </footer>
                 </div>
             )}
         </div>

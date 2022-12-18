@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 
-import { useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
+import { PATH } from 'routes/RoutesPath';
 import styles from 'styles/MainContent.module.scss';
 import Loader from 'ui/common/Loader/Loader';
 
@@ -10,7 +11,7 @@ import CardCreateModal from '../Modals/CardCreateModal/CardCreateModal';
 
 import CardsNavigation from './cards-utils/cards-navigation/CardsNavigation';
 import CardsTable from './cards-utils/cards-table/CardsTable';
-import Pagination from './cards-utils/Pagination';
+import Pagination from './cards-utils/pagination/Pagination';
 
 const Cards = () => {
     const dispatch = useAppDispatch();
@@ -41,6 +42,9 @@ const Cards = () => {
                         <h1>This is empty pack</h1>
                         <p>There is nothing to learn. Create cards to fill this pack</p>
                         <CardCreateModal />
+                        <NavLink className={styles.link} to={PATH.packs}>
+                            Back to Packs List
+                        </NavLink>
                     </div>
                 )}
             </div>
@@ -55,6 +59,9 @@ const Cards = () => {
                     <div className={styles.card}>
                         <h1>This is empty pack</h1>
                         <p>There is nothing to learn</p>
+                        <NavLink className={styles.link} to={PATH.packs}>
+                            Back to Packs List
+                        </NavLink>
                     </div>
                 )}
             </div>
