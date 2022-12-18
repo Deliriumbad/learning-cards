@@ -1,6 +1,7 @@
 @import 'styles/mixins.scss';
 table {
     width: 100%;
+		// min-height: 70%;
     border-collapse: collapse;
     font-size: 1.8rem;
     box-shadow: 0.5rem 0.5rem 0.5rem 0.3rem rgba(0, 0, 0, 0.2);
@@ -36,7 +37,7 @@ table {
     }
 
     tbody tr:nth-child(odd) {
-        background-color: #fef7d9;
+        background-color: transparent;
     }
 
     tbody tr:nth-child(even) {

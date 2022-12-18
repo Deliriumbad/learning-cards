@@ -11,7 +11,6 @@ import { PATH } from '../../../routes/RoutesPath';
 
 import PackNavigation from './pack-utils/pack-navigation/PacksNavigation';
 import PackTable from './pack-utils/packs-table/PackTable';
-// import Pagination from './pack-utils/pagination/Pagination';
 
 const Packs = () => {
     const packPage = useAppSelector(state => state.packs.packParams.page);

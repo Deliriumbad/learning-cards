@@ -97,20 +97,18 @@ const Cards = () => {
                 <div className={styles.container}>
                     <CardsNavigation />
                     <CardsTable />
-                    <div>
-                        {totalPages < 2 ? null : (
-                            <div className={styles.pagination}>
-                                <p>
-                                    {currentPage}/{totalPages}
-                                </p>
-                                {leftIArrow}
-                                {pageDecrementBtn}
-                                {renderPageNumbers}
-                                {pageIncrementBtn}
-                                {rightArrow}
-                            </div>
-                        )}
-                    </div>
+                    {totalPages < 2 ? null : (
+                        <div className={styles.pagination}>
+                            <p>
+                                {currentPage}/{totalPages}
+                            </p>
+                            {leftIArrow}
+                            {pageDecrementBtn}
+                            {renderPageNumbers}
+                            {pageIncrementBtn}
+                            {rightArrow}
+                        </div>
+                    )}
                 </div>
             )}
         </div>
