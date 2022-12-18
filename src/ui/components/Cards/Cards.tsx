@@ -4,6 +4,7 @@ import { NavLink, useParams } from 'react-router-dom';
 import { PATH } from 'routes/RoutesPath';
 import styles from 'styles/MainContent.module.scss';
 import Loader from 'ui/common/Loader/Loader';
+import usePagination from 'ui/hooks/usePagination';
 
 import { getRequestCards, updateParamsCards } from '../../../bll/reducers/cards-reducer';
 import { useAppDispatch, useAppSelector } from '../../../bll/store/hooks';
@@ -11,10 +12,12 @@ import CardCreateModal from '../Modals/CardCreateModal/CardCreateModal';
 
 import CardsNavigation from './cards-utils/cards-navigation/CardsNavigation';
 import CardsTable from './cards-utils/cards-table/CardsTable';
-import Pagination from './cards-utils/pagination/Pagination';
 
 const Cards = () => {
     const dispatch = useAppDispatch();
+
+    const pageCount = useAppSelector(state => state.cards.cardsParams.pageCount);
+    const cardPacksTotalCount = useAppSelector(state => state.cards.cardsTotalCount);
 
     const cards = useAppSelector(state => state.cards.cards);
     const userId = useAppSelector(state => state.login.userData._id);
@@ -26,6 +29,24 @@ const Cards = () => {
     const isLoading = useAppSelector(state => state.app.isLoading);
 
     const params = useParams();
+
+    const {
+        currentPage,
+        totalPages,
+        renderPageNumbers,
+        pageDecrementBtn,
+        pageIncrementBtn,
+        leftIArrow,
+        rightArrow,
+    } = usePagination({
+        contentPerPage: pageCount,
+        totalElements: cardPacksTotalCount,
+        pageNumberLimit: 5,
+    });
+
+    useEffect(() => {
+        dispatch(updateParamsCards({ page: currentPage }));
+    }, [currentPage]);
 
     useEffect(() => {
         dispatch(updateParamsCards({ cardsPack_id: params.packId }));
@@ -76,7 +97,20 @@ const Cards = () => {
                 <div className={styles.container}>
                     <CardsNavigation />
                     <CardsTable />
-                    <Pagination />
+                    <div>
+                        {totalPages < 2 ? null : (
+                            <div className={styles.pagination}>
+                                <p>
+                                    {currentPage}/{totalPages}
+                                </p>
+                                {leftIArrow}
+                                {pageDecrementBtn}
+                                {renderPageNumbers}
+                                {pageIncrementBtn}
+                                {rightArrow}
+                            </div>
+                        )}
+                    </div>
                 </div>
             )}
         </div>

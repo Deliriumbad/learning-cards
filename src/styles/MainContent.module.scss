@@ -10,3 +10,15 @@
         @include link(uppercase);
     }
 }
+
+.pagination {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    margin-top: 1rem;
+
+    p {
+        font-size: 2rem;
+        font-weight: 500;
+    }
+}

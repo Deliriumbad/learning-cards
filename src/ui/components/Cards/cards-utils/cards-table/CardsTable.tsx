@@ -2,6 +2,7 @@ import { setSortCards } from 'bll/reducers/cards-reducer';
 import { useAppDispatch, useAppSelector } from 'bll/store/hooks';
 import { useParams } from 'react-router-dom';
 import styles from 'styles/Table.module.scss';
+import CardDeleteModal from 'ui/components/Modals/CardDeleteModal/CardDeleteModal';
 import CardEditModal from 'ui/components/Modals/CardEditModal/CardEditModal';
 import { formatDate } from 'utils/formatDate';
 
@@ -64,7 +65,14 @@ const CardsTable = () => {
                             <td>{card.answer}</td>
                             <td>{formatDate(card.updated)}</td>
                             <td>{card.grade}</td>
-                            <td>{userId === card.user_id && <CardEditModal id={card._id} />}</td>
+
+                            {userId === card.user_id && (
+                                <td>
+                                    <CardDeleteModal id={card._id} />
+                                    <CardEditModal id={card._id} />
+                                    <div />
+                                </td>
+                            )}
                         </tr>
                     );
                 })}

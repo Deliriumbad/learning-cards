@@ -33,7 +33,7 @@ const PackTable = () => {
                 <tr>
                     <th onClick={() => onChangePacksSortHandler('name')}>Name</th>
                     <th onClick={() => onChangePacksSortHandler('cardsCount')}>Cards </th>
-                    <th onClick={() => onChangePacksSortHandler('created')}>Last updated;</th>
+                    <th onClick={() => onChangePacksSortHandler('created')}>Last updated</th>
                     <th onClick={() => onChangePacksSortHandler('updated')}>Created by</th>
                     <th>Actions</th>
                 </tr>

@@ -10,7 +10,7 @@ export const packsInitState = {
             user_id: '',
             user_name: '',
             name: '',
-            cardsCount: 20,
+            cardsCount: 0,
             created: '',
             updated: '',
         },
@@ -20,7 +20,7 @@ export const packsInitState = {
     maxCardsCount: 0,
     minCardsCount: 0,
     page: 1,
-    pageCount: 5,
+    pageCount: 1,
     error: null as null | string,
 
     packParams: {
@@ -73,12 +73,6 @@ export const getRequestPacks = (): AppThunk => {
             .getPacks(packParams)
             .then(response => {
                 dispatch(setPacks(response.data));
-            })
-            .catch(e => {
-                const error = e.response
-                    ? e.response.data.error
-                    : `${e.message}, more details in the console`;
-                dispatch(setError(error));
             })
             .finally(() => {
                 dispatch(setIsLoading(false));
