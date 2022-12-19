@@ -3,10 +3,9 @@ import React, { ChangeEvent, useState } from 'react';
 import { setSearchCardsByQuestion } from 'bll/reducers/cards-reducer';
 import { useAppDispatch, useAppSelector } from 'bll/store/hooks';
 import { NavLink } from 'react-router-dom';
+import { PATH } from 'routes/RoutesPath';
 import InputText from 'ui/common/InputText/InputText';
 import CardCreateModal from 'ui/components/Modals/CardCreateModal/CardCreateModal';
-
-import { PATH } from '../../../../../routes/RoutesPath';
 
 import style from './CardsNavigation.module.scss';
 

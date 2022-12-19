@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 
+import { getRequestCards, updateParamsCards } from 'bll/reducers/cards-reducer';
+import { useAppDispatch, useAppSelector } from 'bll/store/hooks';
 import { NavLink, useParams } from 'react-router-dom';
 import { PATH } from 'routes/RoutesPath';
 import styles from 'styles/MainContent.module.scss';
 import Loader from 'ui/common/Loader/Loader';
 import usePagination from 'ui/hooks/usePagination';
 
-import { getRequestCards, updateParamsCards } from '../../../bll/reducers/cards-reducer';
-import { useAppDispatch, useAppSelector } from '../../../bll/store/hooks';
 import CardCreateModal from '../Modals/CardCreateModal/CardCreateModal';
 
 import CardsNavigation from './cards-utils/cards-navigation/CardsNavigation';

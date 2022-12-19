@@ -1,15 +1,14 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 
+import { logoutTC } from 'bll/reducers/login-reducer';
+import { updateUserProfileTC } from 'bll/reducers/profile-reducer';
+import { useAppDispatch, useAppSelector } from 'bll/store/hooks';
 import { useNavigate } from 'react-router-dom';
+import { PATH } from 'routes/RoutesPath';
 import styles from 'styles/Form.module.scss';
+import dog from 'ui/assets/images/dog.png';
 import Button from 'ui/common/Button/Button';
-
-import { logoutTC } from '../../../../bll/reducers/login-reducer';
-import { updateUserProfileTC } from '../../../../bll/reducers/profile-reducer';
-import { useAppDispatch, useAppSelector } from '../../../../bll/store/hooks';
-import { PATH } from '../../../../routes/RoutesPath';
-import dog from '../../../assets/images/dog.png';
-import EditableSpan from '../../../common/EditableSpan/EditableSpan';
+import EditableSpan from 'ui/common/EditableSpan/EditableSpan';
 
 const Profile = () => {
     const isLoggedIn = useAppSelector(state => state.login.isLoggedIn);

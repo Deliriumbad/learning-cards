@@ -1,16 +1,15 @@
 import React, { useEffect } from 'react';
 
+import { requestLogin } from 'bll/reducers/login-reducer';
+import { useAppDispatch, useAppSelector } from 'bll/store/hooks';
 import { useFormik } from 'formik';
 import { NavLink, useNavigate } from 'react-router-dom';
+import { PATH } from 'routes/RoutesPath';
 import styles from 'styles/Form.module.scss';
-
-import { requestLogin } from '../../../../bll/reducers/login-reducer';
-import { useAppDispatch, useAppSelector } from '../../../../bll/store/hooks';
-import { PATH } from '../../../../routes/RoutesPath';
-import Button from '../../../common/Button/Button';
-import Checkbox from '../../../common/CheckBox/Checkbox';
-import InputText from '../../../common/InputText/InputText';
-import Preloader from '../../../common/Loader/Loader';
+import Button from 'ui/common/Button/Button';
+import Checkbox from 'ui/common/CheckBox/Checkbox';
+import InputText from 'ui/common/InputText/InputText';
+import Loader from 'ui/common/Loader/Loader';
 
 type FormikErrorType = {
     email?: string;
@@ -59,7 +58,7 @@ const Login = () => {
     }, [isLoggedIn]);
 
     if (isFetching) {
-        return <Preloader />;
+        return <Loader />;
     }
 
     return (

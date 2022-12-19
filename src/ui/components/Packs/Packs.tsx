@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react';
 
+import { getRequestPacks, updatePacksParams } from 'bll/reducers/packs-reducer';
+import { useAppDispatch, useAppSelector } from 'bll/store/hooks';
 import { useNavigate } from 'react-router-dom';
+import { PATH } from 'routes/RoutesPath';
 import styles from 'styles/MainContent.module.scss';
 import Loader from 'ui/common/Loader/Loader';
 import usePagination from 'ui/hooks/usePagination';
-
-import { getRequestPacks, updatePacksParams } from '../../../bll/reducers/packs-reducer';
-import { useAppDispatch, useAppSelector } from '../../../bll/store/hooks';
-import { PATH } from '../../../routes/RoutesPath';
 
 import PackNavigation from './pack-utils/pack-navigation/PacksNavigation';
 import PackTable from './pack-utils/packs-table/PackTable';
