@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 
 import { deleteRequestCard } from 'bll/reducers/cards-reducer';
 import { useAppDispatch } from 'bll/store/hooks';
@@ -17,10 +17,10 @@ const CardDeleteModal = ({ id }: DeleteModalT) => {
 
     const dispatch = useAppDispatch();
 
-    const onDeleteCardCLickHandler = useCallback(() => {
+    const onDeleteCardCLickHandler = () => {
         dispatch(deleteRequestCard(id));
         setShowModal(false);
-    }, [dispatch, id]);
+    };
 
     return (
         <>

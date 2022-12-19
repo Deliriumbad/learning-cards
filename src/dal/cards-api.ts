@@ -22,7 +22,7 @@ export const cardsAPI = {
         return instance.post<CreateCardResponseT>('cards/card', { card: data });
     },
     deleteCards(cardId: string) {
-        return instance.delete('cards/card', { params: cardId });
+        return instance.delete('cards/card', { params: { id: cardId } });
     },
     gradeCard(cardId: string, grade: number) {
         return instance.put<GradeResponseT>('cards/grade', { grade, card_id: cardId });

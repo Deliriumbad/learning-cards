@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 
 import { deleteRequestPack } from 'bll/reducers/packs-reducer';
 import { useAppDispatch } from 'bll/store/hooks';
@@ -17,10 +17,10 @@ const PackDeleteModal = ({ id }: DeleteModalT) => {
 
     const dispatch = useAppDispatch();
 
-    const onDeletePackCLickHandler = useCallback(() => {
+    const onDeletePackCLickHandler = () => {
         dispatch(deleteRequestPack(id));
         setShowModal(false);
-    }, [dispatch, id]);
+    };
 
     return (
         <>
