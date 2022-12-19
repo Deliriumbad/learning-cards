@@ -12,8 +12,7 @@ const PackNavigation = () => {
     const userId = useAppSelector(state => state.login.userData._id);
 
     const [newPackName, setNewPackName] = useState('');
-    const [activeMy, setActiveMy] = useState(false);
-    const [activeAll, setActiveAll] = useState(true);
+    const [active, setActive] = useState(true);
 
     const dispatch = useAppDispatch();
 
@@ -27,13 +26,11 @@ const PackNavigation = () => {
     }, [newPackName]);
 
     const onSetMyPacksHandler = () => {
-        setActiveMy(true);
-        setActiveAll(false);
+        setActive(false);
         dispatch(updatePacksParams({ user_id: userId }));
     };
     const onSetAllPacksHandler = () => {
-        setActiveAll(true);
-        setActiveMy(false);
+        setActive(true);
         dispatch(updatePacksParams({ user_id: '' }));
     };
 
@@ -47,13 +44,13 @@ const PackNavigation = () => {
             <ul className={styles.links}>
                 <li className={styles.item}>
                     <Button
-                        className={`${activeMy ? styles.active : ''}`}
+                        className={`${!active ? styles.active : ''}`}
                         onClick={onSetMyPacksHandler}
                     >
                         My packs
                     </Button>
                     <Button
-                        className={`${activeAll ? styles.active : ''}`}
+                        className={`${active ? styles.active : ''}`}
                         onClick={onSetAllPacksHandler}
                     >
                         All packs

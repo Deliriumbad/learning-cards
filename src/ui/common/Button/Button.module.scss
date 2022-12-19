@@ -1,22 +1,22 @@
+@import 'styles/variables.scss';
 .default {
     text-decoration: none;
     display: inline-block;
     min-width: 10rem;
-		// max-width: 30rem;
     padding: 0.7rem 1.5rem;
     border-radius: 1rem;
     font-weight: 600;
     text-align: center;
     text-transform: uppercase;
     color: white;
-    box-shadow: .3rem .5rem 0.3rem 0.1rem rgba(102, 117, 204, 0.502);
+    box-shadow: $primary-shade;
     font-family: 'Montserrat', sans-serif;
     letter-spacing: 1px;
-    background-color: #525d9b;
+    background-color: $primary;
     transition: all 0.3s;
 
     &:hover {
         cursor: pointer;
-        background-color: #39416d;
+        background-color: $primary-dark;
     }
 }
