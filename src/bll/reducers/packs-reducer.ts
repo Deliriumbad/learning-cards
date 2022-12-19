@@ -82,9 +82,15 @@ export const getRequestPacks = (): AppThunk => {
 
 export const deleteRequestPack = (packId: string): AppThunk => {
     return dispatch => {
-        packApi.deletePack(packId).then(() => {
-            dispatch(getRequestPacks());
-        });
+        dispatch(setIsLoading(true));
+        packApi
+            .deletePack(packId)
+            .then(() => {
+                dispatch(getRequestPacks());
+            })
+            .finally(() => {
+                dispatch(setIsLoading(false));
+            });
     };
 };
 

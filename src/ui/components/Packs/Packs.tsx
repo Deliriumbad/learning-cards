@@ -63,16 +63,18 @@ const Packs = () => {
                 <main className={styles.container}>
                     <PackNavigation />
                     <PackTable />
-                    <div className={styles.pagination}>
-                        <p>
-                            {currentPage}/{totalPages}
-                        </p>
-                        {leftIArrow}
-                        {pageDecrementBtn}
-                        {renderPageNumbers}
-                        {pageIncrementBtn}
-                        {rightArrow}
-                    </div>
+                    {totalPages < 2 ? null : (
+                        <div className={styles.pagination}>
+                            <p>
+                                {currentPage}/{totalPages}
+                            </p>
+                            {leftIArrow}
+                            {pageDecrementBtn}
+                            {renderPageNumbers}
+                            {pageIncrementBtn}
+                            {rightArrow}
+                        </div>
+                    )}
                 </main>
             )}
         </div>
