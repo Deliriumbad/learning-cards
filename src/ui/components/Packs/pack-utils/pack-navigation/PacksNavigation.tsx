@@ -10,9 +10,8 @@ import styles from './PacksNavigation.module.scss';
 
 const PackNavigation = () => {
     const userId = useAppSelector(state => state.login.userData._id);
-
+    const paramsUserId = useAppSelector(state => state.packs.packParams.user_id);
     const [newPackName, setNewPackName] = useState('');
-    const [active, setActive] = useState(true);
 
     const dispatch = useAppDispatch();
 
@@ -26,11 +25,9 @@ const PackNavigation = () => {
     }, [newPackName]);
 
     const onSetMyPacksHandler = () => {
-        setActive(false);
         dispatch(updatePacksParams({ user_id: userId }));
     };
     const onSetAllPacksHandler = () => {
-        setActive(true);
         dispatch(updatePacksParams({ user_id: '' }));
     };
 
@@ -44,13 +41,13 @@ const PackNavigation = () => {
             <ul className={styles.links}>
                 <li className={styles.item}>
                     <Button
-                        className={`${!active ? styles.active : ''}`}
+                        className={`${paramsUserId ? styles.active : ''}`}
                         onClick={onSetMyPacksHandler}
                     >
                         My packs
                     </Button>
                     <Button
-                        className={`${active ? styles.active : ''}`}
+                        className={`${!paramsUserId ? styles.active : ''}`}
                         onClick={onSetAllPacksHandler}
                     >
                         All packs
