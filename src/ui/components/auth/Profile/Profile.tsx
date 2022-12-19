@@ -15,6 +15,7 @@ const Profile = () => {
     const isLoggedIn = useAppSelector(state => state.login.isLoggedIn);
     const userEmail = useAppSelector(state => state.login.userData.email);
     const userName = useAppSelector(state => state.login.userData.name);
+    const packsCount = useAppSelector(state => state.login.userData.publicCardPacksCount);
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
@@ -50,7 +51,6 @@ const Profile = () => {
                 <div className={styles.field}>
                     <img src={dog} alt="dog" className={styles.img} />
                 </div>
-                <div className={styles.message}>{userEmail}</div>
                 <div className={styles.message}>
                     <EditableSpan
                         className={styles.span}
@@ -60,6 +60,14 @@ const Profile = () => {
                         value={name}
                     />
                 </div>
+                <span className={styles.message}>
+                    <strong>Email: </strong>
+                    {userEmail}
+                </span>
+                <span className={styles.message}>
+                    <strong>Count of created packs: </strong>
+                    {packsCount}
+                </span>
                 <Button type="button" className={styles.btn} onClick={onClickHandler}>
                     log out
                 </Button>
